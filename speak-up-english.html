@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speak Up, inglés (DeepSeek R1)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23FF7A29'/%3E%3Cpath d='M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z' fill='none' stroke='white' stroke-width='1.8'/%3E%3Cpath d='M5 10a7 7 0 0 0 14 0' fill='none' stroke='white' stroke-width='1.8'/%3E%3Cpath d='M12 17v3' stroke='white' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #EAF2FF 0%, #EAFBF4 100%);
+  display: flex;
+  justify-content: center;
+  padding: 28px 16px;
+  box-sizing: border-box;
+  transition: background .3s;
+}
+body.dark-page {
+  background: linear-gradient(160deg, #12141A 0%, #1B2530 100%);
+}
+
+.cc-app {
+  --bg: #FFFFFF;
+  --surface: #F7F8FA;
+  --surface2: #EFF1F5;
+  --ink: #12141A;
+  --ink-soft: #6B7280;
+  --line: #E7E9ED;
+
+  --blue: #2D7FF9;
+  --green: #16C172;
+  --orange: #FF7A29;
+  --violet: #8B5CF6;
+  --pink: #F43F5E;
+  --teal: #14B8A6;
+
+  --en: var(--blue);
+  --pt: var(--green);
+  --fc: var(--orange);
+  --aj: var(--violet);
+  --ex: var(--pink);
+  --mind: var(--teal);
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  border-radius: 20px;
+  padding: 22px 20px 26px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(30,40,80,0.12);
+  position: relative;
+  transition: background .3s, border-color .3s;
+}
+.cc-app.eval-mode {
+  background: linear-gradient(180deg, #FFF3E8, #FFFFFF 140px);
+  border-color: var(--orange);
+}
+.cc-app.eval-mode .cc-nav { background: #FFE7D2; }
+.cc-app.dark {
+  --bg: #16181D;
+  --surface: #1F2228;
+  --surface2: #262A32;
+  --ink: #F0F1F3;
+  --ink-soft: #9AA0AC;
+  --line: #333842;
+}
+.cc-app.dark.eval-mode { background: linear-gradient(180deg, #2A2216, #16181D 140px); }
+.cc-app.dark .cc-nav button.active { background: #F0F1F3; color: #16181D; }
+.cc-app.dark .cc-check { background: #16181D; }
+.cc-app.dark input, .cc-app.dark textarea, .cc-app.dark select { background: #16181D; color: var(--ink); }
+.cc-app.dark .cc-cell { color: var(--ink-soft); }
+.cc-dog {
+  width: 34px; height: 32px; flex: none; cursor: default;
+}
+.cc-app * { box-sizing: border-box; }
+
+.cc-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; gap:10px; flex-wrap:wrap; }
+.cc-title { font-weight:800; font-size:21px; margin:0; letter-spacing:-0.01em; }
+.cc-brand { display:flex; align-items:center; gap:10px; }
+.cc-logo { width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,var(--blue),var(--green)); display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 3px 10px rgba(45,127,249,0.35); }
+.cc-sub { font-size:12px; color:var(--ink-soft); margin-top:3px; }
+.cc-countdown { text-align:right; }
+.cc-countdown .n { font-weight:800; font-size:24px; color:var(--orange); line-height:1; }
+.cc-countdown .l { font-size:10.5px; color:var(--ink-soft); }
+
+.cc-nav { display:flex; flex-wrap:wrap; gap:6px; background:var(--surface); border-radius:14px; padding:5px; margin-bottom:20px; }
+.cc-nav button {
+  flex:1 1 auto; min-width:88px; font-weight:600; font-size:12.5px; padding:9px 8px;
+  border:none; border-radius:10px; background:transparent; color:var(--ink-soft); cursor:pointer;
+  white-space:nowrap; transition:background .15s,color .15s;
+  display:inline-flex; align-items:center; justify-content:center; gap:5px;
+}
+.cc-nav button.active { background:linear-gradient(135deg,var(--blue),var(--violet)); color:#fff; box-shadow:0 2px 8px rgba(45,127,249,0.3); }
+
+.cc-loading { text-align:center; padding:40px 0; color:var(--ink-soft); font-size:13px; }
+
+/* HOY */
+.cc-today-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+.cc-today-date { font-size:16px; font-weight:700; }
+.cc-phase-badge { font-size:11px; font-weight:600; color:var(--ink-soft); margin-top:3px; }
+.cc-back { font-size:12px; color:var(--blue); background:none; border:none; cursor:pointer; font-weight:600; }
+
+.cc-done-banner {
+  display:none; align-items:center; gap:8px; background:linear-gradient(90deg,var(--green),var(--blue));
+  color:#fff; font-weight:600; font-size:13px; padding:10px 14px; border-radius:12px; margin-bottom:16px;
+}
+.cc-done-banner.show { display:flex; }
+.cc-eval-banner {
+  display:flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--orange),var(--pink));
+  color:#fff; font-weight:600; font-size:13px; padding:10px 14px; border-radius:12px; margin-bottom:16px;
+  cursor:pointer;
+}
+.cc-banner-check { display:inline-block; width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,0.28); position:relative; flex:none; }
+.cc-banner-check::after { content:''; position:absolute; left:5px; top:6px; width:6px; height:4px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg); }
+
+.cc-habit { border:1px solid var(--line); border-left:4px solid var(--card-accent, var(--line)); border-radius:14px; padding:14px 16px; margin-bottom:10px; box-shadow:0 1px 3px rgba(20,20,30,0.05); transition:box-shadow .2s, transform .15s; }
+.cc-habit:hover { box-shadow:0 4px 14px rgba(20,20,30,0.09); }
+.cc-habit-head { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
+.cc-habit-icon { width:26px; height:26px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex:none; }
+.cc-habit-name { font-weight:700; font-size:14.5px; flex:1; }
+.cc-habit-frac { font-size:12px; color:var(--ink-soft); font-weight:600; }
+
+.cc-sub-row { display:flex; align-items:flex-start; gap:10px; padding:6px 0; }
+.cc-check {
+  width:22px; height:22px; border-radius:7px; border:2px solid var(--habit-color); background:#fff;
+  cursor:pointer; flex:none; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  transition:transform .1s;
+}
+.cc-check:active { transform:scale(0.88); }
+.cc-check.on { background:var(--habit-color); }
+.cc-check.on::after { content:''; width:8px; height:6px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg) translate(1px,-1px); }
+.cc-sub-text { font-size:13.5px; line-height:1.35; }
+.cc-sub-hint { font-size:11.5px; color:var(--ink-soft); display:block; margin-top:1px; }
+
+.cc-extra { margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); }
+.cc-extra label { font-size:11px; font-weight:600; color:var(--ink-soft); display:block; margin-bottom:4px; }
+.cc-extra input, .cc-extra textarea,
+.cc-suggest-wrap input, .cc-suggest-wrap textarea,
+.cc-habit input, .cc-habit textarea,
+.cc-suggest-wrap input, .cc-suggest-wrap textarea {
+  font-family:'Inter',sans-serif; font-size:13px; padding:8px 10px; border-radius:9px;
+  border:1.5px solid var(--line); width:100%; margin-bottom:8px; color:var(--ink); background:#fff;
+  box-sizing:border-box; display:block;
+}
+.cc-extra-btn { font-size:12px; font-weight:700; border:none; border-radius:20px; padding:8px 14px; cursor:pointer; color:#fff; display:inline-flex; align-items:center; gap:6px; transition:transform .12s, box-shadow .12s; box-shadow:0 2px 6px rgba(20,20,30,0.15); }
+.cc-extra-btn:hover { transform:translateY(-1px); box-shadow:0 4px 10px rgba(20,20,30,0.2); }
+.cc-extra-btn:active { transform:translateY(0); }
+.cc-extra-btn:disabled { opacity:0.6; cursor:default; }
+.cc-mic-inline {
+  font-size:11px; font-weight:600; color:var(--ink-soft); background:var(--surface);
+  border:1px solid var(--line); border-radius:20px; padding:5px 10px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:5px; margin-bottom:8px;
+}
+.cc-mic-inline.listening { background:var(--pink); color:#fff; border-color:var(--pink); }
+.cc-feedback { margin-top:8px; background:var(--surface); border-radius:10px; padding:10px 12px; font-size:12.5px; line-height:1.5; white-space:pre-wrap; }
+.cc-feedback.loading { color:var(--ink-soft); font-style:italic; }
+.cc-suggest-wrap { margin-top:14px; }
+.cc-suggest-list { margin-top:8px; }
+.cc-wheel-row { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+.cc-wheel-wrap { position:relative; width:70px; height:70px; flex:none; }
+.cc-wheel {
+  width:70px; height:70px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 2px var(--line);
+  background: conic-gradient(var(--blue) 0deg 45deg, var(--green) 45deg 90deg, var(--orange) 90deg 135deg, var(--violet) 135deg 180deg, var(--pink) 180deg 225deg, var(--blue) 225deg 270deg, var(--green) 270deg 315deg, var(--orange) 315deg 360deg);
+  transition: transform 2s cubic-bezier(.2,.8,.2,1);
+}
+.cc-wheel-pointer {
+  position:absolute; top:-6px; left:50%; transform:translateX(-50%);
+  width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:10px solid var(--ink); z-index:2;
+}
+.cc-img-box { background:var(--surface2); border-radius:12px; padding:8px; margin-bottom:8px; display:flex; align-items:center; justify-content:center; }
+.cc-img-caption { font-size:12px; font-style:italic; color:var(--ink-soft); text-align:center; margin-bottom:10px; }
+
+/* PROGRESO */
+.cc-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px; }
+.cc-stat { background:var(--surface); border-radius:12px; padding:12px 8px; text-align:center; border-top:3px solid var(--blue); }
+.cc-stat:nth-child(2){ border-top-color:var(--green); }
+.cc-stat:nth-child(3){ border-top-color:var(--orange); }
+.cc-stat:nth-child(4){ border-top-color:var(--violet); }
+.cc-stat .n { font-size:19px; font-weight:800; }
+.cc-stat .l { font-size:10px; color:var(--ink-soft); margin-top:2px; }
+
+.cc-section-title { font-size:14.5px; font-weight:700; margin:22px 0 10px; }
+
+.cc-months { display:flex; flex-wrap:wrap; gap:12px; }
+.cc-month { background:var(--surface); border-radius:12px; padding:9px; flex:1 1 200px; min-width:190px; }
+.cc-month-label { font-size:11px; font-weight:700; color:var(--ink-soft); margin-bottom:6px; display:block; }
+.cc-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; }
+.cc-cell { aspect-ratio:1; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:9px; cursor:pointer; color:var(--ink-soft); border:1.5px solid transparent; background:var(--surface2); }
+.cc-cell.pad { visibility:hidden; cursor:default; }
+.cc-cell.future { opacity:0.3; cursor:default; }
+.cc-cell.selected { border-color:var(--ink); }
+
+.cc-bars { display:flex; flex-direction:column; gap:10px; }
+.cc-bar-row { display:flex; align-items:center; gap:10px; }
+.cc-bar-label { font-size:12.5px; font-weight:600; width:120px; flex:none; }
+.cc-bar-track { flex:1; height:9px; background:var(--surface2); border-radius:6px; overflow:hidden; }
+.cc-bar-fill { height:100%; border-radius:6px; transition:width .3s; }
+.cc-bar-pct { font-size:11px; width:36px; text-align:right; color:var(--ink-soft); flex:none; }
+
+/* VOCAB */
+.cc-vocab-tabs { display:flex; gap:6px; margin-bottom:14px; }
+.cc-vtab { font-size:12px; font-weight:600; padding:7px 12px; border-radius:20px; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+.cc-vtab.active { border-color:var(--ink); color:var(--ink); }
+
+.cc-empty { text-align:center; padding:36px 10px; color:var(--ink-soft); font-size:13px; }
+
+.cc-card { background:var(--surface); border-radius:16px; padding:32px 20px; text-align:center; min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:pointer; position:relative; }
+.cc-card-cat { position:absolute; top:12px; left:12px; font-size:10px; font-weight:700; color:#fff; padding:3px 9px; border-radius:20px; }
+.cc-card-front { font-size:21px; font-weight:800; }
+.cc-card-back { font-size:15px; }
+.cc-card-example { font-size:11.5px; color:var(--ink-soft); max-width:400px; }
+.cc-card-hint { font-size:10.5px; color:var(--ink-soft); }
+
+.cc-grade-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px; }
+
+.cc-path { position:relative; padding:16px 0 8px; }
+.cc-path::before {
+  content:''; position:absolute; top:10px; bottom:30px; left:50%; transform:translateX(-50%);
+  border-left:4px dashed var(--surface2); z-index:0;
+}
+.cc-path-row { display:flex; margin-bottom:22px; position:relative; z-index:1; }
+.cc-path-row.left { justify-content:flex-start; padding-left:8%; }
+.cc-path-row.center { justify-content:center; }
+.cc-path-row.right { justify-content:flex-end; padding-right:8%; }
+.cc-path-node-col { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.cc-path-node {
+  width:64px; height:64px; border-radius:50%; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 5px 0 rgba(20,20,30,0.18); transition:transform .1s;
+}
+.cc-path-node:active { transform:translateY(3px); box-shadow:0 2px 0 rgba(20,20,30,0.18); }
+.cc-path-node:disabled { cursor:default; box-shadow:none; }
+.cc-path-node.pulse { animation: cc-pulse 1.6s ease-in-out infinite; }
+@keyframes cc-pulse {
+  0%, 100% { box-shadow:0 5px 0 rgba(20,20,30,0.18), 0 0 0 0 rgba(45,127,249,0.5); }
+  50% { box-shadow:0 5px 0 rgba(20,20,30,0.18), 0 0 0 10px rgba(45,127,249,0); }
+}
+.cc-path-label { font-size:11px; font-weight:700; text-align:center; max-width:100px; color:var(--ink-soft); }
+
+.cc-ipa-hero {
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  border-radius:18px; padding:20px 18px; margin-bottom:16px; color:#fff;
+  box-shadow:0 8px 20px rgba(45,127,249,0.25);
+}
+.cc-ipa-hero-title { font-size:19px; font-weight:800; margin-bottom:4px; }
+.cc-ipa-hero-sub { font-size:12.5px; opacity:0.9; }
+.cc-ipa-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(84px,1fr)); gap:10px; margin-bottom:18px; }
+.cc-ipa-card {
+  background:#fff; border:2px solid var(--ipa-color); border-radius:14px; padding:12px 6px;
+  display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer;
+  transition:transform .12s, box-shadow .12s;
+}
+.cc-ipa-card:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 6px 14px color-mix(in srgb, var(--ipa-color) 35%, transparent); }
+.cc-ipa-card:active { transform:translateY(0) scale(0.98); }
+.cc-ipa-symbol { font-size:20px; font-weight:800; color:var(--ipa-color); }
+.cc-ipa-word { font-size:11px; color:var(--ink-soft); font-weight:600; }
+.cc-app.dark .cc-ipa-card { background:var(--surface); }
+.cc-grade-btn { font-size:11.5px; font-weight:600; padding:11px 6px; border-radius:12px; cursor:pointer; border:1.5px solid var(--line); background:#fff; line-height:1.3; }
+.cc-grade-btn.bad { border-color:var(--pink); color:var(--pink); }
+.cc-grade-btn.mid { border-color:var(--orange); color:var(--orange); }
+.cc-grade-btn.good { border-color:var(--green); color:var(--green); }
+.cc-grade-btn:active { transform:scale(0.96); }
+
+.cc-form { display:flex; flex-direction:column; gap:9px; background:var(--surface); border-radius:14px; padding:16px; margin-bottom:16px; }
+.cc-form label { font-size:11px; font-weight:600; color:var(--ink-soft); }
+.cc-form input, .cc-form select, .cc-form textarea { font-family:'Inter',sans-serif; font-size:13.5px; padding:9px 10px; border-radius:9px; border:1.5px solid var(--line); background:#fff; color:var(--ink); width:100%; }
+.cc-add-btn { font-size:13px; font-weight:700; background:var(--ink); color:#fff; border:none; border-radius:20px; padding:11px; cursor:pointer; margin-top:2px; }
+
+.cc-list { display:flex; flex-direction:column; gap:7px; }
+.cc-list-item { display:flex; align-items:center; gap:9px; background:var(--surface); border-radius:10px; padding:9px 12px; }
+.cc-list-cat { font-size:9px; font-weight:700; color:#fff; padding:2px 7px; border-radius:20px; flex:none; }
+.cc-list-front { font-weight:600; font-size:13px; flex:1; }
+.cc-list-back { font-size:12px; color:var(--ink-soft); flex:1; }
+.cc-list-box { font-size:10px; color:var(--ink-soft); flex:none; }
+.cc-del { background:none; border:none; color:var(--pink); font-size:11px; font-weight:600; cursor:pointer; flex:none; }
+
+/* GUIA */
+.cc-acc { border:1px solid var(--line); border-radius:14px; margin-bottom:8px; overflow:hidden; }
+.cc-acc-head { display:flex; align-items:center; gap:10px; padding:13px 16px; cursor:pointer; background:#fff; }
+.cc-acc-dot { width:10px; height:10px; border-radius:50%; flex:none; }
+.cc-acc-title { font-weight:600; font-size:14px; flex:1; }
+.cc-acc-arrow-shape { display:inline-block; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--ink-soft); transition:transform .15s; flex:none; }
+.cc-acc.open .cc-acc-arrow-shape { transform:rotate(180deg); }
+.cc-acc-body { display:none; padding:0 16px 16px; font-size:13px; line-height:1.55; color:var(--ink); }
+.cc-acc.open .cc-acc-body { display:block; }
+.cc-acc-body ul { margin:6px 0; padding-left:18px; }
+.cc-acc-body li { margin-bottom:4px; }
+.cc-acc-body b { font-weight:700; }
+
+.cc-footer { display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:14px; border-top:1px solid var(--line); }
+.cc-note { font-size:10.5px; color:var(--ink-soft); }
+.cc-reset { font-size:10.5px; font-weight:600; color:var(--pink); background:none; border:1.5px solid var(--pink); border-radius:20px; padding:6px 12px; cursor:pointer; }
+
+@media (max-width:520px){
+  .cc-stats{ grid-template-columns:repeat(2,1fr); }
+  .cc-title{ font-size:18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cc-app" id="ccApp"><div class="cc-loading">Cargando</div></div>
+
+<script>
+(function(){
+  const HABITS = [
+    { id:'en', name:'Inglés', color:'--en',
+      subtasks:[
+        { id:'drill', text:'Shadowing fonético y grabación (30 minutos)', hint:()=>"Rachel's English, fijo todos los días" },
+        { id:'anki',  text:'Repaso de vocabulario (15 minutos)', hint:()=>'Usa la pestaña Vocabulario de aquí mismo' },
+        { id:'input', text:'Menú de input (25 a 30 minutos)', hint:(d,phase)=>{ const podcast = phase===1?'Podcast (Speak English With Vanessa)':phase===2?'Podcast (Philosophize This)':'Podcast (This American Life)'; return [podcast,'StrawberryPark (caza de slang)','Serie con subtítulos','Música (letras)','StrawberryPark (caza de slang)','Sesión larga: serie o podcast completo','Repaso, sin input nuevo'][d]; } },
+        { id:'output', text:'Menú de output (10 a 15 minutos)', hint:d=>['Self-talk: tu día','Grabarte explicando un tema','Discord (voz)','Self-talk: debate filosófico','Discord (voz)','Discord opcional','Descanso, sin output nuevo'][d] },
+      ]},
+  ];
+
+  const CATS = {
+    'en-formal': { label:'Inglés formal', color:'#2D7FF9' },
+    'en-slang':  { label:'Inglés slang', color:'#FF7A29' },
+    'other':     { label:'Otro', color:'#8B5CF6' },
+  };
+  const BOX_DAYS = [1,2,4,8,16,32];
+
+  const LESSON_NODES = [
+    { id:'l1', title:'Vocales tensas y relajadas', topic:'la diferencia entre vocales tensas y relajadas en inglés, como en sheep versus ship' },
+    { id:'l2', title:'La erre americana', topic:'el sonido de la R americana y en qué se diferencia de la R en español' },
+    { id:'l3', title:'T suave y linking', topic:'la T que suena como D entre vocales, y cómo se unen las palabras al hablar en inglés americano' },
+    { id:'l4', title:'Entonación', topic:'los patrones de entonación de una oración en inglés americano' },
+    { id:'l5', title:'Contracciones', topic:'contracciones comunes en inglés hablado como gonna, wanna, gotta, kinda' },
+    { id:'l6', title:'Phrasal verbs: rutina diaria', topic:'phrasal verbs sobre la rutina diaria en inglés, como get up, wake up, put on, take off, turn on, turn off' },
+    { id:'l7', title:'Phrasal verbs: trabajo y estudio', topic:'phrasal verbs sobre trabajo y estudio en inglés, como turn in, hand in, figure out, work out, catch up, fall behind' },
+    { id:'l8', title:'Phrasal verbs: relaciones', topic:'phrasal verbs sobre relaciones personales en inglés, como break up, make up, hang out, get along, look after, fall for' },
+    { id:'l9', title:'Phrasal verbs: movimiento', topic:'phrasal verbs de movimiento en inglés, como get on, get off, come across, go through, run into, head out' },
+    { id:'l10', title:'Phrasal verbs: comunicación', topic:'phrasal verbs sobre comunicación en inglés, como bring up, point out, get across, speak up, back up, go over' },
+    { id:'l11', title:'Phrasal verbs: dinero', topic:'phrasal verbs sobre dinero y finanzas en inglés, como pay off, save up, cut back, pay back, run out, splash out' },
+    { id:'l12', title:'Phrasal verbs: emociones', topic:'phrasal verbs sobre emociones en inglés, como freak out, calm down, cheer up, chill out, break down, get over' },
+    { id:'l13', title:'Phrasal verbs: comida', topic:'phrasal verbs sobre comida y cocina en inglés, como eat out, warm up, use up, fill up, cut up, dish out' },
+    { id:'l14', title:'Phrasal verbs coloquiales', topic:'phrasal verbs informales y coloquiales usados en conversación cotidiana en inglés, más avanzados que los básicos' },
+    { id:'l15', title:'Expresiones idiomáticas', topic:'expresiones idiomáticas comunes en inglés' },
+    { id:'l16', title:'Condicionales', topic:'oraciones condicionales en inglés, con if' },
+    { id:'l17', title:'Voz pasiva', topic:'la voz pasiva en inglés' },
+    { id:'l18', title:'Reported speech', topic:'el estilo indirecto en inglés, reported speech' },
+  ];
+  const IPA_SOUNDS = [
+    { symbol:'i', type:'vowel', word:'sheep', example:'sheep' },
+    { symbol:'ɪ', type:'vowel', word:'ship', example:'ship' },
+    { symbol:'eɪ', type:'vowel', word:'day', example:'day' },
+    { symbol:'ɛ', type:'vowel', word:'bed', example:'bed' },
+    { symbol:'æ', type:'vowel', word:'cat', example:'cat' },
+    { symbol:'ʌ', type:'vowel', word:'cup', example:'cup' },
+    { symbol:'ɑ', type:'vowel', word:'father', example:'father' },
+    { symbol:'ɔ', type:'vowel', word:'law', example:'law' },
+    { symbol:'oʊ', type:'vowel', word:'go', example:'go' },
+    { symbol:'ʊ', type:'vowel', word:'book', example:'book' },
+    { symbol:'u', type:'vowel', word:'blue', example:'blue' },
+    { symbol:'aɪ', type:'vowel', word:'time', example:'time' },
+    { symbol:'aʊ', type:'vowel', word:'house', example:'house' },
+    { symbol:'ɔɪ', type:'vowel', word:'boy', example:'boy' },
+    { symbol:'ə', type:'vowel', word:'about', example:'about' },
+    { symbol:'ɚ', type:'vowel', word:'teacher', example:'teacher' },
+    { symbol:'p', type:'consonant', word:'pen', example:'pen' },
+    { symbol:'b', type:'consonant', word:'bad', example:'bad' },
+    { symbol:'t', type:'consonant', word:'top', example:'top' },
+    { symbol:'d', type:'consonant', word:'dog', example:'dog' },
+    { symbol:'k', type:'consonant', word:'cat', example:'cat' },
+    { symbol:'g', type:'consonant', word:'go', example:'go' },
+    { symbol:'f', type:'consonant', word:'fish', example:'fish' },
+    { symbol:'v', type:'consonant', word:'van', example:'van' },
+    { symbol:'θ', type:'consonant', word:'think', example:'think' },
+    { symbol:'ð', type:'consonant', word:'this', example:'this' },
+    { symbol:'s', type:'consonant', word:'sun', example:'sun' },
+    { symbol:'z', type:'consonant', word:'zoo', example:'zoo' },
+    { symbol:'ʃ', type:'consonant', word:'she', example:'she' },
+    { symbol:'ʒ', type:'consonant', word:'vision', example:'vision' },
+    { symbol:'h', type:'consonant', word:'hat', example:'hat' },
+    { symbol:'tʃ', type:'consonant', word:'chair', example:'chair' },
+    { symbol:'dʒ', type:'consonant', word:'job', example:'job' },
+    { symbol:'m', type:'consonant', word:'man', example:'man' },
+    { symbol:'n', type:'consonant', word:'no', example:'no' },
+    { symbol:'ŋ', type:'consonant', word:'sing', example:'sing' },
+    { symbol:'l', type:'consonant', word:'leg', example:'leg' },
+    { symbol:'r', type:'consonant', word:'red', example:'red' },
+    { symbol:'j', type:'consonant', word:'yes', example:'yes' },
+    { symbol:'w', type:'consonant', word:'we', example:'we' },
+  ];
+  const MINIMAL_PAIRS = [
+    ['ship','sheep'],['bit','beat'],['full','fool'],['live','leave'],['bad','bed'],
+    ['cheap','chip'],['pull','pool'],['sit','seat'],['hit','heat'],['rich','reach'],
+    ['man','men'],['sun','son'],['walk','work'],['bag','beg'],['cot','caught'],
+  ];
+  const GUIDE = [
+    { id:'sistema', name:'Cómo cambian las actividades', color:'#12141A', body:`
+      Las actividades tienen dos capas. La primera es semanal: cada día de la semana trae una sugerencia distinta dentro del mismo hábito, para que no se sienta repetitivo, y esa parte se repite cada semana.
+      La segunda es de fondo, y esa sí avanza con el calendario. El plan tiene tres fases: fase 1 en julio y agosto, fase 2 en septiembre y octubre, fase 3 en noviembre y diciembre. En la pestaña Hoy vas a ver siempre una insignia con la fase en la que estás.
+      Esta app es solo de inglés. El checklist diario que marques aquí se refleja como porcentaje en el hub central (Cimientos), y las evaluaciones y el vocabulario que generes aquí también alimentan los logros del hub, porque comparten los mismos datos guardados en este navegador.
+    `},
+    { id:'en', name:'Inglés: sonar nativo', color:'#2D7FF9', body:`
+      <b>Fijo diario:</b> shadowing con Rachel's English (20 minutos), grabarte y comparar (10 minutos), vocabulario en contexto (15 minutos).
+      <b>Menú de input:</b>
+      <ul>
+        <li>Podcast: empiezas con Speak English With Vanessa, luego avanzas a Philosophize This, y en la última fase This American Life</li>
+        <li>StrawberryPark, cazando slang</li>
+        <li>Serie con subtítulos</li>
+        <li>Música, trabajando las letras</li>
+      </ul>
+      <b>Menú de output:</b>
+      <ul>
+        <li>Self-talk sobre tu día, o debatiendo una postura filosófica</li>
+        <li>Discord de voz</li>
+        <li>Grabarte explicando un tema que leíste</li>
+      </ul>
+      <b>Fonética por semanas:</b>
+      <ul>
+        <li>Semanas 1 y 2: vocales tensas y relajadas</li>
+        <li>Semanas 3 y 4: la erre americana</li>
+        <li>Semanas 5 y 6: la t suave entre vocales, y la unión entre palabras</li>
+        <li>Semanas 7 y 8: entonación de la oración completa</li>
+      </ul>
+      <b>Slang:</b> de cada video o canción, anota 3 a 5 expresiones con su contexto y pásalas a la pestaña Vocabulario.
+    `},
+    { id:'vocab', name:'Cómo usar la pestaña Vocabulario', color:'#12141A', body:`
+      Reemplaza a Anki con un sistema de cajas. Agregas la palabra o expresión, su significado y un ejemplo, la clasificas en formal o slang, y el sistema decide cuándo te toca repasarla según si la sabías bien, más o menos, o nada.
+      Además, en Lecciones tienes ejercicios cortos generados en el momento y un juego de pares mínimos para entrenar el oído, con puntos de experiencia que suben tu nivel.
+    `},
+  ];
+
+  const START = new Date(2026,6,1), END = new Date(2026,11,31);
+  const STORAGE_KEY = 'centro-comando-v2';
+  const KEY_STORAGE = 'speakup-openrouter-key';
+  const UI_STRINGS = {
+    es: {
+      hoy:'Hoy', progreso:'Progreso', vocabulario:'Vocabulario', lecciones:'Lecciones',
+      evaluacion:'Evaluación', guia:'Guía', configuracion:'Configuración',
+      repasar:'Repasar', juego:'Juego', agregar:'Agregar', mazo:'Mazo', analisis:'Análisis',
+      volverALecciones:'Volver a Lecciones', diasRestantes:'días restantes',
+      cambiarClave:'Cambiar clave de OpenRouter', reiniciarDatos:'Reiniciar todos los datos',
+      idiomaInterfaz:'Idioma de la interfaz',
+    },
+    en: {
+      hoy:'Today', progreso:'Progress', vocabulario:'Vocabulary', lecciones:'Lessons',
+      evaluacion:'Evaluation', guia:'Guide', configuracion:'Settings',
+      repasar:'Review', juego:'Game', agregar:'Add', mazo:'Deck', analisis:'Analysis',
+      volverALecciones:'Back to Lessons', diasRestantes:'days left',
+      cambiarClave:'Change OpenRouter key', reiniciarDatos:'Reset all data',
+      idiomaInterfaz:'Interface language',
+    },
+  };
+  function t(key){
+    const lang = (state.settings && state.settings.uiLang) || 'es';
+    return (UI_STRINGS[lang] && UI_STRINGS[lang][key]) || UI_STRINGS.es[key] || key;
+  }
+  let OR_KEY = '';
+  const TMDB_KEY_STORAGE = 'speakup-tmdb-key';
+  let TMDB_KEY = '';
+  const MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+  const root = document.getElementById('ccApp');
+  const pad = n => String(n).padStart(2,'0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const sameDay = (a,b) => iso(a)===iso(b);
+  const mondayIndex = d => (d.getDay()+6)%7;
+  const todayISO = () => iso(new Date());
+  const addDays = (isoStr,n) => { const d=new Date(isoStr+'T00:00:00'); d.setDate(d.getDate()+n); return iso(d); };
+  const ICON_PATHS = {
+    en: '<path d="M4 5h16v10H9l-4 4V5z"/>',
+    pt: '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2 2.5 14 0 16M12 4c-2.5 2-2.5 14 0 16"/>',
+    fc: '<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0V5z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0V5z"/>',
+    aj: '<circle cx="12" cy="7" r="3"/><path d="M9 11h6l1 3H8l1-3z"/><path d="M6 20h12l-1.5-4h-9L6 20z"/>',
+    ex: '<path d="M6 12h12"/><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/>',
+    mind: '<circle cx="12" cy="6" r="3"/><path d="M12 9v4"/><path d="M6 20c0-4 3-6 6-6s6 2 6 6"/><path d="M9 14l-3 3M15 14l3 3"/>',
+    pencil: '<path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/>',
+    bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3 11c1 .6 1 1.4 1 2h4c0-.6 0-1.4 1-2a6 6 0 0 0-3-11z"/>',
+    target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+    music: '<circle cx="7" cy="18" r="2.5"/><circle cx="18" cy="16" r="2.5"/><path d="M9.5 18V5l11-2v13"/>',
+    image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/>',
+    home: '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>',
+    chart: '<path d="M4 20V10M12 20V4M20 20v-7"/>',
+    book: '<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0V5z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0V5z"/>',
+    guide: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+    mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3M9 21h6"/>',
+    audio: '<path d="M4 10v4h3l5 4V6L7 10H4z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/>',
+    settings: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7.8l2.1 1.2M17.7 15l2.1 1.2M4.2 16.2l2.1-1.2M17.7 9l2.1-1.2M3 12h3M18 12h3"/>',
+    trophy: '<path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a3 3 0 0 0 3 5M17 5h3a3 3 0 0 1-3 5"/><path d="M12 14v4M9 21h6"/>',
+  };
+  function icon(id, color, size){
+    const s = size || 16;
+    const c = color || 'currentColor';
+    return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none">${ICON_PATHS[id]||''}</svg>`;
+  }
+  const capFirst = s => s ? s.charAt(0).toUpperCase()+s.slice(1) : s;
+  const getPhase = d => { const m = d.getMonth(); if (m<=7) return 1; if (m<=9) return 2; return 3; };
+  const PHASE_NAMES = { 1:'Fase 1: cimientos', 2:'Fase 2: construcción', 3:'Fase 3: consolidación' };
+  const EN_TOPICS = [
+    'Preséntate: quién eres, a qué te dedicas y qué te apasiona',
+    'Tu opinión sobre el pesimismo de Schopenhauer',
+    'Un libro o serie que te haya marcado y por qué',
+    'Cómo describirías tu ciudad a un extranjero',
+    'Ventajas y desventajas de la inteligencia artificial',
+    'Tu opinión sobre el libre albedrío',
+    'Un objetivo personal para los próximos cinco años',
+    'Describe tu rutina diaria ideal',
+    'Un problema social que te preocupe y por qué',
+    'Tu música favorita y qué dice de ti',
+    'Las ventajas de aprender varios idiomas',
+    'Cómo ha cambiado tu forma de pensar este año',
+  ];
+  const PT_TOPICS = [
+    'Preséntate en portugués: nombre, edad y de dónde eres',
+    'Describe tu rutina diaria en portugués',
+    'Habla de tu familia en portugués',
+    'Describe tu comida favorita en portugués',
+    'Cuenta qué hiciste el fin de semana en portugués',
+    'Describe tu ciudad en portugués',
+    'Habla de tus planes para el futuro en portugués',
+    'Describe a un amigo en portugués',
+    'Cuenta una anécdota corta en portugués',
+    'Da tu opinión simple sobre una película en portugués',
+    'Describe tu trabajo o estudios en portugués',
+    'Habla de tus pasatiempos en portugués',
+  ];
+  const IMAGE_PROMPTS = [
+    { svg:`<rect width="240" height="140" fill="#1B2540"/><rect x="0" y="118" width="240" height="22" fill="#12141A"/><rect x="150" y="30" width="4" height="90" fill="#EFF1F5"/><circle cx="152" cy="26" r="10" fill="#FFE08A"/><rect x="120" y="95" width="60" height="8" fill="#EFF1F5"/><circle cx="135" cy="88" r="7" fill="#D9AD79"/><rect x="130" y="95" width="10" height="14" fill="#2D7FF9"/><path d="M40 10L36 30M70 5L64 28M100 15L95 33" stroke="#3B4A73" stroke-width="2"/>`, caption:'Someone has been waiting here for hours.', captionPt:'Alguém está esperando aqui há horas.', prompt:'a lonely person sitting under a streetlamp at night on an empty city bench, cinematic, moody blue tones' },
+    { svg:`<rect width="240" height="140" fill="#F7F1E6"/><rect x="50" y="80" width="140" height="10" fill="#9C6B3F"/><rect x="60" y="60" width="34" height="20" fill="#fff"/><rect x="146" y="60" width="34" height="20" fill="#fff"/><circle cx="120" cy="75" r="3" fill="#FF7A29"/><rect x="118" y="60" width="4" height="15" fill="#FF7A29"/><circle cx="77" cy="55" r="9" fill="#D9AD79"/><rect x="70" y="64" width="14" height="16" fill="#8B5CF6"/>`, caption:"One chair has been empty all night.", captionPt:'Uma cadeira ficou vazia a noite toda.', prompt:'a cozy dinner table with one empty chair and one person sitting alone, warm indoor lighting, candid photo style' },
+    { svg:`<rect width="240" height="140" fill="#EAF3EA"/><rect x="170" y="40" width="8" height="70" fill="#6B4A2B"/><circle cx="174" cy="35" r="26" fill="#16C172"/><path d="M60 40L80 60L60 80L40 60Z" fill="#F43F5E"/><path d="M60 80Q100 90 150 70" stroke="#12141A" stroke-width="1.5" fill="none"/><circle cx="30" cy="115" r="6" fill="#12141A"/><rect x="26" y="121" width="8" height="14" fill="#2D7FF9"/><circle cx="55" cy="118" r="6" fill="#12141A"/><rect x="51" y="124" width="8" height="14" fill="#8B5CF6"/>`, caption:'Everyone else already walked away.', captionPt:'Todos os outros já foram embora.', prompt:'a park bench with a lone tree and two kites tangled in the branches, everyone else has left, late afternoon light' },
+    { svg:`<rect width="240" height="140" fill="#F0EAF7"/><rect x="20" y="70" width="130" height="45" fill="#EFDBC0"/><rect x="30" y="45" width="60" height="30" fill="#8B5CF6"/><rect x="35" y="50" width="20" height="8" fill="#fff"/><rect x="60" y="50" width="20" height="8" fill="#fff"/><rect x="170" y="20" width="50" height="50" fill="#2D7FF9" opacity="0.3"/><path d="M170 20L220 70M220 20L170 70" stroke="#2D7FF9" stroke-width="2"/>`, caption:"She still hadn't decided if she was really leaving.", captionPt:'Ela ainda não tinha decidido se ia mesmo embora.', prompt:'a suitcase half packed on a bed next to a window with rain outside, soft purple lighting, contemplative mood' },
+    { svg:`<rect width="240" height="140" fill="#FDF3E7"/><path d="M20 100L20 60L55 40L90 60L90 100Z" fill="#FF7A29"/><rect x="45" y="75" width="18" height="25" fill="#12141A"/><path d="M150 100L150 60L185 40L220 60L220 100Z" fill="#3B4A73"/><rect x="175" y="75" width="18" height="25" fill="#12141A"/><rect x="60" y="70" width="6" height="6" fill="#FFE08A"/><rect x="100" y="0" width="4" height="140" fill="#9C6B3F"/>`, caption:'They used to be best friends.', captionPt:'Eles costumavam ser melhores amigos.', prompt:'two houses side by side separated by a tall wooden fence at sunset, warm orange sky, nostalgic feeling' },
+    { svg:`<rect width="240" height="140" fill="#EFF1F5"/><rect x="90" y="30" width="10" height="90" fill="#6B4A2B"/><circle cx="60" cy="90" r="9" fill="#D9AD79"/><path d="M60 99L60 118" stroke="#D9AD79" stroke-width="10" stroke-linecap="round"/><ellipse cx="66" cy="80" rx="4.5" ry="3" fill="#D9AD79"/><path d="M50 130Q65 120 80 130" stroke="#9C6B3F" stroke-width="2" fill="none"/>`, caption:'He still waits by the door every evening.', captionPt:'Ele ainda espera perto da porta todas as noites.', prompt:'a small dog sitting patiently by a front door in the evening, warm hallway light, gentle realistic photo' },
+  ];
+  function micButtonHtml(id, label){
+    return `<button type="button" class="cc-mic-inline" id="${id}">${icon('mic','currentColor',13)} ${label||'Dictar por voz'}</button>`;
+  }
+  function bindMic(btnId, textareaId, lang){
+    const btn = document.getElementById(btnId);
+    const textarea = document.getElementById(textareaId);
+    if (!btn || !textarea) return;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR){
+      btn.addEventListener('click', ()=>alert('Tu navegador no soporta dictado por voz. Prueba en Chrome de escritorio o Android.'));
+      return;
+    }
+    btn.addEventListener('click', ()=>{
+      const rec = new SR();
+      rec.lang = lang;
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+      btn.classList.add('listening');
+      rec.onresult = (e)=>{
+        const text = e.results[0][0].transcript;
+        textarea.value = (textarea.value ? textarea.value + ' ' : '') + text;
+        textarea.dispatchEvent(new Event('input'));
+      };
+      rec.onerror = ()=>{ btn.classList.remove('listening'); };
+      rec.onend = ()=>{ btn.classList.remove('listening'); };
+      rec.start();
+    });
+  }
+  let cachedVoices = [];
+  function loadVoices(){
+    if (!('speechSynthesis' in window)) return;
+    const v = window.speechSynthesis.getVoices();
+    if (v && v.length) cachedVoices = v;
+  }
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function pickVoice(lang){
+    if (!cachedVoices.length) return null;
+    const langPrefix = lang.split('-')[0];
+    const exact = cachedVoices.filter(v=>v.lang===lang);
+    const bySameLang = cachedVoices.filter(v=>v.lang && v.lang.startsWith(langPrefix));
+    const pool = exact.length ? exact : bySameLang;
+    if (!pool.length) return null;
+    const preferred = pool.find(v=>/Google|Natural|Premium|Neural|Enhanced/i.test(v.name));
+    return preferred || pool[0];
+  }
+  function speakText(text, lang){
+    if (!('speechSynthesis' in window)){ alert('Tu navegador no soporta lectura en voz alta.'); return; }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = 0.95;
+    const voice = pickVoice(lang);
+    if (voice) u.voice = voice;
+    window.speechSynthesis.speak(u);
+  }
+  let audioCtx = null;
+  function getAudioCtx(){
+    if (!audioCtx){ const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
+    return audioCtx;
+  }
+  function playTone(freq, duration, type){
+    if (!state.settings || !state.settings.sound) return;
+    try {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.06;
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.stop(ctx.currentTime + duration);
+    } catch(e){}
+  }
+  function playClick(){ playTone(520, 0.08); }
+  function playSuccess(){ playTone(660, 0.12); setTimeout(()=>playTone(880,0.16),110); }
+  let ambientNodes = null;
+  function startAmbient(){
+    if (ambientNodes) return;
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+    const master = ctx.createGain();
+    master.gain.value = 0.0001;
+    master.connect(ctx.destination);
+    master.gain.linearRampToValueAtTime(1, ctx.currentTime + 1.5);
+    const delay = ctx.createDelay();
+    delay.delayTime.value = 0.38;
+    const feedback = ctx.createGain();
+    feedback.gain.value = 0.28;
+    delay.connect(feedback); feedback.connect(delay);
+    delay.connect(master);
+    const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+    let timeoutId = null;
+    function playNote(){
+      const freq = scale[Math.floor(Math.random()*scale.length)];
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.09, ctx.currentTime + 0.06);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.2);
+      osc.connect(g);
+      g.connect(master);
+      g.connect(delay);
+      osc.start();
+      osc.stop(ctx.currentTime + 3.4);
+      timeoutId = setTimeout(playNote, 1600 + Math.random()*2200);
+    }
+    playNote();
+    ambientNodes = { master, ctx, cancel: ()=>clearTimeout(timeoutId) };
+  }
+  function stopAmbient(){
+    if (!ambientNodes) return;
+    const { master, ctx, cancel } = ambientNodes;
+    cancel();
+    master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 1);
+    ambientNodes = null;
+  }
+  function dayCompletionRatio(key){
+    const dd = dayData(key);
+    let done=0, total=0;
+    HABITS.forEach(h=>h.subtasks.forEach(s=>{ total++; if (dd[h.id][s.id]) done++; }));
+    return total ? done/total : 0;
+  }
+  function dayIndexNow(){ return Math.min(DATES.length, Math.max(1, Math.ceil((new Date()-START)/86400000)+1)); }
+  function currentTopic(lang, dayIndex){ const period = Math.floor((dayIndex-1)/15); const topics = lang==='en'?EN_TOPICS:PT_TOPICS; return topics[period % topics.length]; }
+
+  function allDates(){ const out=[]; let d=new Date(START); while(d<=END){ out.push(new Date(d)); d.setDate(d.getDate()+1); } return out; }
+  const DATES = allDates();
+
+  function emptyEvalDraft(){ return { notes:'', quiz:[], answers:[], reading:{passage:'',questions:[],answers:[]}, listening:{passage:'',questions:[],answers:[]} }; }
+  let state = { days:{}, cards:[], checkins:[], adjustments:[], evalDraft:{en:emptyEvalDraft(),pt:emptyEvalDraft()}, evalHistory:[], readingHistory:[], settings:{dark:false,sound:true,music:false}, lessons:{xp:0,done:{}}, skillStats:{}, readingLikes:{} };
+  let tab = 'hoy';
+  let vocabTab = 'review';
+  let currentCard = null, flipped = false, reviewGuess = '';
+  let lastLookupUses = [];
+  let gameLang = null, gameQueue = [], gameIndex = 0, gameScore = 0, gameOptions = [], gameAnswered = false, gameSelected = -1;
+  let activeLessonId = null, lessonExercises = [], lessonIndex = 0, lessonScore = 0, lessonAnswered = false, lessonSelected = -1, lessonTextAnswer = '';
+  let mpCurrent = null, mpSpoken = '', mpAnswered = false, mpScore = 0, mpTotal = 0;
+  let ipaSelected = null;
+  let readingGenre = null, readingLength = 'corto', readingPassage = '', readingQuestions = [], readingAnswers = [], readingGraded = false, readingFeedback = '', readingLiked = false;
+  let tmdbResults = [], tmdbSelected = null;
+  let listeningPassage = '', listeningQuestions = [], listeningAnswers = [], listeningGraded = false, listeningFeedback = '';
+  let writingMode = null, writingPrompt = '', writingText = '', writingFeedback = '';
+  let ipaQuizTarget = null, ipaQuizWords = [], ipaQuizSpoken = '', ipaQuizAnswered = false, ipaQuizSelectedIdx = -1, ipaQuizScore = 0, ipaQuizTotal = 0;
+  let openAcc = 'sistema';
+  let saveTimer = null;
+
+  let selected = new Date();
+  if (selected < START) selected = new Date(START);
+  if (selected > END) selected = new Date(END);
+
+  async function load(){
+    try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = JSON.parse(raw); }
+    catch(e){ state = { days:{}, cards:[] }; }
+    if (!state.days) state.days = {};
+    if (!state.cards) state.cards = [];
+    if (!state.checkins) state.checkins = [];
+    if (!state.readingHistory) state.readingHistory = [];
+    if (!state.settings) state.settings = { dark:false, sound:true, music:false };
+    if (state.settings.music === undefined) state.settings.music = false;
+    if (!state.adjustments) state.adjustments = [];
+    if (!state.lessons) state.lessons = { xp:0, done:{} };
+    if (!state.skillStats) state.skillStats = {};
+    if (!state.readingLikes) state.readingLikes = {};
+    if (!state.evalDraft) state.evalDraft = { en: emptyEvalDraft() };
+    ['en'].forEach(l=>{
+      if (!state.evalDraft[l]) state.evalDraft[l] = emptyEvalDraft();
+      if (!state.evalDraft[l].reading) state.evalDraft[l].reading = {passage:'',questions:[],answers:[]};
+      if (!state.evalDraft[l].listening) state.evalDraft[l].listening = {passage:'',questions:[],answers:[]};
+    });
+    if (!state.evalHistory) state.evalHistory = [];
+  }
+  async function save(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){ console.error('No se pudo guardar', e); }
+  }
+  function saveDebounced(){ clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+
+  function emptyDay(){
+    const o={};
+    HABITS.forEach(h=>{ o[h.id]={}; h.subtasks.forEach(s=>o[h.id][s.id]=false); });
+    o.en.songLyrics=''; o.en.songLyricsResult='';
+    o.en.episode=''; o.en.summary=''; o.en.summaryFeedback='';
+    o.en.song=''; o.en.songResult='';
+    o.en.rouletteTopic=''; o.en.rouletteQuestion=''; o.en.rouletteOpinion=''; o.en.rouletteFeedback='';
+    o.en.episodeWords=''; o.en.episodeWordsResult=''; o.en.songWords=''; o.en.songWordsResult='';
+    o.en.imgIndex = 0; o.en.story=''; o.en.storyFeedback='';
+    return o;
+  }
+  function dayData(key){
+    const d = state.days[key] || {};
+    const merged = emptyDay();
+    HABITS.forEach(h=>{ merged[h.id] = Object.assign({}, merged[h.id], d[h.id]||{}); });
+    return merged;
+  }
+  function habitDone(dd,h){ return h.subtasks.every(s=>dd[h.id][s.id]); }
+  function fullHabitsCount(key){ const dd=dayData(key); return HABITS.reduce((n,h)=>n+(habitDone(dd,h)?1:0),0); }
+
+  function ensureHabitDay(key, habitId){
+    if (!state.days[key]) state.days[key] = {};
+    if (!state.days[key][habitId]) {
+      const fresh = dayData(key);
+      state.days[key][habitId] = fresh[habitId];
+    }
+  }
+  function toggleSub(key,habitId,subId){
+    ensureHabitDay(key, habitId);
+    const wasFull = fullHabitsCount(key)===HABITS.length;
+    state.days[key][habitId][subId] = !state.days[key][habitId][subId];
+    const isFull = fullHabitsCount(key)===HABITS.length;
+    if (isFull && !wasFull) playSuccess(); else playClick();
+    save(); render();
+  }
+  function setTextField(key, habitId, field, value){
+    ensureHabitDay(key, habitId);
+    state.days[key][habitId][field] = value;
+    saveDebounced();
+  }
+
+  function adjustmentsContext(){
+    if (!state.adjustments.length) return '';
+    return ' Ajustes personalizados que el usuario pidió tener en cuenta en general: ' + state.adjustments.join('; ') + '.';
+  }
+  const NO_REASONING_LEAK = ' Instrucción obligatoria: no muestres tu razonamiento interno, ni borradores, ni comentarios en inglés explicando qué vas a responder, ni frases como "voy a" o "debo". Responde directamente y únicamente con el resultado final pedido, sin preámbulo ni meta comentarios sobre el formato o tus propias instrucciones.';
+  async function callAI(userText, systemPrompt, useSearch){
+    const fullSystem = (systemPrompt||'') + NO_REASONING_LEAK + adjustmentsContext();
+    if (!OR_KEY){ throw new Error('Falta configurar tu clave de API de OpenRouter'); }
+    const body = {
+      model: 'openrouter/free',
+      messages: [
+        { role:'system', content: fullSystem },
+        { role:'user', content: userText },
+      ],
+      max_tokens: 1200,
+    };
+    let res;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(()=>controller.abort(), 60000);
+    try {
+      res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${OR_KEY}`,
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+    } catch(e){
+      if (e.name === 'AbortError') throw new Error('El modelo tardó demasiado en responder (más de 60 segundos). Intenta de nuevo.');
+      throw new Error('No se pudo conectar con la API de OpenRouter');
+    } finally { clearTimeout(timeoutId); }
+    const data = await res.json();
+    if (!res.ok || data.error){ throw new Error((data.error && data.error.message) || `Error HTTP ${res.status}`); }
+    const choice = (data.choices && data.choices[0]) || null;
+    if (!choice) throw new Error('El modelo no devolvió ninguna respuesta, intenta de nuevo.');
+    if (choice.finish_reason === 'content_filter'){ throw new Error('El modelo gratuito bloqueó esta respuesta por sus propios filtros de contenido. Intenta de nuevo, a veces cambia el modelo asignado.'); }
+    let text = (choice.message && choice.message.content) || '';
+    text = text.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+    if (/User Safety:\s*unsafe/i.test(text) || /Safety Categories:/i.test(text)){
+      throw new Error('El contenido que enviaste fue marcado por el sistema de seguridad del modelo (por ejemplo, contenido sexual explícito) y no se puede procesar. Prueba con otra canción o texto.');
+    }
+    if (!text || text.length < 5){ throw new Error('El modelo devolvió una respuesta vacía o inválida, probablemente bloqueada por sus filtros. Intenta de nuevo.'); }
+    return text;
+  }
+
+  function computeStreaks(){
+    const today=new Date(); const relevant=DATES.filter(d=>d<=today);
+    let best=0,running=0;
+    relevant.forEach(d=>{ if (fullHabitsCount(iso(d))===HABITS.length){ running++; best=Math.max(best,running); } else running=0; });
+    let current=0;
+    for (let i=relevant.length-1;i>=0;i--){ if (fullHabitsCount(iso(relevant[i]))===HABITS.length) current++; else break; }
+    return { current, best };
+  }
+  function habitPct(h){ const today=new Date(); const el=DATES.filter(d=>d<=today); if(!el.length) return 0; return Math.round(el.filter(d=>habitDone(dayData(iso(d)),h)).length/el.length*100); }
+  function fullDaysCount(){ const today=new Date(); return DATES.filter(d=>d<=today && fullHabitsCount(iso(d))===HABITS.length).length; }
+  function monthBlocks(){ const m={}; DATES.forEach(d=>{ const k=`${d.getFullYear()}-${d.getMonth()}`; (m[k]=m[k]||[]).push(d); }); return Object.values(m); }
+  function cellStyle(count){
+    if (count===0) return { background:'var(--surface2)', color:'var(--ink-soft)' };
+    const pct = count/HABITS.length;
+    const bg = pct>=1 ? 'linear-gradient(135deg,var(--green),var(--blue))' : `rgba(45,127,249,${0.15+pct*0.5})`;
+    return { background:bg, color: pct>=0.6 ? '#fff' : 'var(--ink)' };
+  }
+
+  function dueCards(){ const t=todayISO(); return state.cards.filter(c=>c.next<=t); }
+  function pickNext(){ const due=dueCards(); return due.length? due[Math.floor(Math.random()*due.length)] : null; }
+  function grade(card, level){
+    if (level===0) card.box=1;
+    else if (level===1) card.box=Math.max(1,card.box);
+    else card.box=Math.min(6,card.box+1);
+    const days = level===1 ? Math.max(1,Math.floor(BOX_DAYS[card.box-1]/2)) : BOX_DAYS[card.box-1];
+    card.next = addDays(todayISO(), days);
+    card.lastReview = todayISO();
+    save();
+  }
+  function addCard(front,back,example,cat,tipo){
+    state.cards.push({ id:'c'+Date.now()+Math.floor(Math.random()*1000), front,back,example,cat,tipo:tipo||'', box:1, next:todayISO(), lastReview:null });
+    save();
+  }
+  function deleteCard(id){ state.cards = state.cards.filter(c=>c.id!==id); save(); }
+  const WORD_TYPES = ['Sustantivo','Verbo','Verbo frasal','Adjetivo','Adverbio','Conector','Expresión','Otro'];
+  async function lookupWord(word){
+    let dictMeanings = [];
+    try {
+      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+      if (res.ok){
+        const data = await res.json();
+        const entry = data[0];
+        if (entry && entry.meanings){
+          dictMeanings = entry.meanings.map(m=>({
+            partOfSpeech: m.partOfSpeech || '',
+            definition: m.definitions[0] ? m.definitions[0].definition : '',
+            dictExample: m.definitions[0] ? m.definitions[0].example : '',
+          }));
+        }
+      }
+    } catch(e){ dictMeanings = []; }
+    const dictContext = dictMeanings.length
+      ? `El diccionario encontró estos usos: ${dictMeanings.map(m=>`(${m.partOfSpeech}) ${m.definition}`).join('; ')}.`
+      : 'El diccionario no encontró esta palabra o expresión (probablemente es un phrasal verb, modismo o slang).';
+    const aiResult = await callAI(
+      `Palabra o expresión: ${word}. ${dictContext}`,
+      'Eres un tutor de inglés para un estudiante B1 subiendo a B2 que quiere sonar nativo. Te doy una palabra o expresión y, si existe, lo que encontró un diccionario automático. Si la palabra tiene más de un uso común (por ejemplo puede ser sustantivo y también verbo), cúbrelos todos, uno por bloque. Para cada uso da un ejemplo realmente útil y natural que muestre cómo se usa en una conversación cotidiana real, no una oración de manual. Responde solo con bloques en este formato exacto, uno tras otro, separados por una línea que diga exactamente ---: USO: (tipo de palabra, por ejemplo sustantivo o verbo) SIGNIFICADO: (significado breve en español) EJEMPLO: (una oración natural en inglés)'
+    );
+    return { dictMeanings, aiResult };
+  }
+  async function lookupUrban(word){
+    try {
+      const res = await fetch(`https://api.urbandictionary.com/v0/define?term=${encodeURIComponent(word)}`);
+      if (!res.ok) return null;
+      const data = await res.json();
+      const top = data.list && data.list[0];
+      if (!top) return null;
+      const clean = s => (s||'').replace(/[\[\]]/g,'').slice(0,300);
+      return { definition: clean(top.definition), example: clean(top.example) };
+    } catch(e){ return null; }
+  }
+  function parseAiLookup(text){
+    return text.split(/^---$/m).map(block=>{
+      const tipoMatch = block.match(/USO:\s*(.+?)(?:SIGNIFICADO:|$)/is);
+      const sigMatch = block.match(/SIGNIFICADO:\s*(.+?)(?:EJEMPLO:|$)/is);
+      const ejMatch = block.match(/EJEMPLO:\s*(.+)$/is);
+      return {
+        tipo: tipoMatch ? tipoMatch[1].trim() : '',
+        significado: sigMatch ? sigMatch[1].trim() : '',
+        ejemplo: ejMatch ? ejMatch[1].trim() : '',
+      };
+    }).filter(u=>u.significado);
+  }
+  function applyLookupUse(u){
+    const tipoSel = document.getElementById('ccTipo');
+    const backInput = document.getElementById('ccBack');
+    const exampleInput = document.getElementById('ccExample');
+    if (u.tipo){
+      const match = WORD_TYPES.find(t=>t.toLowerCase().includes(u.tipo.toLowerCase()) || u.tipo.toLowerCase().includes(t.toLowerCase()));
+      if (match && tipoSel) tipoSel.value = match;
+    }
+    if (backInput) backInput.value = u.significado;
+    if (exampleInput) exampleInput.value = u.ejemplo;
+  }
+  function bindLookupUseButtons(){
+    root.querySelectorAll('[data-uselookup]').forEach(b=>b.addEventListener('click', ()=>{
+      applyLookupUse(lastLookupUses[parseInt(b.dataset.uselookup)]);
+    }));
+  }
+
+  function render(){
+    const today = new Date();
+    const daysLeft = Math.max(0, Math.ceil((END-today)/86400000));
+    const totalDays = DATES.length;
+    const dayIndex = Math.min(totalDays, Math.max(1, Math.ceil((today-START)/86400000)+1));
+    const todayIsEvalDay = isEvalDay(today);
+    root.classList.toggle('eval-mode', todayIsEvalDay);
+    root.classList.toggle('dark', !!state.settings.dark);
+    document.body.classList.toggle('dark-page', !!state.settings.dark);
+
+    root.innerHTML = `
+      <div class="cc-header">
+        <div class="cc-brand">
+          <span class="cc-logo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <path d="M12 17v3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="cc-title">Speak Up</p>
+            <p class="cc-sub">Inglés, día ${dayIndex} de ${totalDays}${todayIsEvalDay ? ', hoy toca evaluación' : ''}</p>
+          </div>
+        </div>
+        <div class="cc-countdown"><div class="n">${daysLeft}</div><div class="l">${t('diasRestantes')}</div></div>
+      </div>
+      <div class="cc-nav">
+        <button data-tab="hoy" class="${tab==='hoy'?'active':''}">${icon('home')} ${t('hoy')}</button>
+        <button data-tab="progreso" class="${tab==='progreso'?'active':''}">${icon('chart')} ${t('progreso')}</button>
+        <button data-tab="vocab" class="${tab==='vocab'?'active':''}">${icon('book')} ${t('vocabulario')}</button>
+        <button data-tab="lecciones" class="${tab==='lecciones'?'active':''}">${icon('trophy')} ${t('lecciones')}</button>
+        <button data-tab="eval" class="${tab==='eval'?'active':''}">${icon('target')} ${t('evaluacion')}</button>
+        <button data-tab="guia" class="${tab==='guia'?'active':''}">${icon('guide')} ${t('guia')}</button>
+        <button data-tab="ajustes" class="${tab==='ajustes'?'active':''}">${icon('settings')} ${t('configuracion')}</button>
+      </div>
+      <div id="ccBody"></div>
+      <div class="cc-footer">
+        <span class="cc-note">Datos guardados en este navegador</span>
+        <span class="cc-note">Ajustes en la pestaña Configuración</span>
+      </div>
+    `;
+    const body = document.getElementById('ccBody');
+    if (tab==='hoy') body.innerHTML = renderHoy();
+    if (tab==='progreso') body.innerHTML = renderProgreso(dayIndex, totalDays);
+    if (tab==='vocab') body.innerHTML = renderVocab();
+    if (tab==='lecciones') body.innerHTML = renderLecciones();
+    if (tab==='guia') body.innerHTML = renderGuia();
+    if (tab==='ajustes') body.innerHTML = renderAjustes();
+    if (tab==='eval') body.innerHTML = renderEval();
+
+    root.querySelectorAll('.cc-nav button').forEach(b=>b.addEventListener('click',()=>{ tab=b.dataset.tab; render(); }));
+
+    if (tab==='hoy') bindHoy();
+    if (tab==='progreso') bindProgreso();
+    if (tab==='vocab') bindVocab();
+    if (tab==='lecciones') bindLecciones();
+    if (tab==='guia') bindGuia();
+    if (tab==='ajustes') bindAjustes();
+    if (tab==='eval') bindEval();
+  }
+
+  function renderHoy(){
+    const selKey = iso(selected);
+    const isToday = sameDay(selected, new Date());
+    const dd = dayData(selKey);
+    const dIdx = mondayIndex(selected);
+    const phase = getPhase(selected);
+    const full = fullHabitsCount(selKey);
+    const dateLabel = capFirst(selected.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}));
+    return `
+      <div class="cc-today-head">
+        <div>
+          <div class="cc-today-date">${isToday?'Hoy, ':''}${dateLabel}</div>
+          <div class="cc-phase-badge">${PHASE_NAMES[phase]}</div>
+        </div>
+        ${isToday?'':'<button class="cc-back" id="ccBack">Volver a hoy</button>'}
+      </div>
+      <div class="cc-done-banner ${full===HABITS.length?'show':''}"><span class="cc-banner-check"></span> Día completo, los ${HABITS.length} hábitos al 100%</div>
+      ${isToday && isEvalDay(selected) ? `<div class="cc-eval-banner">${icon('target','#fff',16)} Hoy toca evaluación. Ve a la pestaña Evaluación para completarla.</div>` : ''}
+      ${HABITS.map(h=>{
+        const done = h.subtasks.filter(s=>dd[h.id][s.id]).length;
+        return `<div class="cc-habit" style="--card-accent:var(${h.color})">
+          <div class="cc-habit-head">
+            <span class="cc-habit-icon" style="background:var(${h.color});box-shadow:0 3px 8px color-mix(in srgb, var(${h.color}) 45%, transparent)">${icon(h.id,'#fff')}</span>
+            <span class="cc-habit-name">${h.name}</span>
+            <span class="cc-habit-frac">${done}/${h.subtasks.length}</span>
+          </div>
+          ${h.subtasks.map(s=>`
+            <div class="cc-sub-row">
+              <button class="cc-check ${dd[h.id][s.id]?'on':''}" style="--habit-color:var(${h.color})" data-h="${h.id}" data-s="${s.id}"></button>
+              <div class="cc-sub-text">${s.text}<span class="cc-sub-hint">${s.hint(dIdx,phase)}</span></div>
+            </div>
+          `).join('')}
+        </div>`;
+      }).join('')}
+      <div class="cc-feedback" style="margin-top:6px">Canciones, series, escritura, habla y todo lo demás ahora viven en la pestaña Lecciones.</div>
+    `;
+  }
+  function renderFcExtra(dd){
+    return `<div class="cc-extra">
+      <label>Tu idea principal de la lectura de hoy</label>
+      <textarea id="ccIdeaText" rows="3" placeholder="Escribe aquí tu idea principal">${dd.fc.idea||''}</textarea>
+      <button class="cc-extra-btn" id="ccIdeaCorrect" style="background:var(--fc)">${icon('pencil','#fff',14)} Corregir</button>
+      <div class="cc-feedback" id="ccIdeaFeedback" style="display:${dd.fc.ideaFeedback?'block':'none'}">${dd.fc.ideaFeedback||''}</div>
+      <div class="cc-suggest-wrap">
+        <label>Opciones de lectura para hoy</label>
+        <button class="cc-extra-btn" id="ccSuggestBtn" style="background:var(--fc)">${icon('bulb','#fff',14)} Sugerir lecturas</button>
+        <div class="cc-suggest-list" id="ccSuggestList"></div>
+      </div>
+    </div>`;
+  }
+  const ROULETTE_TOPICS = [
+    'La tecnología y las redes sociales', 'Tu película o serie favorita', 'Un viaje que te gustaría hacer',
+    'La comida que más disfrutas', 'Un deporte que sigues o practicas', 'Un sueño o meta personal',
+    'La música que escuchas', 'Un dilema moral cotidiano', 'El futuro de la inteligencia artificial',
+    'Un libro que te haya marcado', 'Tus vacaciones ideales', 'La ciudad donde vives',
+    'Una tradición familiar', 'El trabajo ideal para ti', 'Un miedo que has superado', 'Cómo debería cambiar la educación',
+  ];
+  function bindHoy(){
+    const selKey = iso(selected);
+    const isToday = sameDay(selected, new Date());
+    root.querySelectorAll('.cc-check').forEach(b=>b.addEventListener('click',()=>toggleSub(selKey, b.dataset.h, b.dataset.s)));
+    const back = document.getElementById('ccBack');
+    if (back) back.addEventListener('click', ()=>{ selected = new Date(); render(); });
+  }
+  function renderProgreso(dayIndex, totalDays){
+    const s = computeStreaks();
+    const skillNames = { gram:'Gramática', ipa:'IPA', listening:'Listening', reading:'Reading', writing:'Writing', speaking:'Speaking', songs:'Canciones', series:'Series y películas' };
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${s.current}</div><div class="l">Racha actual</div></div>
+        <div class="cc-stat"><div class="n">${s.best}</div><div class="l">Mejor racha</div></div>
+        <div class="cc-stat"><div class="n">${fullDaysCount()}</div><div class="l">Días al 100%</div></div>
+        <div class="cc-stat"><div class="n">${dayIndex}/${totalDays}</div><div class="l">Avance</div></div>
+      </div>
+      <p class="cc-section-title">Actividades por destreza</p>
+      <div class="cc-list">
+        ${Object.keys(skillNames).map(k=>`<div class="cc-list-item">
+          <span class="cc-list-front" style="flex:1">${skillNames[k]}</span>
+          <span class="cc-list-box">${(state.skillStats && state.skillStats[k])||0} hechas</span>
+        </div>`).join('')}
+      </div>
+      <p class="cc-section-title">Mapa de constancia</p>
+      <div class="cc-months">
+        ${monthBlocks().map(month=>{
+          const first=month[0]; const offset=mondayIndex(first);
+          const pads = Array.from({length:offset},()=>'<div class="cc-cell pad"></div>').join('');
+          const cells = month.map(d=>{
+            const key=iso(d); const c=fullHabitsCount(key); const isFuture=d>new Date(); const isSel=sameDay(d,selected);
+            const st = isFuture? {background:'transparent',color:'var(--ink-soft)'} : cellStyle(c);
+            return `<div class="cc-cell ${isFuture?'future':''} ${isSel?'selected':''}" style="background:${st.background};color:${st.color}" data-date="${key}">${d.getDate()}</div>`;
+          }).join('');
+          return `<div class="cc-month"><span class="cc-month-label">${capFirst(MONTHS[first.getMonth()])}</span><div class="cc-grid">${pads}${cells}</div></div>`;
+        }).join('')}
+      </div>
+      <p class="cc-section-title">Por hábito</p>
+      <div class="cc-bars">
+        ${HABITS.map(h=>{ const pct=habitPct(h); return `<div class="cc-bar-row"><span class="cc-bar-label">${h.name}</span><div class="cc-bar-track"><div class="cc-bar-fill" style="width:${pct}%;background:var(${h.color})"></div></div><span class="cc-bar-pct">${pct}%</span></div>`; }).join('')}
+      </div>
+      <p class="cc-section-title">Resumen semanal</p>
+      ${renderWeeklySummary()}
+      <button class="cc-extra-btn" id="ccWeekAnalysisBtn" style="background:var(--violet);margin-top:10px">${icon('bulb','#fff',14)} Análisis semanal de la IA</button>
+      <div class="cc-feedback" id="ccWeekAnalysisResult" style="display:none;margin-top:8px"></div>
+    `;
+  }
+  function renderWeeklySummary(){
+    const today = new Date();
+    const days = [];
+    for (let i=0;i<7;i++){ const d=new Date(today); d.setDate(d.getDate()-i); if (d>=START) days.push(d); }
+    return `<div class="cc-list">
+      ${HABITS.map(h=>{
+        const doneDays = days.filter(d=>habitDone(dayData(iso(d)),h)).length;
+        const ratioDays = days.length ? Math.round((doneDays/days.length)*100) : 0;
+        return `<div class="cc-list-item">
+          <span class="cc-habit-icon" style="background:var(${h.color})">${icon(h.id,'#fff',14)}</span>
+          <span class="cc-list-front" style="flex:1">${h.name}</span>
+          <span class="cc-list-back">${doneDays}/${days.length} días</span>
+          <span class="cc-list-box">${ratioDays}%</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function bindProgreso(){
+    root.querySelectorAll('.cc-cell[data-date]').forEach(cell=>cell.addEventListener('click',()=>{
+      const d = new Date(cell.dataset.date+'T00:00:00');
+      if (d > new Date()) return;
+      selected = d; tab='hoy'; render();
+    }));
+    const weekBtn = document.getElementById('ccWeekAnalysisBtn');
+    if (weekBtn) weekBtn.addEventListener('click', async ()=>{
+      const box = document.getElementById('ccWeekAnalysisResult');
+      box.style.display = 'block'; box.className = 'cc-feedback loading'; box.textContent = 'Analizando tu semana';
+      weekBtn.disabled = true;
+      try {
+        const today = new Date();
+        const days = [];
+        for (let i=0;i<7;i++){ const d=new Date(today); d.setDate(d.getDate()-i); if (d>=START) days.push(d); }
+        const checklistDone = days.filter(d=>habitDone(dayData(iso(d)),HABITS[0])).length;
+        const skillNames = { gram:'Gramática', ipa:'IPA', listening:'Listening', reading:'Reading', writing:'Writing', speaking:'Speaking', songs:'Canciones', series:'Series y películas' };
+        const skillLine = Object.keys(skillNames).map(k=>`${skillNames[k]}: ${(state.skillStats && state.skillStats[k])||0} veces en total`).join(', ');
+        const mastered = state.cards.filter(c=>c.box>=6).length;
+        const totalCards = state.cards.length;
+        const streaks = computeStreaks();
+        const lastEval = state.evalHistory.filter(e=>e.lang==='en').slice(-1)[0];
+        const evalLine = lastEval ? `Última calificación de evaluación: ${lastEval.score} sobre cien.` : 'Todavía no hay evaluaciones registradas.';
+        const context = `Checklist diario de inglés completo en ${checklistDone} de ${days.length} días esta semana. Racha actual: ${streaks.current} días, mejor racha: ${streaks.best}. Uso acumulado de cada actividad de Lecciones: ${skillLine}. Vocabulario: ${totalCards} palabras guardadas, ${mastered} dominadas. ${evalLine}`;
+        const result = await callAI(
+          context,
+          'Eres un coach de inglés honesto que analiza cómo le fue a un estudiante B1 subiendo a B2 en la última semana. Con base únicamente en los datos que te doy, da un análisis de cuatro a seis frases: qué actividad está usando más, cuál está descuidando, cómo se ve su constancia (racha), y una recomendación concreta y realista para la semana que viene. No inventes datos que no te di. Si la información es limitada, dilo con honestidad. No uses guiones largos ni símbolos poco comunes. Responde en español.'
+        );
+        box.textContent = result || 'No se pudo generar el análisis, intenta de nuevo.';
+        box.className = 'cc-feedback';
+      } catch(e){ box.textContent = 'Hubo un error, intenta de nuevo.'; box.className = 'cc-feedback'; }
+      weekBtn.disabled = false;
+    });
+  }
+
+  function renderVocab(){
+    const due = dueCards();
+    const mastered = state.cards.filter(c=>c.box>=6).length;
+    const slangCount = state.cards.filter(c=>c.cat==='en-slang').length;
+    if (vocabTab==='review' && (!currentCard || !due.find(c=>c.id===currentCard.id))){ currentCard = pickNext(); flipped=false; reviewGuess=''; }
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${due.length}</div><div class="l">Pendientes</div></div>
+        <div class="cc-stat"><div class="n">${state.cards.length}</div><div class="l">Tarjetas</div></div>
+        <div class="cc-stat"><div class="n">${mastered}</div><div class="l">Dominadas</div></div>
+        <div class="cc-stat"><div class="n">${slangCount}</div><div class="l">Slang</div></div>
+      </div>
+      <div class="cc-vocab-tabs">
+        <button class="cc-vtab ${vocabTab==='review'?'active':''}" data-vt="review">${t('repasar')}</button>
+        <button class="cc-vtab ${vocabTab==='juego'?'active':''}" data-vt="juego">${t('juego')}</button>
+        <button class="cc-vtab ${vocabTab==='add'?'active':''}" data-vt="add">${t('agregar')}</button>
+        <button class="cc-vtab ${vocabTab==='list'?'active':''}" data-vt="list">${t('mazo')} (${state.cards.length})</button>
+        <button class="cc-vtab ${vocabTab==='analisis'?'active':''}" data-vt="analisis">${t('analisis')}</button>
+      </div>
+      ${vocabTab==='review' ? renderReview(due) : ''}
+      ${vocabTab==='juego' ? renderGame() : ''}
+      ${vocabTab==='add' ? renderAdd() : ''}
+      ${vocabTab==='list' ? renderList() : ''}
+      ${vocabTab==='analisis' ? renderVocabAnalysis() : ''}
+    `;
+  }
+  function renderVocabAnalysis(){
+    return `
+      <div class="cc-feedback" style="margin-bottom:10px">La IA revisa cuántas palabras tienes, cómo se reparten por tipo, y cuáles te han costado más al repasar, para darte un análisis honesto y recomendaciones.</div>
+      <button class="cc-extra-btn" id="ccVocabAnalysisBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Analizar mi vocabulario</button>
+      <div class="cc-feedback" id="ccVocabAnalysisResult" style="display:none;margin-top:10px"></div>
+    `;
+  }
+  function pickLangCards(lang){
+    if (lang==='en') return state.cards.filter(c=>c.cat==='en-formal'||c.cat==='en-slang');
+    if (lang==='pt') return state.cards.filter(c=>c.cat==='pt');
+    return [];
+  }
+  function shuffleArr(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+  function setupGameOptions(){
+    const pool = pickLangCards(gameLang);
+    const correct = gameQueue[gameIndex];
+    const distractorCount = Math.min(3, pool.length-1);
+    const distractors = shuffleArr(pool.filter(c=>c.id!==correct.id)).slice(0,distractorCount).map(c=>c.back);
+    gameOptions = shuffleArr([correct.back, ...distractors]);
+    gameAnswered = false; gameSelected = -1;
+  }
+  function startGame(lang){
+    gameLang = lang;
+    const pool = pickLangCards(lang);
+    gameQueue = shuffleArr(pool).slice(0, Math.min(10, pool.length));
+    gameIndex = 0; gameScore = 0;
+    if (gameQueue.length) setupGameOptions();
+  }
+  function renderGame(){
+    if (!gameLang) startGame('en');
+    if (gameQueue.length < 2){
+      return `<div class="cc-empty">Todavía no tienes suficientes tarjetas de inglés (necesitas al menos 2). Agrega más en la pestaña Agregar.</div>`;
+    }
+    if (gameIndex >= gameQueue.length){
+      const pct = Math.round((gameScore/gameQueue.length)*100);
+      return `<div class="cc-card">
+        <div class="cc-card-front">${gameScore}/${gameQueue.length}</div>
+        <div class="cc-card-hint">${pct}% correcto</div>
+      </div>
+      <button class="cc-extra-btn" id="ccGameAgain" style="background:var(--violet);margin-top:10px">Jugar de nuevo</button>`;
+    }
+    const card = gameQueue[gameIndex];
+    return `
+      <div class="cc-habit-frac" style="margin-bottom:8px">Pregunta ${gameIndex+1} de ${gameQueue.length}, puntos: ${gameScore}</div>
+      <div class="cc-card"><div class="cc-card-front">${card.front}</div></div>
+      <div class="cc-grade-row" style="grid-template-columns:1fr 1fr">
+        ${gameOptions.map((opt,i)=>{
+          let cls='';
+          if (gameAnswered){
+            if (opt===card.back) cls='good';
+            else if (i===gameSelected) cls='bad';
+          }
+          return `<button class="cc-grade-btn ${cls}" data-gi="${i}" ${gameAnswered?'disabled':''}>${opt}</button>`;
+        }).join('')}
+      </div>
+      ${gameAnswered ? `<button class="cc-extra-btn" id="ccGameNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    `;
+  }
+  function bindGame(){
+    const againBtn = document.getElementById('ccGameAgain');
+    if (againBtn) againBtn.addEventListener('click', ()=>{ startGame(gameLang); render(); });
+    root.querySelectorAll('[data-gi]').forEach(b=>b.addEventListener('click', ()=>{
+      if (gameAnswered) return;
+      gameSelected = parseInt(b.dataset.gi);
+      gameAnswered = true;
+      const card = gameQueue[gameIndex];
+      if (gameOptions[gameSelected]===card.back){ gameScore++; playSuccess(); }
+      else playTone(220,0.2);
+      render();
+    }));
+    const nextBtn = document.getElementById('ccGameNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{
+      gameIndex++;
+      if (gameIndex < gameQueue.length) setupGameOptions();
+      render();
+    });
+  }
+
+  function lessonLevel(){ return Math.floor(state.lessons.xp/100)+1; }
+  const LEC_CATEGORIES = [
+    { id:'gram', name:'Gramática y Phrasal Verbs', color:'--en', icon:'trophy' },
+    { id:'ipa', name:'IPA y pronunciación', color:'--blue', icon:'audio' },
+    { id:'listening', name:'Listening', color:'--violet', icon:'audio' },
+    { id:'reading', name:'Reading', color:'--green', icon:'book' },
+    { id:'writing', name:'Writing', color:'--orange', icon:'pencil' },
+    { id:'speaking', name:'Speaking', color:'--pink', icon:'en' },
+    { id:'songs', name:'Canciones', color:'--violet', icon:'music' },
+    { id:'series', name:'Series y películas', color:'--blue', icon:'image' },
+  ];
+  const READING_GENRES = ['Misterio','Terror','Ciencia ficción','Noticias y cultura','Biografía breve','Humor','Motivación y desarrollo personal','Aventura','Drama cotidiano'];
+  let lecCategory = null;
+  function renderLecciones(){
+    if (!lecCategory) return renderLecMenu();
+    const cat = LEC_CATEGORIES.find(c=>c.id===lecCategory);
+    return `
+      <button class="cc-back" id="ccLecBack" style="margin-bottom:12px">Volver a Lecciones</button>
+      <p class="cc-section-title" style="margin-top:0">${cat.name}</p>
+      ${lecCategory==='gram' ? renderGramCategory() : ''}
+      ${lecCategory==='ipa' ? renderIPA() : ''}
+      ${lecCategory==='listening' ? renderListeningCategory() : ''}
+      ${lecCategory==='reading' ? renderReadingCategory() : ''}
+      ${lecCategory==='writing' ? renderWritingCategory() : ''}
+      ${lecCategory==='speaking' ? renderRoulette(dayData(iso(selected))) : ''}
+      ${lecCategory==='songs' ? renderSongsCategory() : ''}
+      ${lecCategory==='series' ? renderSeriesCategory() : ''}
+    `;
+  }
+  function renderLecMenu(){
+    const doneCount = LESSON_NODES.filter(n=>state.lessons.done[n.id]).length;
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${state.lessons.xp}</div><div class="l">XP</div></div>
+        <div class="cc-stat"><div class="n">${lessonLevel()}</div><div class="l">Nivel</div></div>
+        <div class="cc-stat"><div class="n">${doneCount}/${LESSON_NODES.length}</div><div class="l">Gramática</div></div>
+        <div class="cc-stat"><div class="n">${Object.values(state.skillStats||{}).reduce((a,b)=>a+b,0)}</div><div class="l">Actividades</div></div>
+      </div>
+      <div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(140px,1fr))">
+        ${LEC_CATEGORIES.map(c=>`
+          <button class="cc-ipa-card" style="--ipa-color:var(${c.color});padding:18px 10px" data-cat="${c.id}">
+            <span class="cc-habit-icon" style="background:var(${c.color});margin-bottom:4px">${icon(c.icon,'#fff',18)}</span>
+            <span class="cc-ipa-word" style="font-size:12px">${c.name}</span>
+            <span class="cc-ipa-word" style="font-size:10px;opacity:0.7">${(state.skillStats && state.skillStats[c.id])||0} hechas</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+  function bumpSkillStat(catId){
+    if (!state.skillStats) state.skillStats = {};
+    state.skillStats[catId] = (state.skillStats[catId]||0) + 1;
+    save();
+  }
+  function renderGramCategory(){
+    const doneCount = LESSON_NODES.filter(n=>state.lessons.done[n.id]).length;
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${state.lessons.xp}</div><div class="l">XP</div></div>
+        <div class="cc-stat"><div class="n">${lessonLevel()}</div><div class="l">Nivel</div></div>
+        <div class="cc-stat"><div class="n">${doneCount}/${LESSON_NODES.length}</div><div class="l">Lecciones</div></div>
+      </div>
+      ${activeLessonId ? renderLessonPlay() : renderLessonPath()}
+    `;
+  }
+  function renderLessonPath(){
+    return `<div class="cc-path">
+      ${LESSON_NODES.map((n,i)=>{
+        const done = state.lessons.done[n.id];
+        const locked = i>0 && !state.lessons.done[LESSON_NODES[i-1].id];
+        const isNext = !done && !locked;
+        const side = i%3===0 ? 'left' : (i%3===1 ? 'center' : 'right');
+        const bg = done ? 'var(--green)' : locked ? 'var(--surface2)' : 'var(--en)';
+        return `<div class="cc-path-row ${side}">
+          <div class="cc-path-node-col">
+            <button class="cc-path-node ${isNext?'pulse':''}" style="background:${bg}" data-lesson="${locked?'':n.id}" ${locked?'disabled':''}>
+              ${done ? icon('target','#fff',24) : locked ? icon('settings','var(--ink-soft)',20) : icon('book','#fff',24)}
+            </button>
+            <div class="cc-path-label">${n.title}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function renderLessonPlay(){
+    const node = LESSON_NODES.find(n=>n.id===activeLessonId);
+    if (!lessonExercises.length){
+      return `<div class="cc-habit">
+        <div class="cc-habit-name" style="margin-bottom:10px">${node.title}</div>
+        <button class="cc-extra-btn" id="ccLessonGen" style="background:var(--en)">${icon('bulb','#fff',14)} Generar ejercicios</button>
+        <button class="cc-extra-btn" id="ccLessonExit" style="background:var(--ink-soft);margin-left:8px">Volver</button>
+      </div>`;
+    }
+    if (lessonIndex >= lessonExercises.length){
+      return `<div class="cc-card">
+        <div class="cc-card-front">${lessonScore}/${lessonExercises.length}</div>
+        <div class="cc-card-hint">Lección completada, más 20 XP</div>
+      </div>
+      <button class="cc-extra-btn" id="ccLessonExit" style="background:var(--en);margin-top:10px">Volver al camino</button>`;
+    }
+    const ex = lessonExercises[lessonIndex];
+    return `<div class="cc-habit">
+      <div class="cc-habit-frac" style="margin-bottom:8px">Ejercicio ${lessonIndex+1} de ${lessonExercises.length}</div>
+      <div class="cc-card-front" style="font-size:16px;margin-bottom:10px">${ex.question}</div>
+      ${ex.type==='mc' ? `
+        <div class="cc-grade-row" style="grid-template-columns:1fr 1fr">
+          ${ex.options.map((opt,i)=>{
+            let cls='';
+            if (lessonAnswered){ if (opt===ex.answer) cls='good'; else if (i===lessonSelected) cls='bad'; }
+            return `<button class="cc-grade-btn ${cls}" data-li="${i}" ${lessonAnswered?'disabled':''}>${opt}</button>`;
+          }).join('')}
+        </div>
+      ` : `
+        <input id="ccLessonTextAns" placeholder="Escribe tu respuesta" value="${(lessonTextAnswer||'').replace(/"/g,'&quot;')}" ${lessonAnswered?'disabled':''}>
+        ${!lessonAnswered ? `<button class="cc-extra-btn" id="ccLessonCheck" style="background:var(--en);margin-top:8px">Comprobar</button>` : `
+          <div class="cc-feedback" style="margin-top:8px">${lessonSelected===1?'Correcto.':'La respuesta esperada era: '+ex.answer}</div>
+        `}
+      `}
+      ${lessonAnswered ? `<button class="cc-extra-btn" id="ccLessonNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    </div>`;
+  }
+  function renderMinimalPairs(){
+    if (!mpCurrent) mpCurrent = MINIMAL_PAIRS[Math.floor(Math.random()*MINIMAL_PAIRS.length)];
+    return `<div class="cc-habit">
+      <div class="cc-habit-frac" style="margin-bottom:10px">Puntaje: ${mpScore}/${mpTotal}</div>
+      <button class="cc-extra-btn" id="ccMpPlay" style="background:var(--en)">${icon('audio','#fff',14)} Reproducir palabra</button>
+      <div class="cc-grade-row" style="grid-template-columns:1fr 1fr;margin-top:10px">
+        ${mpCurrent.map((w,i)=>{
+          let cls='';
+          if (mpAnswered){ if (w===mpSpoken) cls='good'; else if (i===mpSelectedIdx) cls='bad'; }
+          return `<button class="cc-grade-btn ${cls}" data-mp="${i}" ${mpAnswered?'disabled':''}>${w}</button>`;
+        }).join('')}
+      </div>
+      ${mpAnswered ? `<button class="cc-extra-btn" id="ccMpNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    </div>`;
+  }
+  let mpSelectedIdx = -1;
+
+  function renderReadingCategory(){
+    if (!readingGenre){
+      return `<div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(120px,1fr))">
+        ${READING_GENRES.map(g=>`<button class="cc-ipa-card" style="--ipa-color:var(--green)" data-genre="${g}"><span class="cc-ipa-word">${g}</span></button>`).join('')}
+      </div>`;
+    }
+    const likedCount = (state.readingLikes && state.readingLikes[readingGenre] || []).length;
+    return `
+      <div class="cc-feedback" style="margin-bottom:10px">Género: <b>${readingGenre}</b> (${likedCount} te gustaron antes). <button class="cc-back" id="ccReadingChangeGenre" style="display:inline">Cambiar</button></div>
+      ${!readingPassage ? `
+        <div class="cc-vocab-tabs" style="margin-bottom:12px">
+          <button class="cc-vtab ${readingLength==='corto'?'active':''}" data-rlen="corto">Corto</button>
+          <button class="cc-vtab ${readingLength==='mediano'?'active':''}" data-rlen="mediano">Mediano</button>
+          <button class="cc-vtab ${readingLength==='largo'?'active':''}" data-rlen="largo">Largo</button>
+        </div>
+        <button class="cc-extra-btn" id="ccReadingGen" style="background:var(--green)">${icon('bulb','#fff',14)} Generar lectura nueva</button>
+      ` : `
+        <div class="cc-habit">
+          <div class="cc-feedback" style="margin-bottom:10px">${readingPassage}</div>
+          <button class="cc-extra-btn ${readingLiked?'':''}" id="ccReadingLike" style="background:${readingLiked?'var(--pink)':'var(--surface2)'};color:${readingLiked?'#fff':'var(--ink-soft)'}">${readingLiked?'Te gustó':'Me gusta esta historia'}</button>
+          ${readingQuestions.map((q,i)=>`<label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">${q}</label><textarea id="ccReadingAns-${i}" rows="2" style="margin-bottom:8px">${readingAnswers[i]||''}</textarea>`).join('')}
+          ${!readingGraded ? `<button class="cc-extra-btn" id="ccReadingGrade" style="background:var(--green)">${icon('target','#fff',14)} Corregir</button>` : `<div class="cc-feedback" id="ccReadingFeedback">${readingFeedback}</div>`}
+          ${readingGraded ? `<button class="cc-extra-btn" id="ccReadingNext" style="background:var(--ink);margin-top:8px">Otra lectura</button>` : ''}
+        </div>
+      `}
+    `;
+  }
+  function renderListeningCategory(){
+    return `
+      ${!listeningPassage ? `<button class="cc-extra-btn" id="ccListenGen" style="background:var(--violet)">${icon('bulb','#fff',14)} Generar audio nuevo</button>` : `
+        <div class="cc-habit">
+          <button class="cc-extra-btn" id="ccListenPlay" style="background:var(--violet)">${icon('audio','#fff',14)} Reproducir audio</button>
+          ${listeningGraded ? `<div class="cc-feedback" style="margin:10px 0">${listeningPassage}</div>` : ''}
+          <div style="margin-top:10px">
+            ${listeningQuestions.map((q,i)=>`<label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">${q}</label><textarea id="ccListenAns-${i}" rows="2" style="margin-bottom:8px">${listeningAnswers[i]||''}</textarea>`).join('')}
+            ${!listeningGraded ? `<button class="cc-extra-btn" id="ccListenGrade" style="background:var(--violet)">${icon('target','#fff',14)} Corregir</button>` : `<div class="cc-feedback">${listeningFeedback}</div>`}
+            ${listeningGraded ? `<button class="cc-extra-btn" id="ccListenNext" style="background:var(--ink);margin-top:8px">Otro audio</button>` : ''}
+          </div>
+        </div>
+      `}
+    `;
+  }
+  function renderWritingCategory(){
+    if (!writingMode){
+      return `<div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(120px,1fr))">
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="image"><span class="cc-ipa-word">Historia con imagen</span></button>
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="topic"><span class="cc-ipa-word">Ensayo de opinión</span></button>
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="dialogue"><span class="cc-ipa-word">Escribir un diálogo</span></button>
+      </div>`;
+    }
+    if (writingMode==='image'){
+      const dd = dayData(iso(selected));
+      return `
+        <button class="cc-back" id="ccWritingModeBack" style="margin-bottom:10px">Cambiar tipo de escritura</button>
+        <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+          <div class="cc-img-box" id="ccImgBox">${imgSvg(dd.en.imgIndex||0)}</div>
+          <div class="cc-img-caption" id="ccImgCaption">${imgCaption(dd.en.imgIndex||0)}</div>
+          <button class="cc-extra-btn" id="ccNewImg" style="background:var(--violet)">${icon('image','#fff',14)} Nueva imagen</button>
+          <button class="cc-extra-btn" id="ccRealImg" style="background:var(--en)">${icon('image','#fff',14)} Ver imagen real (beta)</button>
+          <textarea id="ccStoryText" rows="3" placeholder="Write a short story based on the image">${dd.en.story||''}</textarea>
+          ${micButtonHtml('ccStoryMic')}
+          <button class="cc-extra-btn" id="ccStoryCorrect" style="background:var(--en)">${icon('pencil','#fff',14)} Corregir</button>
+          <div class="cc-feedback" id="ccStoryFeedback" style="display:${dd.en.storyFeedback?'block':'none'}">${dd.en.storyFeedback||''}</div>
+        </div>
+      `;
+    }
+    if (writingMode==='topic' || writingMode==='dialogue'){
+      return `
+        <button class="cc-back" id="ccWritingModeBack" style="margin-bottom:10px">Cambiar tipo de escritura</button>
+        <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+          ${!writingPrompt ? `<button class="cc-extra-btn" id="ccWritingGen" style="background:var(--orange)">${icon('bulb','#fff',14)} Generar tema</button>` : `
+            <div class="cc-feedback" style="margin-bottom:8px">${writingPrompt}</div>
+            <textarea id="ccWritingText" rows="4" placeholder="Write here in English">${writingText||''}</textarea>
+            ${micButtonHtml('ccWritingMic')}
+            <button class="cc-extra-btn" id="ccWritingCorrect" style="background:var(--orange)">${icon('pencil','#fff',14)} Corregir</button>
+            <div class="cc-feedback" id="ccWritingFeedback" style="display:${writingFeedback?'block':'none'}">${writingFeedback||''}</div>
+            <button class="cc-extra-btn" id="ccWritingNewPrompt" style="background:var(--ink);margin-top:8px">Otro tema</button>
+          `}
+        </div>
+      `;
+    }
+  }
+  function renderSongsCategory(){
+    const dd = dayData(iso(selected));
+    const songVal = (dd.en.song||'').replace(/"/g,'&quot;');
+    return `
+      <div class="cc-suggest-wrap">
+        <label>Práctica con canciones</label>
+        <input id="ccSong" value="${songVal}" placeholder="Nombre de la canción y artista">
+        <button class="cc-extra-btn" id="ccSongBtn" style="background:var(--en)">${icon('music','#fff',14)} Practicar vocabulario de esta canción</button>
+        <div class="cc-suggest-list" id="ccSongResult"></div>
+        <label style="margin-top:10px">Pega la letra completa para identificar vocabulario (opcional)</label>
+        <textarea id="ccSongLyrics" rows="4" placeholder="Pega aquí la letra completa">${dd.en.songLyrics||''}</textarea>
+        <button class="cc-extra-btn" id="ccSongLyricsBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Analizar letra pegada</button>
+        <div class="cc-feedback" id="ccSongLyricsResult" style="display:${dd.en.songLyricsResult?'block':'none'}">${dd.en.songLyricsResult||''}</div>
+        <label style="margin-top:10px">Palabras que te llamaron la atención en esta canción (opcional)</label>
+        <textarea id="ccSongWords" rows="2" placeholder="Escribe las palabras o frases separadas por coma">${dd.en.songWords||''}</textarea>
+        <button class="cc-extra-btn" id="ccSongWordsBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Explicar estas palabras</button>
+        <div class="cc-feedback" id="ccSongWordsResult" style="display:${dd.en.songWordsResult?'block':'none'}">${dd.en.songWordsResult||''}</div>
+      </div>
+    `;
+  }
+  function renderSeriesCategory(){
+    const dd = dayData(iso(selected));
+    const episodeVal = (dd.en.episode||'').replace(/"/g,'&quot;');
+    return `
+      <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+        ${!TMDB_KEY ? `<div class="cc-feedback" style="margin-bottom:10px">Puedes buscar el título real en TMDB si guardas tu clave gratis en Configuración. Mientras tanto, escribe el nombre a mano.</div>` : `
+          <label>Buscar serie o película real</label>
+          <input id="ccTmdbQuery" placeholder="Por ejemplo: Friends, Breaking Bad, Oppenheimer">
+          <button class="cc-extra-btn" id="ccTmdbSearchBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Buscar en TMDB</button>
+          <div class="cc-suggest-list" id="ccTmdbResults"></div>
+        `}
+        ${tmdbSelected ? `<div class="cc-feedback" style="margin-bottom:10px">Seleccionaste: <b>${tmdbSelected.title}</b> (${tmdbSelected.year||'sin fecha'}). La IA usará el contexto real de esto al corregir.</div>` : ''}
+        <label style="margin-top:10px">Episodio o video que viste (nombre, número de episodio, o enlace)</label>
+        <input id="ccEpisode" value="${episodeVal}" placeholder="Por ejemplo: Friends 1x02, o un enlace">
+        <label>Tu resumen en inglés</label>
+        <textarea id="ccSummaryText" rows="3" placeholder="Write a short summary in English">${dd.en.summary||''}</textarea>
+        ${micButtonHtml('ccSummaryMic')}
+        <button class="cc-extra-btn" id="ccSummaryCorrect" style="background:var(--en)">${icon('pencil','#fff',14)} Corregir</button>
+        <div class="cc-feedback" id="ccSummaryFeedback" style="display:${dd.en.summaryFeedback?'block':'none'}">${dd.en.summaryFeedback||''}</div>
+        <label style="margin-top:10px">Palabras que te llamaron la atención en ese video (opcional)</label>
+        <textarea id="ccEpisodeWords" rows="2" placeholder="Escribe las palabras o frases separadas por coma">${dd.en.episodeWords||''}</textarea>
+        <button class="cc-extra-btn" id="ccEpisodeWordsBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Explicar estas palabras</button>
+        <div class="cc-feedback" id="ccEpisodeWordsResult" style="display:${dd.en.episodeWordsResult?'block':'none'}">${dd.en.episodeWordsResult||''}</div>
+      </div>
+    `;
+  }
+  function renderRoulette(dd){
+    const hasTopic = !!dd.en.rouletteTopic;
+    return `<div class="cc-suggest-wrap">
+      <label>Ruleta de temas</label>
+      <div class="cc-wheel-row">
+        <div class="cc-wheel-wrap">
+          <div class="cc-wheel-pointer"></div>
+          <div class="cc-wheel" id="ccWheel"></div>
+        </div>
+        <button class="cc-extra-btn" id="ccSpinBtn" style="background:var(--pink)">${icon('target','#fff',14)} Girar la ruleta</button>
+      </div>
+      <div id="ccRouletteResult">
+        ${hasTopic ? `
+          <div class="cc-feedback" style="margin-top:10px"><b>Tema:</b> ${dd.en.rouletteTopic}${dd.en.rouletteQuestion?`<br><b>Pregunta:</b> ${dd.en.rouletteQuestion}`:''}</div>
+          <textarea id="ccRouletteOpinion" rows="3" placeholder="Write your opinion in English">${dd.en.rouletteOpinion||''}</textarea>
+          ${micButtonHtml('ccRouletteMic')}
+          <button class="cc-extra-btn" id="ccRouletteCorrect" style="background:var(--en)">${icon('pencil','#fff',14)} Corregir</button>
+          <div class="cc-feedback" id="ccRouletteFeedback" style="display:${dd.en.rouletteFeedback?'block':'none'}">${dd.en.rouletteFeedback||''}</div>
+        ` : ''}
+      </div>
+    </div>`;
+  }
+  function imgIdx(i){ return ((i%IMAGE_PROMPTS.length)+IMAGE_PROMPTS.length)%IMAGE_PROMPTS.length; }
+  function imgSvg(i){
+    const idx = imgIdx(i);
+    return `<svg width="100%" height="120" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet">${IMAGE_PROMPTS[idx].svg}</svg>`;
+  }
+  function imgCaption(i, lang){ const p = IMAGE_PROMPTS[imgIdx(i)]; return lang==='pt' ? p.captionPt : p.caption; }
+
+  function bindLecciones(){
+    root.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click', ()=>{ lecCategory = b.dataset.cat; render(); }));
+    const lecBack = document.getElementById('ccLecBack');
+    if (lecBack) lecBack.addEventListener('click', ()=>{ lecCategory=null; render(); });
+    if (!lecCategory) return;
+
+    if (lecCategory==='gram') bindGramCategory();
+    if (lecCategory==='ipa') bindIPA();
+    if (lecCategory==='listening') bindListeningCategory();
+    if (lecCategory==='reading') bindReadingCategory();
+    if (lecCategory==='writing') bindWritingCategory();
+    if (lecCategory==='speaking') bindSpeakingCategory();
+    if (lecCategory==='songs') bindSongsCategory();
+    if (lecCategory==='series') bindSeriesCategory();
+  }
+
+  function bindGramCategory(){
+    root.querySelectorAll('[data-lesson]').forEach(b=>b.addEventListener('click', ()=>{
+      if (!b.dataset.lesson) return;
+      activeLessonId = b.dataset.lesson; lessonExercises=[]; lessonIndex=0; lessonScore=0; render();
+    }));
+    const genBtn = document.getElementById('ccLessonGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Generando...';
+      const node = LESSON_NODES.find(n=>n.id===activeLessonId);
+      async function attempt(){
+        const result = await callAI(
+          `Tema: ${node.topic}`,
+          'Crea 4 ejercicios cortos de inglés tipo Duolingo sobre el tema dado, para un estudiante B1 subiendo a B2. Responde unicamente con un arreglo JSON, nada de texto antes o despues, nada de bloques de codigo. Formato exacto: [{"type":"mc","question":"...","options":["a","b","c","d"],"answer":"b"},{"type":"text","question":"...","options":[],"answer":"..."}]. Dos ejercicios tipo mc y dos tipo text. Preguntas en español, contenido de practica en ingles.'
+        );
+        const start = result.indexOf('[');
+        const end = result.lastIndexOf(']');
+        if (start===-1 || end===-1 || end<start) throw new Error('sin arreglo JSON reconocible');
+        const parsed = JSON.parse(result.slice(start, end+1));
+        if (!Array.isArray(parsed) || !parsed.length) throw new Error('arreglo vacío');
+        return parsed;
+      }
+      try {
+        let parsed;
+        try { parsed = await attempt(); }
+        catch(e1){ genBtn.textContent = 'Reintentando...'; parsed = await attempt(); }
+        lessonExercises = parsed.slice(0,4).map(ex=>({ type: ex.type==='mc'?'mc':'text', question: ex.question||'', options: Array.isArray(ex.options)?ex.options:[], answer: ex.answer||'' }));
+        lessonIndex = 0; lessonScore = 0; lessonAnswered = false; lessonSelected = -1; lessonTextAnswer='';
+      } catch(e){ alert('El modelo gratuito no respondió con un formato usable después de dos intentos. Prueba de nuevo, a veces cambia el modelo que te toca y funciona mejor.'); }
+      genBtn.disabled = false;
+      render();
+    });
+    const exitBtn = document.getElementById('ccLessonExit');
+    if (exitBtn) exitBtn.addEventListener('click', ()=>{ activeLessonId=null; lessonExercises=[]; render(); });
+    root.querySelectorAll('[data-li]').forEach(b=>b.addEventListener('click', ()=>{
+      if (lessonAnswered) return;
+      lessonSelected = parseInt(b.dataset.li);
+      lessonAnswered = true;
+      const ex = lessonExercises[lessonIndex];
+      if (ex.options[lessonSelected]===ex.answer){ lessonScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    }));
+    const textInput = document.getElementById('ccLessonTextAns');
+    if (textInput) textInput.addEventListener('input', ()=>{ lessonTextAnswer = textInput.value; });
+    const checkBtn = document.getElementById('ccLessonCheck');
+    if (checkBtn) checkBtn.addEventListener('click', ()=>{
+      const ex = lessonExercises[lessonIndex];
+      const correct = (lessonTextAnswer||'').trim().toLowerCase() === (ex.answer||'').trim().toLowerCase();
+      lessonAnswered = true; lessonSelected = correct?1:0;
+      if (correct){ lessonScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    });
+    const nextBtn = document.getElementById('ccLessonNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{
+      lessonIndex++; lessonAnswered=false; lessonSelected=-1; lessonTextAnswer='';
+      if (lessonIndex >= lessonExercises.length){
+        if (!state.lessons.done[activeLessonId]){ state.lessons.xp += 20; state.lessons.done[activeLessonId] = true; bumpSkillStat('gram'); save(); }
+      }
+      render();
+    });
+  }
+
+  function bindReadingCategory(){
+    root.querySelectorAll('[data-genre]').forEach(b=>b.addEventListener('click', ()=>{
+      readingGenre = b.dataset.genre; readingPassage=''; readingQuestions=[]; readingAnswers=[]; readingGraded=false; readingFeedback=''; readingLiked=false;
+      render();
+    }));
+    const changeGenreBtn = document.getElementById('ccReadingChangeGenre');
+    if (changeGenreBtn) changeGenreBtn.addEventListener('click', ()=>{ readingGenre=null; readingPassage=''; render(); });
+    root.querySelectorAll('[data-rlen]').forEach(b=>b.addEventListener('click', ()=>{ readingLength = b.dataset.rlen; render(); }));
+    const genBtn = document.getElementById('ccReadingGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Generando...';
+      const liked = (state.readingLikes[readingGenre]||[]).slice(-3);
+      const likedLine = liked.length ? ` Al usuario le gustaron antes historias con esta esencia en este género: ${liked.map(l=>l.slice(0,150)).join(' | ')}. Genera algo con un espíritu o tono similar, pero una historia completamente nueva, no repitas la trama.` : '';
+      const lengthSpec = readingLength==='largo' ? '220 a 320 palabras, con 4 preguntas de comprensión' : readingLength==='mediano' ? '140 a 190 palabras, con 3 preguntas de comprensión' : '80 a 120 palabras, con 3 preguntas de comprensión';
+      const minWords = readingLength==='largo' ? 150 : readingLength==='mediano' ? 90 : 50;
+      async function attemptReading(){
+        const result = await callAI(
+          `Género: ${readingGenre}.${likedLine}`,
+          `Escribe un texto en inglés de ${lengthSpec}, del género indicado, apto para todo público y sin violencia gráfica explícita aunque el género sea de suspenso o terror, apropiado para un estudiante B1 subiendo a B2. Después escribe las preguntas de comprensión sobre ese texto, en inglés, numeradas empezando en 1. Responde con este formato exacto y nada más: TEXTO: el texto aquí PREGUNTAS: 1) primera pregunta 2) segunda pregunta y así sucesivamente`
+        );
+        const parts = result.split(/PREGUNTAS:|QUESTIONS:/i);
+        const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+        const wordCount = passage.split(/\s+/).filter(Boolean).length;
+        if (wordCount < minWords) throw new Error('texto demasiado corto o inválido');
+        const qBlock = parts[1] || '';
+        const maxQ = readingLength==='largo' ? 4 : 3;
+        let questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,maxQ);
+        if (!questions.length) questions = ['Question 1','Question 2','Question 3'];
+        return { passage, questions };
+      }
+      try {
+        let out;
+        try { out = await attemptReading(); }
+        catch(e1){ genBtn.textContent = 'Reintentando...'; out = await attemptReading(); }
+        readingPassage = out.passage;
+        readingQuestions = out.questions;
+        readingAnswers = readingQuestions.map(()=>''); readingGraded = false; readingFeedback=''; readingLiked=false;
+      } catch(e){ alert('El modelo gratuito no generó un texto usable después de dos intentos (a veces bloquea ciertos géneros por sus propios filtros). Prueba de nuevo o con otro género.'); }
+      genBtn.disabled = false;
+      render();
+    });
+    const likeBtn = document.getElementById('ccReadingLike');
+    if (likeBtn) likeBtn.addEventListener('click', ()=>{
+      if (readingLiked) return;
+      if (!state.readingLikes[readingGenre]) state.readingLikes[readingGenre] = [];
+      state.readingLikes[readingGenre].push(readingPassage);
+      state.readingLikes[readingGenre] = state.readingLikes[readingGenre].slice(-5);
+      readingLiked = true;
+      save(); render();
+    });
+    readingQuestions.forEach((q,i)=>{
+      const ans = document.getElementById(`ccReadingAns-${i}`);
+      if (ans) ans.addEventListener('input', ()=>{ readingAnswers[i]=ans.value; });
+    });
+    const gradeBtn = document.getElementById('ccReadingGrade');
+    if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+      gradeBtn.disabled = true; gradeBtn.textContent = 'Corrigiendo...';
+      try {
+        const qa = readingQuestions.map((q,i)=>`Pregunta: ${q} Respuesta: ${readingAnswers[i]||'sin responder'}`).join(' ');
+        const result = await callAI(
+          `Texto original: ${readingPassage}. ${qa}`,
+          'Eres evaluador de comprensión de lectura en inglés. Compara las respuestas con el texto original y di si son correctas. Da una calificación sobre cien en la primera línea con formato Calificación: número. Después explica brevemente qué estuvo bien y qué faltó. Máximo cien palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.'
+        );
+        readingFeedback = result || 'No se pudo calificar, intenta de nuevo.';
+        readingGraded = true;
+        bumpSkillStat('reading');
+      } catch(e){ alert('Hubo un error al corregir, intenta de nuevo.'); }
+      gradeBtn.disabled = false;
+      render();
+    });
+    const nextReadBtn = document.getElementById('ccReadingNext');
+    if (nextReadBtn) nextReadBtn.addEventListener('click', ()=>{
+      readingPassage=''; readingQuestions=[]; readingAnswers=[]; readingGraded=false; readingFeedback=''; readingLiked=false; render();
+    });
+  }
+
+  function bindListeningCategory(){
+    const genBtn = document.getElementById('ccListenGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Generando...';
+      async function attemptListening(){
+        const result = await callAI(
+          'Escribe el texto y las preguntas ahora, en el formato pedido.',
+          'Escribe un texto corto en inglés de 80 a 110 palabras sobre un tema cotidiano interesante, apropiado para un estudiante B1 subiendo a B2. Este texto se va a leer en voz alta con la función de texto a voz del navegador, tú no generas audio, solo escribes el texto. Después escribe exactamente 3 preguntas de comprensión en inglés, numeradas del 1 al 3. Responde con este formato exacto y nada más, sin explicaciones ni comentarios sobre la tarea: TEXTO: el texto aquí PREGUNTAS: 1) primera pregunta 2) segunda pregunta 3) tercera pregunta'
+        );
+        const parts = result.split(/PREGUNTAS:|QUESTIONS:/i);
+        const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+        const wordCount = passage.split(/\s+/).filter(Boolean).length;
+        const looksLikeReasoning = /\bI (should|need to|can't|must)\b|\bthe user\b|\bwait,?\b|\bhowever,? in\b/i.test(passage);
+        if (wordCount < 30 || wordCount > 250 || looksLikeReasoning) throw new Error('texto inválido o parece razonamiento interno');
+        const qBlock = parts[1] || '';
+        let questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,3);
+        if (!questions.length) questions = ['Question 1','Question 2','Question 3'];
+        return { passage, questions };
+      }
+      try {
+        let out;
+        try { out = await attemptListening(); }
+        catch(e1){ genBtn.textContent = 'Reintentando...'; out = await attemptListening(); }
+        listeningPassage = out.passage;
+        listeningQuestions = out.questions;
+        listeningAnswers = listeningQuestions.map(()=>''); listeningGraded = false; listeningFeedback='';
+      } catch(e){ alert('El modelo gratuito no generó un texto usable después de dos intentos. Intenta de nuevo, a veces cambia el modelo asignado.'); }
+      genBtn.disabled = false;
+      render();
+    });
+    const playBtn = document.getElementById('ccListenPlay');
+    if (playBtn) playBtn.addEventListener('click', ()=>{ speakText(listeningPassage, 'en-US'); });
+    listeningQuestions.forEach((q,i)=>{
+      const ans = document.getElementById(`ccListenAns-${i}`);
+      if (ans) ans.addEventListener('input', ()=>{ listeningAnswers[i]=ans.value; });
+    });
+    const gradeBtn = document.getElementById('ccListenGrade');
+    if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+      gradeBtn.disabled = true; gradeBtn.textContent = 'Corrigiendo...';
+      try {
+        const qa = listeningQuestions.map((q,i)=>`Pregunta: ${q} Respuesta: ${listeningAnswers[i]||'sin responder'}`).join(' ');
+        const result = await callAI(
+          `Texto original: ${listeningPassage}. ${qa}`,
+          'Eres evaluador de comprensión de escucha en inglés. Compara las respuestas con el texto original y di si son correctas. Da una calificación sobre cien en la primera línea con formato Calificación: número. Después explica brevemente qué estuvo bien y qué faltó. Máximo cien palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.'
+        );
+        listeningFeedback = result || 'No se pudo calificar, intenta de nuevo.';
+        listeningGraded = true;
+        bumpSkillStat('listening');
+      } catch(e){ alert('Hubo un error al corregir, intenta de nuevo.'); }
+      gradeBtn.disabled = false;
+      render();
+    });
+    const nextListenBtn = document.getElementById('ccListenNext');
+    if (nextListenBtn) nextListenBtn.addEventListener('click', ()=>{
+      listeningPassage=''; listeningQuestions=[]; listeningAnswers=[]; listeningGraded=false; listeningFeedback=''; render();
+    });
+  }
+
+  function bindWritingCategory(){
+    root.querySelectorAll('[data-wmode]').forEach(b=>b.addEventListener('click', ()=>{
+      writingMode = b.dataset.wmode; writingPrompt=''; writingText=''; writingFeedback=''; render();
+    }));
+    const modeBackBtn = document.getElementById('ccWritingModeBack');
+    if (modeBackBtn) modeBackBtn.addEventListener('click', ()=>{ writingMode=null; render(); });
+    const selKey = iso(selected);
+    if (writingMode==='image'){
+      const newImgBtn = document.getElementById('ccNewImg');
+      if (newImgBtn) newImgBtn.addEventListener('click', ()=>{
+        const box = document.getElementById('ccImgBox');
+        const capEl = document.getElementById('ccImgCaption');
+        const current = (state.days[selKey] && state.days[selKey].en && state.days[selKey].en.imgIndex) || 0;
+        let next = Math.floor(Math.random()*IMAGE_PROMPTS.length);
+        if (next === current) next = (next+1)%IMAGE_PROMPTS.length;
+        setTextField(selKey,'en','imgIndex', next); save();
+        box.innerHTML = imgSvg(next);
+        if (capEl) capEl.textContent = imgCaption(next);
+      });
+      const realImgBtn = document.getElementById('ccRealImg');
+      if (realImgBtn) realImgBtn.addEventListener('click', ()=>{
+        const box = document.getElementById('ccImgBox');
+        const current = (state.days[selKey] && state.days[selKey].en && state.days[selKey].en.imgIndex) || 0;
+        const prompt = IMAGE_PROMPTS[imgIdx(current)].prompt;
+        const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=480&height=280&nologo=true`;
+        box.innerHTML = `<img src="${url}" alt="Imagen generada" style="width:100%;border-radius:10px" onerror="this.parentElement.innerHTML='<div class=&quot;cc-feedback&quot;>No se pudo cargar la imagen real ahora mismo, es un servicio gratuito de terceros. Intenta de nuevo o usa Nueva imagen para volver al dibujo.</div>'">`;
+      });
+      const storyText = document.getElementById('ccStoryText');
+      if (storyText){
+        storyText.addEventListener('input', ()=>setTextField(selKey,'en','story',storyText.value));
+        storyText.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+      }
+      bindMic('ccStoryMic','ccStoryText','en-US');
+      const storyBtn = document.getElementById('ccStoryCorrect');
+      if (storyBtn) storyBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById('ccStoryFeedback');
+        const text = (storyText.value||'').trim();
+        if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escribe primero tu historia.'; return; }
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+        storyBtn.disabled = true;
+        try {
+          const result = await callAI(
+            `Historia escrita por el usuario en inglés: ${text}`,
+            'Eres un tutor de inglés para un estudiante de nivel B1 en camino a B2. El usuario escribió una historia corta en inglés inspirada en una imagen. Corrige errores de gramática y vocabulario, comenta si la historia tiene una estructura clara, y da una sugerencia para enriquecer el vocabulario. Responde en español explicando las correcciones y muestra primero el texto corregido completo en inglés. Máximo ciento cuarenta palabras. No uses guiones largos ni símbolos poco comunes.'
+          );
+          fb.textContent = result || 'No se pudo generar el feedback, intenta de nuevo.';
+          fb.className = 'cc-feedback';
+          setTextField(selKey,'en','storyFeedback', result); save();
+          bumpSkillStat('writing');
+        } catch(e){ fb.textContent = 'Hubo un error al corregir, intenta de nuevo.'; fb.className='cc-feedback'; }
+        storyBtn.disabled = false;
+      });
+    }
+    if (writingMode==='topic' || writingMode==='dialogue'){
+      const genBtn = document.getElementById('ccWritingGen');
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        genBtn.disabled = true; genBtn.textContent = 'Generando...';
+        try {
+          const instr = writingMode==='topic'
+            ? 'Genera un solo tema de opinión corto, en español, para que el usuario escriba un ensayo breve en inglés dando su punto de vista. Responde solo con el tema, sin nada más.'
+            : 'Genera un solo escenario corto, en español, para que el usuario escriba un diálogo completo en inglés entre dos personajes en ese escenario. Responde solo con el escenario, sin nada más.';
+          const result = await callAI('Genera el tema.', instr);
+          writingPrompt = result.trim(); writingText=''; writingFeedback='';
+        } catch(e){ alert('Hubo un error generando el tema, intenta de nuevo.'); }
+        genBtn.disabled = false;
+        render();
+      });
+      const textArea = document.getElementById('ccWritingText');
+      if (textArea) textArea.addEventListener('input', ()=>{ writingText = textArea.value; });
+      bindMic('ccWritingMic','ccWritingText','en-US');
+      const correctBtn = document.getElementById('ccWritingCorrect');
+      if (correctBtn) correctBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById('ccWritingFeedback');
+        const text = (textArea.value||'').trim();
+        if (!text){ fb.style.display='block'; fb.textContent='Escribe primero tu texto.'; return; }
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+        correctBtn.disabled = true;
+        try {
+          const kind = writingMode==='topic' ? 'un ensayo de opinión' : 'un diálogo entre dos personajes';
+          const result = await callAI(
+            `Tema o escenario: ${writingPrompt}. Texto del usuario: ${text}`,
+            `Eres un tutor de inglés para un estudiante B1 subiendo a B2. El usuario escribió ${kind} en inglés sobre el tema o escenario dado. Corrige gramática y vocabulario, comenta la estructura y coherencia, y muestra primero la versión corregida completa en inglés. Máximo ciento cincuenta palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.`
+          );
+          writingFeedback = result || 'No se pudo generar el feedback, intenta de nuevo.';
+          fb.textContent = writingFeedback; fb.className='cc-feedback';
+          bumpSkillStat('writing');
+        } catch(e){ fb.textContent = 'Hubo un error al corregir, intenta de nuevo.'; fb.className='cc-feedback'; }
+        correctBtn.disabled = false;
+      });
+      const newPromptBtn = document.getElementById('ccWritingNewPrompt');
+      if (newPromptBtn) newPromptBtn.addEventListener('click', ()=>{ writingPrompt=''; writingText=''; writingFeedback=''; render(); });
+    }
+  }
+
+  function bindSpeakingCategory(){
+    const selKey = iso(selected);
+    const spinBtn = document.getElementById('ccSpinBtn');
+    if (spinBtn) spinBtn.addEventListener('click', async ()=>{
+      const wheel = document.getElementById('ccWheel');
+      spinBtn.disabled = true;
+      const extraTurns = 4 + Math.floor(Math.random()*2);
+      const finalAngle = Math.floor(Math.random()*360);
+      wheel.style.transform = `rotate(${extraTurns*360 + finalAngle}deg)`;
+      const topic = ROULETTE_TOPICS[Math.floor(Math.random()*ROULETTE_TOPICS.length)];
+      setTimeout(async ()=>{
+        setTextField(selKey,'en','rouletteTopic', topic);
+        setTextField(selKey,'en','rouletteOpinion', '');
+        setTextField(selKey,'en','rouletteFeedback', '');
+        try {
+          const q = await callAI(
+            `Tema: ${topic}`,
+            'Genera una sola pregunta de opinión en inglés sobre el tema indicado, para que un estudiante de inglés practique speaking dando su punto de vista. Responde solo con la pregunta, sin nada más.'
+          );
+          setTextField(selKey,'en','rouletteQuestion', q.trim());
+        } catch(e){ setTextField(selKey,'en','rouletteQuestion',''); }
+        save(); render();
+      }, 2100);
+    });
+    const rouletteOpinion = document.getElementById('ccRouletteOpinion');
+    if (rouletteOpinion){
+      rouletteOpinion.addEventListener('input', ()=>setTextField(selKey,'en','rouletteOpinion',rouletteOpinion.value));
+      rouletteOpinion.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+    }
+    bindMic('ccRouletteMic','ccRouletteOpinion','en-US');
+    const rouletteBtn = document.getElementById('ccRouletteCorrect');
+    if (rouletteBtn) rouletteBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccRouletteFeedback');
+      const text = (rouletteOpinion.value||'').trim();
+      if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escribe primero tu opinión.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+      rouletteBtn.disabled = true;
+      try {
+        const currentQuestion = dayData(selKey).en.rouletteQuestion;
+        const result = await callAI(
+          `Pregunta: ${currentQuestion}. Opinión del usuario: ${text}`,
+          'Eres un tutor de inglés para un estudiante de nivel B1 en camino a B2. El usuario dio su opinión en inglés sobre una pregunta. Corrige errores de gramática y vocabulario, comenta si respondió bien a la pregunta, y muestra primero la versión corregida completa en inglés. Máximo ciento veinte palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.'
+        );
+        fb.textContent = result || 'No se pudo generar el feedback, intenta de nuevo.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'en','rouletteFeedback', result); save();
+        bumpSkillStat('speaking');
+      } catch(e){ fb.textContent = 'Hubo un error al corregir, intenta de nuevo.'; fb.className='cc-feedback'; }
+      rouletteBtn.disabled = false;
+    });
+  }
+
+  function bindSongsCategory(){
+    const selKey = iso(selected);
+    const songInput = document.getElementById('ccSong');
+    if (songInput) songInput.addEventListener('input', ()=>setTextField(selKey,'en','song',songInput.value));
+    const songBtn = document.getElementById('ccSongBtn');
+    if (songBtn) songBtn.addEventListener('click', async ()=>{
+      const result = document.getElementById('ccSongResult');
+      const song = (songInput.value||'').trim();
+      if (!song){ result.innerHTML = '<div class="cc-feedback">Escribe primero el nombre de la canción.</div>'; return; }
+      result.innerHTML = '<div class="cc-feedback loading">Buscando vocabulario</div>';
+      songBtn.disabled = true;
+      try {
+        const r = await callAI(
+          `Canción: ${song}`,
+          'Eres un tutor de inglés. El usuario va a aprender una canción para practicar pronunciación y vocabulario. No reproduzcas ni cites la letra de la canción bajo ninguna circunstancia, ni siquiera fragmentos cortos, por derechos de autor. En cambio identifica el artista y el estilo si lo reconoces, y describe en general el tipo de vocabulario, contracciones y phrasal verbs que suelen aparecer en canciones de ese artista o género. Sugiere 4 o 5 expresiones de inglés coloquial para que el usuario las busque y las identifique por su cuenta mientras escucha. Responde en español, breve, sin guiones largos ni símbolos poco comunes.'
+        );
+        result.innerHTML = `<div class="cc-feedback">${(r||'No se pudo generar la práctica, intenta de nuevo.').replace(/\n/g,'<br>')}</div>`;
+        setTextField(selKey,'en','songResult', r); save();
+        bumpSkillStat('songs');
+      } catch(e){ result.innerHTML = '<div class="cc-feedback">Hubo un error, intenta de nuevo.</div>'; }
+      songBtn.disabled = false;
+    });
+    const songWordsText = document.getElementById('ccSongWords');
+    if (songWordsText) songWordsText.addEventListener('input', ()=>setTextField(selKey,'en','songWords',songWordsText.value));
+    const songWordsBtn = document.getElementById('ccSongWordsBtn');
+    if (songWordsBtn) songWordsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSongWordsResult');
+      const words = (songWordsText.value||'').trim();
+      const song = (songInput.value||'').trim();
+      if (!words){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escribe primero las palabras que te llamaron la atención.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Buscando significados';
+      songWordsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Canción: ${song || 'no especificada'}. Palabras del usuario: ${words}`,
+          'Eres un tutor de inglés. El usuario te da una lista de palabras o frases que le llamaron la atención en una canción, y el nombre de esa canción. Para cada palabra o frase, explica su significado en el contexto probable de esa canción (según el tema y estilo del artista si lo reconoces) y da un ejemplo de uso en una oración propia. No cites ni reproduzcas la letra original de la canción bajo ninguna circunstancia, ni siquiera fragmentos cortos, por derechos de autor. Responde en español, en una lista clara, sin preámbulo ni símbolos poco comunes.'
+        );
+        fb.textContent = result || 'No se pudo generar la explicación, intenta de nuevo.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'en','songWordsResult', result); save();
+      } catch(e){ fb.textContent = 'Hubo un error, intenta de nuevo.'; fb.className='cc-feedback'; }
+      songWordsBtn.disabled = false;
+    });
+    const songLyricsText = document.getElementById('ccSongLyrics');
+    if (songLyricsText) songLyricsText.addEventListener('input', ()=>setTextField(selKey,'en','songLyrics',songLyricsText.value));
+    const songLyricsBtn = document.getElementById('ccSongLyricsBtn');
+    if (songLyricsBtn) songLyricsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSongLyricsResult');
+      const lyrics = (songLyricsText.value||'').trim();
+      const song = (songInput.value||'').trim();
+      if (!lyrics){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Pega primero la letra de la canción.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Analizando';
+      songLyricsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Canción: ${song || 'no especificada'}. Letra pegada por el usuario: ${lyrics}`,
+          'Eres un tutor de inglés para un estudiante de nivel B1 que quiere subir a B2. El usuario pegó la letra completa de una canción. No reproduzcas ni cites la letra en tu respuesta, ni fragmentos de ella, bajo ninguna circunstancia, por derechos de autor. En vez de eso, identifica de seis a diez palabras o expresiones (phrasal verbs, slang, vocabulario más avanzado que lo básico) que reconozcas como presentes en ese texto y que sean útiles para ese salto de nivel. Para cada una escribe la palabra o expresión entre doble asterisco, seguido de su significado en español, y un ejemplo de uso en una oración propia y distinta a la canción. Responde en español, en una lista clara, sin preámbulo ni símbolos poco comunes.'
+        );
+        const formatted = (result||'No se pudo generar el análisis, intenta de nuevo.').replace(/\*\*(.*?)\*\*/g,'<u><b>$1</b></u>').replace(/\n/g,'<br>');
+        fb.innerHTML = formatted;
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'en','songLyricsResult', formatted); save();
+      } catch(e){ fb.textContent = 'Hubo un error, intenta de nuevo.'; fb.className='cc-feedback'; }
+      songLyricsBtn.disabled = false;
+    });
+  }
+
+  function bindSeriesCategory(){
+    const selKey = iso(selected);
+    const tmdbSearchBtn = document.getElementById('ccTmdbSearchBtn');
+    if (tmdbSearchBtn) tmdbSearchBtn.addEventListener('click', async ()=>{
+      const query = (document.getElementById('ccTmdbQuery').value||'').trim();
+      const resultsBox = document.getElementById('ccTmdbResults');
+      if (!query){ resultsBox.innerHTML = '<div class="cc-feedback">Escribe primero un nombre.</div>'; return; }
+      resultsBox.innerHTML = '<div class="cc-feedback loading">Buscando</div>';
+      tmdbSearchBtn.disabled = true;
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${encodeURIComponent(TMDB_KEY)}&query=${encodeURIComponent(query)}&language=en-US`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.status_message || 'Clave inválida o error de red');
+        tmdbResults = (data.results||[]).filter(r=>r.media_type==='tv'||r.media_type==='movie').slice(0,6);
+        if (!tmdbResults.length){ resultsBox.innerHTML = '<div class="cc-feedback">No se encontraron resultados.</div>'; }
+        else {
+          resultsBox.innerHTML = tmdbResults.map((r,i)=>{
+            const title = r.title || r.name;
+            const date = r.release_date || r.first_air_date || '';
+            const year = date ? date.slice(0,4) : '';
+            return `<div class="cc-list-item"><span class="cc-list-front" style="flex:1">${title} ${year?`(${year})`:''} — ${r.media_type==='tv'?'Serie':'Película'}</span><button class="cc-extra-btn" data-tmdb="${i}" style="background:var(--en)">Elegir</button></div>`;
+          }).join('');
+          resultsBox.querySelectorAll('[data-tmdb]').forEach(b=>b.addEventListener('click', ()=>{
+            const r = tmdbResults[parseInt(b.dataset.tmdb)];
+            const date = r.release_date || r.first_air_date || '';
+            tmdbSelected = { title: r.title || r.name, overview: r.overview || '', year: date ? date.slice(0,4) : '', type: r.media_type };
+            const epInput = document.getElementById('ccEpisode');
+            if (epInput) { epInput.value = tmdbSelected.title; setTextField(selKey,'en','episode',tmdbSelected.title); save(); }
+            render();
+          }));
+        }
+      } catch(e){ resultsBox.innerHTML = `<div class="cc-feedback">Error: ${e.message}</div>`; }
+      tmdbSearchBtn.disabled = false;
+    });
+    const episodeInput = document.getElementById('ccEpisode');
+    if (episodeInput) episodeInput.addEventListener('input', ()=>setTextField(selKey,'en','episode',episodeInput.value));
+    const summaryText = document.getElementById('ccSummaryText');
+    if (summaryText){
+      summaryText.addEventListener('input', ()=>setTextField(selKey,'en','summary',summaryText.value));
+      summaryText.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+    }
+    bindMic('ccSummaryMic','ccSummaryText','en-US');
+    const summaryBtn = document.getElementById('ccSummaryCorrect');
+    if (summaryBtn) summaryBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSummaryFeedback');
+      const text = (summaryText.value||'').trim();
+      if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escribe primero tu resumen en inglés.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+      summaryBtn.disabled = true;
+      try {
+        const episode = (episodeInput.value||'').trim();
+        const contextLine = tmdbSelected && tmdbSelected.title===episode
+          ? ` Contexto real confirmado por base de datos: ${tmdbSelected.title} (${tmdbSelected.year}), sinopsis oficial: ${tmdbSelected.overview}. Usa este contexto real para verificar si el resumen del usuario es coherente con la trama real, no solo la gramática.`
+          : '';
+        const result = await callAI(
+          `Episodio o video: ${episode || 'no especificado'}.${contextLine} Resumen del usuario: ${text}`,
+          'Eres un tutor de inglés para un estudiante de nivel B1 en camino a B2, cuyo foco es el speaking y sonar nativo. El usuario escribió un resumen en inglés de un episodio o video que vio. Corrige errores de gramática y vocabulario, y da una o dos sugerencias para sonar más natural, por ejemplo con phrasal verbs o contracciones. Si te di contexto real confirmado, comenta también si el resumen coincide con la trama real o si el usuario entendió mal algo. Responde en español explicando las correcciones y muestra primero el texto corregido completo en inglés. Sé breve, un máximo de ciento cincuenta palabras, sin guiones largos ni símbolos poco comunes.'
+        );
+        fb.textContent = result || 'No se pudo generar el feedback, intenta de nuevo.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'en','summaryFeedback', result); save();
+        bumpSkillStat('series');
+      } catch(e){ fb.textContent = 'Hubo un error al corregir, intenta de nuevo.'; fb.className='cc-feedback'; }
+      summaryBtn.disabled = false;
+    });
+    const episodeWordsText = document.getElementById('ccEpisodeWords');
+    if (episodeWordsText) episodeWordsText.addEventListener('input', ()=>setTextField(selKey,'en','episodeWords',episodeWordsText.value));
+    const episodeWordsBtn = document.getElementById('ccEpisodeWordsBtn');
+    if (episodeWordsBtn) episodeWordsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccEpisodeWordsResult');
+      const words = (episodeWordsText.value||'').trim();
+      const episode = (episodeInput.value||'').trim();
+      if (!words){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escribe primero las palabras que te llamaron la atención.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Buscando significados';
+      episodeWordsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Episodio o video: ${episode || 'no especificado'}. Palabras del usuario: ${words}`,
+          'Eres un tutor de inglés. El usuario te da una lista de palabras o frases que le llamaron la atención en un episodio o video que vio, y opcionalmente el nombre de ese episodio o video. Para cada palabra o frase, explica su significado en el contexto de ese tipo de contenido (si reconoces el episodio, ubica el significado en esa escena o tema; si no lo reconoces, da el significado general más probable en ese contexto) y da un ejemplo de uso en una oración propia, distinta a cualquier diálogo original. No cites ni reproduzcas diálogos textuales del episodio. Responde en español, en una lista clara, sin preámbulo ni símbolos poco comunes.'
+        );
+        fb.textContent = result || 'No se pudo generar la explicación, intenta de nuevo.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'en','episodeWordsResult', result); save();
+      } catch(e){ fb.textContent = 'Hubo un error, intenta de nuevo.'; fb.className='cc-feedback'; }
+      episodeWordsBtn.disabled = false;
+    });
+  }
+
+  function renderIPA(){
+    if (!ipaQuizWords.length) startIpaQuiz();
+    const vowels = IPA_SOUNDS.filter(s=>s.type==='vowel');
+    const consonants = IPA_SOUNDS.filter(s=>s.type==='consonant');
+    return `
+      <div class="cc-ipa-hero">
+        <div class="cc-ipa-hero-title">Alfabeto fonético (IPA)</div>
+        <div class="cc-ipa-hero-sub">Toca cualquier símbolo para escuchar su sonido con una palabra de ejemplo</div>
+      </div>
+      <p class="cc-section-title">Vocales</p>
+      <div class="cc-ipa-grid">
+        ${vowels.map(s=>renderIpaCard(s,'var(--blue)')).join('')}
+      </div>
+      <p class="cc-section-title">Consonantes</p>
+      <div class="cc-ipa-grid">
+        ${consonants.map(s=>renderIpaCard(s,'var(--violet)')).join('')}
+      </div>
+      <p class="cc-section-title">Practica el oído con IPA</p>
+      <div class="cc-habit" style="border-left-color:var(--en)">
+        <div class="cc-habit-frac" style="margin-bottom:10px">Puntaje: ${ipaQuizScore}/${ipaQuizTotal}</div>
+        <div class="cc-card-front" style="font-size:24px;margin-bottom:6px">/${ipaQuizTarget}/</div>
+        <div class="cc-card-hint" style="margin-bottom:10px">¿Cuál palabra tiene este sonido?</div>
+        <button class="cc-extra-btn" id="ccIpaPlay" style="background:var(--en)">${icon('audio','#fff',14)} Escuchar palabra</button>
+        <div class="cc-grade-row" style="grid-template-columns:1fr 1fr;margin-top:10px">
+          ${ipaQuizWords.map((w,i)=>{
+            let cls='';
+            if (ipaQuizAnswered){ if (w.word===ipaQuizSpoken) cls='good'; else if (i===ipaQuizSelectedIdx) cls='bad'; }
+            return `<button class="cc-grade-btn ${cls}" data-ipaq="${i}" ${ipaQuizAnswered?'disabled':''}>${w.word}</button>`;
+          }).join('')}
+        </div>
+        ${ipaQuizAnswered ? `<button class="cc-extra-btn" id="ccIpaQuizNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+      </div>
+    `;
+  }
+  function renderIpaCard(s, color){
+    return `<button class="cc-ipa-card" style="--ipa-color:${color}" data-ipa="${s.symbol}">
+      <span class="cc-ipa-symbol">/${s.symbol}/</span>
+      <span class="cc-ipa-word">${s.example}</span>
+    </button>`;
+  }
+  const IPA_CONFUSABLES = {
+    'i':['ɪ'], 'ɪ':['i','ɛ'], 'ɛ':['æ','ɪ'], 'æ':['ɛ','ʌ'], 'ʌ':['ɑ','æ'],
+    'ɑ':['ʌ','ɔ'], 'ɔ':['ɑ','oʊ'], 'oʊ':['ɔ','ʊ'], 'ʊ':['u','oʊ'], 'u':['ʊ'],
+    'θ':['ð','s'], 'ð':['θ','d'], 's':['θ','ʃ'], 'z':['ʒ'], 'ʃ':['tʃ','s'],
+    'ʒ':['dʒ','z'], 'tʃ':['ʃ','dʒ'], 'dʒ':['ʒ','tʃ'], 'l':['r'], 'r':['l'],
+    'n':['ŋ'], 'ŋ':['n'], 'p':['b'], 'b':['p','v'], 'v':['b','f'], 'f':['v'],
+    't':['d'], 'd':['t'], 'k':['g'], 'g':['k'],
+  };
+  function startIpaQuiz(){
+    ipaQuizTarget = IPA_SOUNDS[Math.floor(Math.random()*IPA_SOUNDS.length)].symbol;
+    const targetSound = IPA_SOUNDS.find(s=>s.symbol===ipaQuizTarget);
+    const confusableSymbols = IPA_CONFUSABLES[ipaQuizTarget] || [];
+    const confusableSounds = shuffleArr(confusableSymbols.map(sym=>IPA_SOUNDS.find(s=>s.symbol===sym)).filter(Boolean));
+    const sameType = shuffleArr(IPA_SOUNDS.filter(s=>s.symbol!==ipaQuizTarget && s.type===targetSound.type && !confusableSymbols.includes(s.symbol)));
+    const otherType = shuffleArr(IPA_SOUNDS.filter(s=>s.symbol!==ipaQuizTarget && s.type!==targetSound.type && !confusableSymbols.includes(s.symbol)));
+    const distractors = [...confusableSounds, ...sameType, ...otherType].slice(0,3);
+    ipaQuizWords = shuffleArr([targetSound, ...distractors]);
+    ipaQuizSpoken = ''; ipaQuizAnswered = false; ipaQuizSelectedIdx = -1;
+  }
+  function bindIPA(){
+    root.querySelectorAll('[data-ipa]').forEach(b=>b.addEventListener('click', ()=>{
+      const s = IPA_SOUNDS.find(x=>x.symbol===b.dataset.ipa);
+      ipaSelected = s.symbol;
+      speakText(s.example, 'en-US');
+    }));
+    const playBtn = document.getElementById('ccIpaPlay');
+    if (playBtn) playBtn.addEventListener('click', ()=>{
+      ipaQuizSpoken = ipaQuizWords.find(w=>w.symbol===ipaQuizTarget).word;
+      speakText(ipaQuizSpoken, 'en-US');
+    });
+    root.querySelectorAll('[data-ipaq]').forEach(b=>b.addEventListener('click', ()=>{
+      if (ipaQuizAnswered || !ipaQuizSpoken) return;
+      ipaQuizSelectedIdx = parseInt(b.dataset.ipaq);
+      ipaQuizAnswered = true; ipaQuizTotal++;
+      if (ipaQuizWords[ipaQuizSelectedIdx].word===ipaQuizSpoken){ ipaQuizScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    }));
+    const nextBtn = document.getElementById('ccIpaQuizNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{ startIpaQuiz(); render(); });
+  }
+  function renderReview(due){
+    if (!due.length) return `<div class="cc-empty">No tienes tarjetas pendientes hoy.<br>Agrega vocabulario nuevo o vuelve mañana.</div>`;
+    const c = currentCard; const cat = CATS[c.cat] || CATS.other;
+    return `
+      <div class="cc-card" id="ccCardFace">
+        <span class="cc-card-cat" style="background:${cat.color}">${cat.label}</span>
+        <div class="cc-card-front">${c.front}</div>
+        ${!flipped ? `<div class="cc-card-hint">Escribe lo que crees que significa antes de revelar</div>` : ''}
+      </div>
+      ${!flipped ? `
+        <input id="ccReviewGuess" placeholder="Tu intento de significado (opcional)" value="${(reviewGuess||'').replace(/"/g,'&quot;')}" style="margin-top:10px">
+        <button class="cc-extra-btn" id="ccRevealBtn" style="background:var(--ink);margin-top:8px">Revelar respuesta</button>
+      ` : `
+        <div class="cc-feedback" style="margin-top:10px">
+          ${reviewGuess ? `<div><b>Tu intento:</b> ${reviewGuess}</div>` : ''}
+          <div style="margin-top:4px"><b>Respuesta:</b> ${c.back}</div>
+          ${c.example?`<div class="cc-card-example" style="margin-top:4px">${c.example}</div>`:''}
+        </div>
+        <div class="cc-grade-row">
+          <button class="cc-grade-btn bad" data-g="0">No me<br>acordaba</button>
+          <button class="cc-grade-btn mid" data-g="1">Más o<br>menos</button>
+          <button class="cc-grade-btn good" data-g="2">Lo sabía<br>bien</button>
+        </div>
+      `}
+    `;
+  }
+  function renderAdd(){
+    return `<div class="cc-form">
+      <label>Palabra o expresión</label>
+      <input id="ccFront" placeholder="Por ejemplo: to bail on someone">
+      <button class="cc-add-btn" id="ccLookupBtn" style="background:var(--en)">${icon('bulb','#fff',14)} Buscar significado</button>
+      <div class="cc-feedback" id="ccLookupResult" style="display:none"></div>
+      <label>Tipo de palabra</label>
+      <select id="ccTipo">${WORD_TYPES.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+      <label>Categoría</label>
+      <select id="ccCat">${Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('')}</select>
+      <label>Significado</label>
+      <input id="ccBack" placeholder="Por ejemplo: dejar plantado, cancelar sin avisar">
+      <label>Ejemplo o contexto</label>
+      <textarea id="ccExample" rows="2" placeholder="Se rellena solo al buscar, o escribe el tuyo"></textarea>
+      <button class="cc-add-btn" id="ccAddBtn">Agregar al mazo</button>
+    </div>`;
+  }
+  let openVocabGroups = {};
+  function renderList(){
+    if (!state.cards.length) return `<div class="cc-empty">Todavía no agregaste tarjetas.</div>`;
+    const groups = {};
+    state.cards.forEach(c=>{
+      const key = c.tipo || 'Sin clasificar';
+      (groups[key] = groups[key] || []).push(c);
+    });
+    const order = [...WORD_TYPES, 'Sin clasificar'].filter(t=>groups[t]);
+    return `<div class="cc-list">
+      ${order.map(type=>{
+        const cards = [...groups[type]].sort((a,b)=>a.next.localeCompare(b.next));
+        const open = !!openVocabGroups[type];
+        return `<div class="cc-acc ${open?'open':''}" data-group="${type}">
+          <div class="cc-acc-head">
+            <span class="cc-acc-dot" style="background:var(--en)"></span>
+            <span class="cc-acc-title">${type} (${cards.length})</span>
+            <span class="cc-acc-arrow-shape"></span>
+          </div>
+          <div class="cc-acc-body">
+            <div class="cc-list">
+              ${cards.map(c=>{ const cat=CATS[c.cat]||CATS.other; return `<div class="cc-list-item">
+                <span class="cc-list-cat" style="background:${cat.color}">${cat.label}</span>
+                <span class="cc-list-front">${c.front}</span><span class="cc-list-back">${c.back}</span>
+                <span class="cc-list-box">Caja ${c.box}</span><button class="cc-del" data-id="${c.id}">Borrar</button>
+              </div>`; }).join('')}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function bindVocab(){
+    root.querySelectorAll('.cc-vtab').forEach(b=>b.addEventListener('click',()=>{ vocabTab=b.dataset.vt; render(); }));
+    if (vocabTab==='review'){
+      const guessInput = document.getElementById('ccReviewGuess');
+      if (guessInput) guessInput.addEventListener('input', ()=>{ reviewGuess = guessInput.value; });
+      const revealBtn = document.getElementById('ccRevealBtn');
+      if (revealBtn) revealBtn.addEventListener('click', ()=>{ flipped=true; render(); });
+      root.querySelectorAll('.cc-grade-btn').forEach(b=>b.addEventListener('click',(e)=>{ e.stopPropagation(); grade(currentCard, parseInt(b.dataset.g)); currentCard=null; reviewGuess=''; render(); }));
+    }
+    if (vocabTab==='juego') bindGame();
+    if (vocabTab==='add'){
+      const lookupBtn = document.getElementById('ccLookupBtn');
+      if (lookupBtn) lookupBtn.addEventListener('click', async ()=>{
+        const front = document.getElementById('ccFront').value.trim();
+        const resultBox = document.getElementById('ccLookupResult');
+        if (!front){ resultBox.style.display='block'; resultBox.textContent='Escribe primero la palabra o expresión.'; return; }
+        resultBox.style.display='block'; resultBox.className='cc-feedback loading'; resultBox.textContent='Buscando en el diccionario y pidiendo la opinión de la IA';
+        lookupBtn.disabled = true;
+        try {
+          const { dictMeanings, aiResult } = await lookupWord(front);
+          const urban = await lookupUrban(front);
+          const uses = parseAiLookup(aiResult);
+          lastLookupUses = uses;
+          resultBox.className = 'cc-feedback';
+          const dictHtml = dictMeanings.length
+            ? `<b>Diccionario:</b><br>${dictMeanings.map(m=>`(${m.partOfSpeech}) ${m.definition}`).join('<br>')}`
+            : `<b>Diccionario:</b> no la encontró, probablemente es coloquial.`;
+          const urbanHtml = urban
+            ? `<div style="margin-top:8px"><b>Urban Dictionary (comunidad, sin filtrar):</b><br>${urban.definition}${urban.example?`<br><i style="color:var(--ink-soft)">${urban.example}</i>`:''}</div>`
+            : '';
+          const usesHtml = uses.map((u,i)=>`
+            <div class="cc-list-item" style="margin-top:6px">
+              <span class="cc-list-front" style="flex:1"><b>${u.tipo}:</b> ${u.significado}<br><i style="color:var(--ink-soft)">${u.ejemplo}</i></span>
+              <button class="cc-extra-btn" data-uselookup="${i}" style="background:var(--en)">Usar</button>
+            </div>
+          `).join('');
+          resultBox.innerHTML = `${dictHtml}${urbanHtml}<div style="margin-top:8px"><b>Usos según la IA:</b></div>${usesHtml}`;
+          if (uses.length===1){
+            applyLookupUse(uses[0]);
+          }
+          bindLookupUseButtons();
+        } catch(e){ resultBox.className='cc-feedback'; resultBox.textContent='Hubo un error buscando, puedes escribir el significado tú mismo.'; }
+        lookupBtn.disabled = false;
+      });
+      const btn = document.getElementById('ccAddBtn');
+      if (btn) btn.addEventListener('click', ()=>{
+        const front=document.getElementById('ccFront').value.trim();
+        const back=document.getElementById('ccBack').value.trim();
+        const example=document.getElementById('ccExample').value.trim();
+        const cat=document.getElementById('ccCat').value;
+        const tipo=document.getElementById('ccTipo').value;
+        if (!front||!back) return;
+        addCard(front,back,example,cat,tipo); render();
+        setTimeout(()=>{ const f=document.getElementById('ccFront'); if(f) f.focus(); },0);
+      });
+    }
+    if (vocabTab==='list'){
+      root.querySelectorAll('.cc-del').forEach(b=>b.addEventListener('click',()=>{ deleteCard(b.dataset.id); render(); }));
+      root.querySelectorAll('.cc-acc-head').forEach(h=>h.addEventListener('click',()=>{
+        const key = h.parentElement.dataset.group;
+        openVocabGroups[key] = !openVocabGroups[key];
+        render();
+      }));
+    }
+    if (vocabTab==='analisis'){
+      const genBtn = document.getElementById('ccVocabAnalysisBtn');
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        const box = document.getElementById('ccVocabAnalysisResult');
+        box.style.display='block';
+        if (state.cards.length < 8){
+          box.className = 'cc-feedback';
+          box.textContent = `Todavía tienes muy pocas palabras (${state.cards.length}) para que un análisis diga algo real. Agrega al menos 8 y vuelve aquí, así el patrón que te dé estará basado en datos de verdad, no inventado.`;
+          return;
+        }
+        box.className='cc-feedback loading'; box.textContent='Analizando tu vocabulario';
+        genBtn.disabled = true;
+        try {
+          const total = state.cards.length;
+          const mastered = state.cards.filter(c=>c.box>=6).length;
+          const struggling = state.cards.filter(c=>c.lastReview && c.box<=2).map(c=>c.front);
+          const byType = {};
+          state.cards.forEach(c=>{ const t=c.tipo||'Sin clasificar'; byType[t]=(byType[t]||0)+1; });
+          const typeSummary = Object.entries(byType).map(([t,n])=>`${t}: ${n}`).join(', ');
+          const context = `Total de palabras: ${total}. Dominadas (caja 6 o más): ${mastered}. Por tipo: ${typeSummary}. Palabras con las que ha costado más (caja baja después de repasar): ${struggling.length?struggling.join(', '):'ninguna detectada todavía'}.`;
+          const result = await callAI(
+            context,
+            'Eres un tutor de inglés que analiza el vocabulario guardado por un estudiante B1 subiendo a B2. Con base únicamente en los datos exactos que te doy (total de palabras, cuántas domina, cómo se reparten por tipo de palabra, y cuáles le han costado más), da un análisis honesto de tres a cinco frases. No inventes palabras, categorías, errores ni patrones que no estén en los datos que te di. Si la información es limitada, dilo con honestidad en vez de generalizar o rellenar. Interpreta solo lo que los números reales permiten interpretar, y da una recomendación concreta y realista para la próxima semana. No uses guiones largos ni símbolos poco comunes. Responde en español.'
+          );
+          box.textContent = result || 'No se pudo generar el análisis, intenta de nuevo.';
+          box.className = 'cc-feedback';
+        } catch(e){ box.textContent = 'Hubo un error, intenta de nuevo.'; box.className='cc-feedback'; }
+        genBtn.disabled = false;
+      });
+    }
+  }
+
+  function renderGuia(){
+    return GUIDE.map(g=>`
+      <div class="cc-acc ${openAcc===g.id?'open':''}" data-acc="${g.id}">
+        <div class="cc-acc-head">
+          <span class="cc-acc-dot" style="background:${g.color}"></span>
+          <span class="cc-acc-title">${g.name}</span>
+          <span class="cc-acc-arrow-shape"></span>
+        </div>
+        <div class="cc-acc-body">${g.body}</div>
+      </div>
+    `).join('');
+  }
+  function bindGuia(){
+    root.querySelectorAll('.cc-acc-head').forEach(h=>h.addEventListener('click',()=>{
+      const id = h.parentElement.dataset.acc;
+      openAcc = openAcc===id ? null : id;
+      render();
+    }));
+  }
+
+  function renderAjustes(){
+    const uiLang = (state.settings && state.settings.uiLang) || 'es';
+    return `
+      <p class="cc-section-title">${t('idiomaInterfaz')}</p>
+      <div class="cc-habit">
+        <div class="cc-vocab-tabs">
+          <button class="cc-vtab ${uiLang==='es'?'active':''}" data-uilang="es">Español</button>
+          <button class="cc-vtab ${uiLang==='en'?'active':''}" data-uilang="en">English</button>
+        </div>
+        <div class="cc-feedback" style="margin-top:8px">Cambia los nombres de las pestañas y botones principales. Las explicaciones y correcciones de la IA se quedan en español a propósito, para que las entiendas mientras practicas inglés.</div>
+      </div>
+      <p class="cc-section-title">Apariencia</p>
+      <div class="cc-habit">
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.dark?'on':''}" style="--habit-color:var(--violet)" id="ccToggleDark"></button>
+          <div class="cc-sub-text">Modo oscuro<span class="cc-sub-hint">Cambia el fondo y los tonos de superficie, los colores vivos se mantienen</span></div>
+        </div>
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.sound?'on':''}" style="--habit-color:var(--violet)" id="ccToggleSound"></button>
+          <div class="cc-sub-text">Efectos de sonido<span class="cc-sub-hint">Un clic suave al marcar, un sonido distinto al completar el día</span></div>
+        </div>
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.music?'on':''}" style="--habit-color:var(--violet)" id="ccToggleMusic"></button>
+          <div class="cc-sub-text">Música de fondo mientras trabajas<span class="cc-sub-hint">Un ambiente suave y relajante generado en el momento, sin depender de ninguna pista con derechos de autor</span></div>
+        </div>
+      </div>
+      <p class="cc-section-title">Cuenta</p>
+      <div class="cc-habit">
+        <button class="cc-extra-btn" id="ccChangeKeyBtn" style="background:var(--ink)">${t('cambiarClave')}</button>
+        <button class="cc-extra-btn" id="ccResetBtn" style="background:var(--pink);margin-left:8px">${t('reiniciarDatos')}</button>
+      </div>
+      <p class="cc-section-title">TMDB (opcional, para Series y películas)</p>
+      <div class="cc-habit">
+        <div class="cc-feedback" style="margin-bottom:8px">Pega tu clave de TMDB para que puedas buscar series y películas reales. Se guarda solo en este navegador, nunca en el archivo. Consíguela gratis en themoviedb.org, en tu perfil, apartado API.</div>
+        <input id="ccTmdbKeyInput" placeholder="Tu clave de TMDB" value="${TMDB_KEY}">
+        <button class="cc-extra-btn" id="ccTmdbKeySave" style="background:var(--en)">Guardar clave de TMDB</button>
+      </div>
+    `;
+  }
+  function bindAjustes(){
+    root.querySelectorAll('[data-uilang]').forEach(b=>b.addEventListener('click', ()=>{
+      state.settings.uiLang = b.dataset.uilang; save(); render();
+    }));
+    const darkBtn = document.getElementById('ccToggleDark');
+    if (darkBtn) darkBtn.addEventListener('click', ()=>{
+      state.settings.dark = !state.settings.dark; save(); render();
+    });
+    const soundBtn = document.getElementById('ccToggleSound');
+    if (soundBtn) soundBtn.addEventListener('click', ()=>{
+      state.settings.sound = !state.settings.sound; save();
+      if (state.settings.sound) playClick();
+      render();
+    });
+    const musicBtn = document.getElementById('ccToggleMusic');
+    if (musicBtn) musicBtn.addEventListener('click', ()=>{
+      state.settings.music = !state.settings.music; save();
+      if (state.settings.music) startAmbient(); else stopAmbient();
+      render();
+    });
+    const changeKeyBtn = document.getElementById('ccChangeKeyBtn');
+    if (changeKeyBtn) changeKeyBtn.addEventListener('click', ()=>{
+      if (confirm('¿Quieres reemplazar la clave de API guardada?')) {
+        try { localStorage.removeItem(KEY_STORAGE); } catch(e){}
+        OR_KEY = '';
+        renderSetup();
+      }
+    });
+    const tmdbSaveBtn = document.getElementById('ccTmdbKeySave');
+    if (tmdbSaveBtn) tmdbSaveBtn.addEventListener('click', ()=>{
+      const val = document.getElementById('ccTmdbKeyInput').value.trim();
+      TMDB_KEY = val;
+      try { if (val) localStorage.setItem(TMDB_KEY_STORAGE, val); else localStorage.removeItem(TMDB_KEY_STORAGE); } catch(e){}
+      alert(val ? 'Clave de TMDB guardada.' : 'Clave de TMDB borrada.');
+    });
+    const resetBtn = document.getElementById('ccResetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', async ()=>{
+      if (confirm('¿Borrar todo el progreso, hábitos y vocabulario? No se puede deshacer.')) {
+        const keepSettings = state.settings;
+        state = { days:{}, cards:[], checkins:[], adjustments:[], evalDraft:{en:emptyEvalDraft(),pt:emptyEvalDraft()}, evalHistory:[], readingHistory:[], settings:keepSettings };
+        await save(); render();
+      }
+    });
+  }
+
+  function renderEvalCard(lang, dayIndex){
+    const topic = currentTopic(lang, dayIndex);
+    const draft = state.evalDraft[lang];
+    const label = lang==='en' ? 'Inglés' : 'Portugués';
+    const color = lang==='en' ? 'var(--en)' : 'var(--pt)';
+    return `<div class="cc-habit">
+      <div class="cc-habit-head">
+        <span class="cc-habit-icon" style="background:${color}">${icon(lang,'#fff')}</span>
+        <span class="cc-habit-name">Evaluación de ${label}: habla y escritura</span>
+      </div>
+      <div style="font-size:13px;margin-bottom:8px"><b>Tema de estos quince días:</b> ${topic}</div>
+      <label style="font-size:11px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:4px">Prepara lo que dirías, en ${lang==='en'?'inglés':'portugués'}</label>
+      <textarea id="ccEvalNotes-${lang}" rows="3" placeholder="Escribe tus notas o guion aquí">${draft.notes||''}</textarea>
+      ${micButtonHtml('ccEvalNotesMic-'+lang, lang==='en'?'Dictar en inglés':'Dictar en portugués')}
+      <button class="cc-extra-btn" id="ccEvalGen-${lang}" style="background:${color}">${icon('bulb','#fff',14)} Generar preguntas</button>
+      ${draft.quiz && draft.quiz.length ? `<div class="cc-extra">
+        ${draft.quiz.map((q,i)=>`<label>${q}</label><textarea id="ccEvalAns-${lang}-${i}" rows="2">${draft.answers[i]||''}</textarea>${micButtonHtml('ccEvalAnsMic-'+lang+'-'+i, lang==='en'?'Dictar en inglés':'Dictar en portugués')}`).join('')}
+        <button class="cc-extra-btn" id="ccEvalGrade-${lang}" style="background:var(--ink)">${icon('target','#fff',14)} Corregir y calificar</button>
+        <div class="cc-feedback" id="ccEvalFeedback-${lang}" style="display:none"></div>
+      </div>` : ''}
+    </div>`;
+  }
+  function renderCompCard(lang, type, dayIndex){
+    const topic = currentTopic(lang, dayIndex);
+    const comp = state.evalDraft[lang][type];
+    const label = lang==='en' ? 'Inglés' : 'Portugués';
+    const skillLabel = type==='reading' ? 'lectura' : 'escucha';
+    const color = lang==='en' ? 'var(--en)' : 'var(--pt)';
+    const hasPassage = !!comp.passage;
+    const graded = comp.graded;
+    return `<div class="cc-habit">
+      <div class="cc-habit-head">
+        <span class="cc-habit-icon" style="background:${color}">${icon(type==='reading'?'book':'audio','#fff')}</span>
+        <span class="cc-habit-name">Evaluación de ${label}: ${skillLabel}</span>
+      </div>
+      <div style="font-size:13px;margin-bottom:8px"><b>Tema de estos quince días:</b> ${topic}</div>
+      ${!hasPassage ? `<button class="cc-extra-btn" id="ccCompGen-${lang}-${type}" style="background:${color}">${icon('bulb','#fff',14)} Generar ${type==='reading'?'texto':'audio'}</button>` : `
+        ${type==='reading' ? `<div class="cc-feedback" style="margin-bottom:10px">${comp.passage}</div>` : `
+          <button class="cc-extra-btn" id="ccCompPlay-${lang}" style="background:${color}">${icon('audio','#fff',14)} Reproducir audio</button>
+          ${graded ? `<div class="cc-feedback" style="margin:10px 0">${comp.passage}</div>` : ''}
+        `}
+        <div class="cc-extra">
+          ${comp.questions.map((q,i)=>`<label>${q}</label><textarea id="ccCompAns-${lang}-${type}-${i}" rows="2">${comp.answers[i]||''}</textarea>`).join('')}
+          <button class="cc-extra-btn" id="ccCompGrade-${lang}-${type}" style="background:var(--ink)">${icon('target','#fff',14)} Corregir y calificar</button>
+          <div class="cc-feedback" id="ccCompFeedback-${lang}-${type}" style="display:none"></div>
+        </div>
+      `}
+    </div>`;
+  }
+  function evalDateForPeriod(periodIndex){
+    const day = Math.min(DATES.length-1, periodIndex*15+14);
+    return DATES[day];
+  }
+  function isEvalDay(date){
+    const idx = Math.ceil((date-START)/86400000)+1;
+    return idx % 15 === 0;
+  }
+  function renderEvalCalendar(){
+    const totalPeriods = Math.ceil(DATES.length/15);
+    const currentPeriod = Math.floor((dayIndexNow()-1)/15);
+    const today = new Date();
+    const fmt = d => capFirst(d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}));
+    const rows = [];
+    for (let p=0; p<totalPeriods; p++){
+      const d = evalDateForPeriod(p);
+      const isPast = d < today && !sameDay(d,today);
+      const isNext = p===currentPeriod;
+      rows.push(`<div class="cc-list-item" style="${isNext?'border:1.5px solid var(--orange)':''}">
+        <span class="cc-list-box" style="flex:none;width:150px;${isPast?'text-decoration:line-through':''}">${fmt(d)}</span>
+        <span class="cc-list-front" style="flex:1">${EN_TOPICS[p % EN_TOPICS.length]}</span>
+        <span class="cc-list-back" style="flex:1">${PT_TOPICS[p % PT_TOPICS.length]}</span>
+      </div>`);
+    }
+    const nextDate = evalDateForPeriod(currentPeriod);
+    const daysToNext = Math.max(0, Math.ceil((nextDate-today)/86400000));
+    return `<p class="cc-section-title">Calendario de evaluaciones</p>
+      <div class="cc-feedback" style="margin-bottom:10px"><b>Tu próxima evaluación es el ${fmt(nextDate)}</b>, en ${daysToNext} día${daysToNext===1?'':'s'}. Es un día fijo, no una ventana abierta: ese día te toca rendir cuentas de las cuatro destrezas. El tema puede ajustarse si lo hablas en Revisión, pero la fecha no se mueve.</div>
+      <div class="cc-list">${rows.join('')}</div>`;
+  }
+  function renderEval(){
+    const dayIndex = dayIndexNow();
+    const currentPeriod = Math.floor((dayIndex-1)/15);
+    const nextDate = evalDateForPeriod(currentPeriod);
+    const today = new Date();
+    const daysToNext = Math.max(0, Math.ceil((nextDate-today)/86400000));
+    const fmtFull = d => capFirst(d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}));
+    const sorted = [...state.evalHistory].sort((a,b)=>b.date.localeCompare(a.date));
+    return `
+      <div class="cc-eval-banner" style="cursor:default;margin-bottom:16px">${icon('target','#fff',16)} Tu próxima evaluación es el ${fmtFull(nextDate)}, en ${daysToNext} día${daysToNext===1?'':'s'}. Fecha fija, no ventana abierta.</div>
+      <div class="cc-feedback" style="margin-bottom:16px">Estas evaluaciones se basan en lo que escribas, no en audio ni video: no puedo procesar una grabación directamente. Puedes usar el botón de dictado para hablar en vez de escribir, y el texto se transcribe automáticamente para que lo revise.</div>
+      ${renderEvalCard('en', dayIndex)}
+      ${renderCompCard('en','reading', dayIndex)}
+      ${renderCompCard('en','listening', dayIndex)}
+      <p class="cc-section-title">Historial de calificaciones</p>
+      ${sorted.length===0 ? '<div class="cc-empty">Todavía no tienes evaluaciones calificadas.</div>' :
+        sorted.map(e=>`<div class="cc-list-item">
+          <span class="cc-list-cat" style="background:${e.lang==='en'?'#2D7FF9':'#16C172'}">${e.lang==='en'?'Inglés':'Portugués'}</span>
+          <span class="cc-list-front" style="flex:2">${e.topic}</span>
+          <span class="cc-list-box">${e.score}/100</span>
+        </div>`).join('')
+      }
+      ${renderEvalCalendar()}
+    `;
+  }
+  function bindEval(){
+    ['en'].forEach(lang=>{
+      const draft = state.evalDraft[lang];
+      const notes = document.getElementById(`ccEvalNotes-${lang}`);
+      if (notes) notes.addEventListener('input', ()=>{ draft.notes = notes.value; saveDebounced(); });
+      bindMic('ccEvalNotesMic-'+lang, `ccEvalNotes-${lang}`, lang==='en'?'en-US':'pt-BR');
+      const genBtn = document.getElementById(`ccEvalGen-${lang}`);
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        const topic = currentTopic(lang, dayIndexNow());
+        const notesVal = (notes.value||'').trim();
+        genBtn.disabled = true;
+        try {
+          const langName = lang==='en' ? 'inglés' : 'portugués';
+          const result = await callAI(
+            `Tema: ${topic}. Notas del usuario: ${notesVal || 'todavía no hay notas'}`,
+            `Genera exactamente tres preguntas cortas de seguimiento en ${langName}, relacionadas con el tema y con las notas del usuario si existen, para evaluar su capacidad de hablar sobre el tema. Responde solo con las tres preguntas, cada una en una línea nueva, numeradas del uno al tres, sin preámbulo ni texto adicional.`
+          );
+          const qs = result.split('\n').map(l=>l.trim()).filter(Boolean).slice(0,3);
+          draft.quiz = qs;
+          draft.answers = qs.map(()=>'');
+          save(); render();
+        } catch(e){ alert('Hubo un error generando las preguntas, intenta de nuevo.'); }
+        genBtn.disabled = false;
+      });
+      (draft.quiz||[]).forEach((q,i)=>{
+        const ans = document.getElementById(`ccEvalAns-${lang}-${i}`);
+        if (ans) ans.addEventListener('input', ()=>{ draft.answers[i]=ans.value; saveDebounced(); });
+        bindMic('ccEvalAnsMic-'+lang+'-'+i, `ccEvalAns-${lang}-${i}`, lang==='en'?'en-US':'pt-BR');
+      });
+      const gradeBtn = document.getElementById(`ccEvalGrade-${lang}`);
+      if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById(`ccEvalFeedback-${lang}`);
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+        gradeBtn.disabled = true;
+        try {
+          const topic = currentTopic(lang, dayIndexNow());
+          const langName = lang==='en' ? 'inglés' : 'portugués';
+          const qa = draft.quiz.map((q,i)=>`Pregunta: ${q} Respuesta: ${draft.answers[i]||'sin responder'}`).join(' ');
+          const result = await callAI(
+            `Tema: ${topic}. Notas previas: ${draft.notes||'ninguna'}. ${qa}`,
+            `Eres evaluador de ${langName} para un estudiante de nivel B1 en camino a B2 que quiere sonar nativo. Corrige la gramática y el vocabulario de las respuestas, y evalúa la coherencia con el tema. Da una calificación general sobre cien en la primera línea con el formato Calificación: número. En la segunda línea da tres subpuntajes sobre cien separados por coma con el formato Gramática: número, Vocabulario: número, Fluidez: número. Después explica brevemente los aciertos y los errores principales, con la versión corregida de al menos una frase con error, y una sugerencia concreta de qué practicar la próxima quincena para subir el subpuntaje más bajo. Máximo ciento ochenta palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.`
+          );
+          const scoreMatch = result.match(/Calificaci[oó]n:\s*(\d{1,3})/i);
+          const score = scoreMatch ? parseInt(scoreMatch[1]) : '-';
+          fb.textContent = result;
+          fb.className = 'cc-feedback';
+          state.evalHistory.push({ date: todayISO(), lang, topic, score, feedback: result });
+          state.evalDraft[lang] = Object.assign(emptyEvalDraft(), { reading: draft.reading, listening: draft.listening });
+          save();
+          setTimeout(render, 1400);
+        } catch(e){ fb.textContent = 'Hubo un error al calificar, intenta de nuevo.'; fb.className='cc-feedback'; gradeBtn.disabled=false; }
+      });
+    });
+    bindComp();
+  }
+
+  function bindComp(){
+    ['en'].forEach(lang=>{
+      ['reading','listening'].forEach(type=>{
+        const comp = state.evalDraft[lang][type];
+        const genBtn = document.getElementById(`ccCompGen-${lang}-${type}`);
+        if (genBtn) genBtn.addEventListener('click', async ()=>{
+          genBtn.disabled = true;
+          try {
+            const topic = currentTopic(lang, dayIndexNow());
+            const langName = lang==='en' ? 'inglés' : 'portugués';
+            const level = lang==='en' ? 'nivel B1 a B2' : 'nivel principiante, con oraciones simples';
+            const result = await callAI(
+              `Tema: ${topic}`,
+              `Escribe un texto corto en ${langName} de setenta a cien palabras, apropiado para un estudiante de ${level}, sobre el tema indicado. Después escribe exactamente tres preguntas de comprensión sobre ese texto, en español, numeradas del uno al tres. Responde con este formato exacto y nada más: TEXTO: el texto aquí PREGUNTAS: 1) primera pregunta 2) segunda pregunta 3) tercera pregunta`
+            );
+            const parts = result.split(/PREGUNTAS:|QUESTIONS:/i);
+            const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+            const qBlock = parts[1] || '';
+            const questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,3);
+            comp.passage = passage;
+            comp.questions = questions.length ? questions : ['Pregunta 1','Pregunta 2','Pregunta 3'];
+            comp.answers = comp.questions.map(()=>'');
+            comp.graded = false;
+            save(); render();
+          } catch(e){ alert('Hubo un error generando el contenido, intenta de nuevo.'); genBtn.disabled=false; }
+        });
+        const playBtn = document.getElementById(`ccCompPlay-${lang}`);
+        if (playBtn && type==='listening') playBtn.addEventListener('click', ()=>{
+          speakText(comp.passage, lang==='en'?'en-US':'pt-BR');
+        });
+        comp.questions.forEach((q,i)=>{
+          const ans = document.getElementById(`ccCompAns-${lang}-${type}-${i}`);
+          if (ans) ans.addEventListener('input', ()=>{ comp.answers[i]=ans.value; saveDebounced(); });
+        });
+        const gradeBtn = document.getElementById(`ccCompGrade-${lang}-${type}`);
+        if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+          const fb = document.getElementById(`ccCompFeedback-${lang}-${type}`);
+          fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigiendo';
+          gradeBtn.disabled = true;
+          try {
+            const qa = comp.questions.map((q,i)=>`Pregunta: ${q} Respuesta: ${comp.answers[i]||'sin responder'}`).join(' ');
+            const result = await callAI(
+              `Texto original: ${comp.passage}. ${qa}`,
+              `Eres evaluador de comprensión de ${type==='reading'?'lectura':'escucha'}. Compara las respuestas del usuario con el texto original y determina si son correctas. Da una calificación sobre cien en la primera línea con el formato Calificación: número, según cuántas respondió bien. Después explica brevemente qué estuvo bien y qué faltó. Máximo cien palabras. No uses guiones largos ni símbolos poco comunes. Responde en español.`
+            );
+            const scoreMatch = result.match(/Calificaci[oó]n:\s*(\d{1,3})/i);
+            const score = scoreMatch ? parseInt(scoreMatch[1]) : '-';
+            fb.textContent = result;
+            fb.className = 'cc-feedback';
+            comp.graded = true;
+            const topic = currentTopic(lang, dayIndexNow());
+            state.evalHistory.push({ date: todayISO(), lang, topic: `${type==='reading'?'Lectura':'Escucha'}: ${topic}`, score, feedback: result });
+            save();
+            setTimeout(render, 1400);
+          } catch(e){ fb.textContent = 'Hubo un error al calificar, intenta de nuevo.'; fb.className='cc-feedback'; gradeBtn.disabled=false; }
+        });
+      });
+    });
+  }
+
+  function renderSetup(){
+    root.innerHTML = `
+      <div class="cc-header">
+        <div class="cc-brand">
+          <span class="cc-logo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <path d="M12 17v3"/>
+            </svg>
+          </span>
+          <div><p class="cc-title">Speak Up</p><p class="cc-sub">Inglés, edición DeepSeek R1</p></div>
+        </div>
+      </div>
+      <div class="cc-form">
+        <label>Pega tu clave de API de OpenRouter (empieza con sk-or-v1-...)</label>
+        <input id="ccKeyInput" type="password" placeholder="sk-or-v1-...">
+        <button class="cc-add-btn" id="ccKeySave">Guardar y continuar</button>
+        <div class="cc-feedback">La consigues gratis en openrouter.ai/keys (inicia sesión con Google, clic en Create Key, no pide tarjeta). Esta clave se guarda solo en tu navegador (localStorage) y se usa únicamente para hablar directo con la API de OpenRouter. Nunca se envía a ningún otro lado. Si abres la app en otro navegador o computadora, tendrás que pegarla de nuevo ahí.</div>
+        <div class="cc-feedback">Nota sobre el modelo: usa el enrutador automático de modelos gratis de OpenRouter (openrouter/free), que siempre elige un modelo disponible en ese momento (DeepSeek R1, Llama, Qwen, etc.) sin que se rompa si uno deja de estar disponible.</div>
+        <div class="cc-feedback">Aviso: si usas el dictado por voz y abres este archivo haciendo doble clic (protocolo file://), es posible que el navegador bloquee el micrófono por seguridad. La lectura en voz alta (escucha) no tiene ese problema.</div>
+      </div>
+    `;
+    document.getElementById('ccKeySave').addEventListener('click', ()=>{
+      let val = (document.getElementById('ccKeyInput').value||'');
+      val = val.replace(/[\r\n\t]/g,'').replace(/\s+/g,'').trim();
+      val = val.replace(/^bearer\s*/i,'');
+      if (!val){ alert('Pega tu clave antes de continuar.'); return; }
+      if (!val.startsWith('sk-or-')){ alert('Esa clave no parece de OpenRouter (debería empezar con sk-or-). Revísala e intenta de nuevo.'); return; }
+      OR_KEY = val;
+      try { localStorage.setItem(KEY_STORAGE, val); } catch(e){}
+      init();
+    });
+  }
+
+  async function init(){
+    if (!OR_KEY){
+      try { OR_KEY = localStorage.getItem(KEY_STORAGE) || ''; } catch(e){}
+    }
+    try { TMDB_KEY = localStorage.getItem(TMDB_KEY_STORAGE) || ''; } catch(e){}
+    if (!OR_KEY){ renderSetup(); return; }
+    await load();
+    render();
+  }
+  init();
+})();
+</script>
+
+</body>
+</html>
