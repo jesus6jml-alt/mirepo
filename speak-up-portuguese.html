@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speak Up, português (DeepSeek R1)</title>
+<link rel="manifest" href="manifest-portuguese.json">
+<link rel="apple-touch-icon" href="icon-portuguese-192.png">
+<meta name="theme-color" content="#16C172">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23FF7A29'/%3E%3Cpath d='M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z' fill='none' stroke='white' stroke-width='1.8'/%3E%3Cpath d='M5 10a7 7 0 0 0 14 0' fill='none' stroke='white' stroke-width='1.8'/%3E%3Cpath d='M12 17v3' stroke='white' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #EAF2FF 0%, #EAFBF4 100%);
+  display: flex;
+  justify-content: center;
+  padding: 28px 16px;
+  box-sizing: border-box;
+  transition: background .3s;
+}
+body.dark-page {
+  background: linear-gradient(160deg, #12141A 0%, #1B2530 100%);
+}
+
+.cc-app {
+  --bg: #FFFFFF;
+  --surface: #F7F8FA;
+  --surface2: #EFF1F5;
+  --ink: #12141A;
+  --ink-soft: #6B7280;
+  --line: #E7E9ED;
+
+  --blue: #2D7FF9;
+  --green: #16C172;
+  --orange: #FF7A29;
+  --violet: #8B5CF6;
+  --pink: #F43F5E;
+  --teal: #14B8A6;
+
+  --en: var(--blue);
+  --pt: var(--green);
+  --fc: var(--orange);
+  --aj: var(--violet);
+  --ex: var(--pink);
+  --mind: var(--teal);
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  border-radius: 20px;
+  padding: 22px 20px 26px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(30,40,80,0.12);
+  position: relative;
+  transition: background .3s, border-color .3s;
+}
+.cc-app.eval-mode {
+  background: linear-gradient(180deg, #FFF3E8, #FFFFFF 140px);
+  border-color: var(--orange);
+}
+.cc-app.eval-mode .cc-nav { background: #FFE7D2; }
+.cc-app.dark {
+  --bg: #16181D;
+  --surface: #1F2228;
+  --surface2: #262A32;
+  --ink: #F0F1F3;
+  --ink-soft: #9AA0AC;
+  --line: #333842;
+}
+.cc-app.dark.eval-mode { background: linear-gradient(180deg, #2A2216, #16181D 140px); }
+.cc-app.dark .cc-nav button.active { background: #F0F1F3; color: #16181D; }
+.cc-app.dark .cc-check { background: #16181D; }
+.cc-app.dark input, .cc-app.dark textarea, .cc-app.dark select { background: #16181D; color: var(--ink); }
+.cc-app.dark .cc-cell { color: var(--ink-soft); }
+.cc-dog {
+  width: 34px; height: 32px; flex: none; cursor: default;
+}
+.cc-app * { box-sizing: border-box; }
+
+.cc-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; gap:10px; flex-wrap:wrap; }
+.cc-title { font-weight:800; font-size:21px; margin:0; letter-spacing:-0.01em; }
+.cc-brand { display:flex; align-items:center; gap:10px; }
+.cc-logo { width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,var(--blue),var(--green)); display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 3px 10px rgba(45,127,249,0.35); }
+.cc-sub { font-size:12px; color:var(--ink-soft); margin-top:3px; }
+.cc-countdown { text-align:right; }
+.cc-countdown .n { font-weight:800; font-size:24px; color:var(--orange); line-height:1; }
+.cc-countdown .l { font-size:10.5px; color:var(--ink-soft); }
+
+.cc-nav { display:flex; flex-wrap:wrap; gap:6px; background:var(--surface); border-radius:14px; padding:5px; margin-bottom:20px; }
+.cc-nav button {
+  flex:1 1 auto; min-width:88px; font-weight:600; font-size:12.5px; padding:9px 8px;
+  border:none; border-radius:10px; background:transparent; color:var(--ink-soft); cursor:pointer;
+  white-space:nowrap; transition:background .15s,color .15s;
+  display:inline-flex; align-items:center; justify-content:center; gap:5px;
+}
+.cc-nav button.active { background:linear-gradient(135deg,var(--blue),var(--violet)); color:#fff; box-shadow:0 2px 8px rgba(45,127,249,0.3); }
+
+.cc-loading { text-align:center; padding:40px 0; color:var(--ink-soft); font-size:13px; }
+
+/* HOY */
+.cc-today-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+.cc-today-date { font-size:16px; font-weight:700; }
+.cc-phase-badge { font-size:11px; font-weight:600; color:var(--ink-soft); margin-top:3px; }
+.cc-back { font-size:12px; color:var(--blue); background:none; border:none; cursor:pointer; font-weight:600; }
+
+.cc-done-banner {
+  display:none; align-items:center; gap:8px; background:linear-gradient(90deg,var(--green),var(--blue));
+  color:#fff; font-weight:600; font-size:13px; padding:10px 14px; border-radius:12px; margin-bottom:16px;
+}
+.cc-done-banner.show { display:flex; }
+.cc-eval-banner {
+  display:flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--orange),var(--pink));
+  color:#fff; font-weight:600; font-size:13px; padding:10px 14px; border-radius:12px; margin-bottom:16px;
+  cursor:pointer;
+}
+.cc-banner-check { display:inline-block; width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,0.28); position:relative; flex:none; }
+.cc-banner-check::after { content:''; position:absolute; left:5px; top:6px; width:6px; height:4px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg); }
+
+.cc-habit { border:1px solid var(--line); border-left:4px solid var(--card-accent, var(--line)); border-radius:14px; padding:14px 16px; margin-bottom:10px; box-shadow:0 1px 3px rgba(20,20,30,0.05); transition:box-shadow .2s, transform .15s; }
+.cc-habit:hover { box-shadow:0 4px 14px rgba(20,20,30,0.09); }
+.cc-habit-head { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
+.cc-habit-icon { width:26px; height:26px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex:none; }
+.cc-habit-name { font-weight:700; font-size:14.5px; flex:1; }
+.cc-habit-frac { font-size:12px; color:var(--ink-soft); font-weight:600; }
+
+.cc-sub-row { display:flex; align-items:flex-start; gap:10px; padding:6px 0; }
+.cc-check {
+  width:22px; height:22px; border-radius:7px; border:2px solid var(--habit-color); background:#fff;
+  cursor:pointer; flex:none; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  transition:transform .1s;
+}
+.cc-check:active { transform:scale(0.88); }
+.cc-check.on { background:var(--habit-color); }
+.cc-check.on::after { content:''; width:8px; height:6px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg) translate(1px,-1px); }
+.cc-sub-text { font-size:13.5px; line-height:1.35; }
+.cc-sub-hint { font-size:11.5px; color:var(--ink-soft); display:block; margin-top:1px; }
+
+.cc-extra { margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); }
+.cc-extra label { font-size:11px; font-weight:600; color:var(--ink-soft); display:block; margin-bottom:4px; }
+.cc-extra input, .cc-extra textarea,
+.cc-suggest-wrap input, .cc-suggest-wrap textarea,
+.cc-habit input, .cc-habit textarea,
+.cc-suggest-wrap input, .cc-suggest-wrap textarea {
+  font-family:'Inter',sans-serif; font-size:13px; padding:8px 10px; border-radius:9px;
+  border:1.5px solid var(--line); width:100%; margin-bottom:8px; color:var(--ink); background:#fff;
+  box-sizing:border-box; display:block;
+}
+.cc-extra-btn { font-size:12px; font-weight:700; border:none; border-radius:20px; padding:8px 14px; cursor:pointer; color:#fff; display:inline-flex; align-items:center; gap:6px; transition:transform .12s, box-shadow .12s; box-shadow:0 2px 6px rgba(20,20,30,0.15); }
+.cc-extra-btn:hover { transform:translateY(-1px); box-shadow:0 4px 10px rgba(20,20,30,0.2); }
+.cc-extra-btn:active { transform:translateY(0); }
+.cc-extra-btn:disabled { opacity:0.6; cursor:default; }
+.cc-mic-inline {
+  font-size:11px; font-weight:600; color:var(--ink-soft); background:var(--surface);
+  border:1px solid var(--line); border-radius:20px; padding:5px 10px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:5px; margin-bottom:8px;
+}
+.cc-mic-inline.listening { background:var(--pink); color:#fff; border-color:var(--pink); }
+.cc-feedback { margin-top:8px; background:var(--surface); border-radius:10px; padding:10px 12px; font-size:12.5px; line-height:1.5; white-space:pre-wrap; }
+.cc-feedback.loading { color:var(--ink-soft); font-style:italic; }
+.cc-suggest-wrap { margin-top:14px; }
+.cc-suggest-list { margin-top:8px; }
+.cc-wheel-row { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+.cc-wheel-wrap { position:relative; width:70px; height:70px; flex:none; }
+.cc-wheel {
+  width:70px; height:70px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 2px var(--line);
+  background: conic-gradient(var(--blue) 0deg 45deg, var(--green) 45deg 90deg, var(--orange) 90deg 135deg, var(--violet) 135deg 180deg, var(--pink) 180deg 225deg, var(--blue) 225deg 270deg, var(--green) 270deg 315deg, var(--orange) 315deg 360deg);
+  transition: transform 2s cubic-bezier(.2,.8,.2,1);
+}
+.cc-wheel-pointer {
+  position:absolute; top:-6px; left:50%; transform:translateX(-50%);
+  width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:10px solid var(--ink); z-index:2;
+}
+.cc-img-box { background:var(--surface2); border-radius:12px; padding:8px; margin-bottom:8px; display:flex; align-items:center; justify-content:center; }
+.cc-img-caption { font-size:12px; font-style:italic; color:var(--ink-soft); text-align:center; margin-bottom:10px; }
+
+/* PROGRESO */
+.cc-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px; }
+.cc-stat { background:var(--surface); border-radius:12px; padding:12px 8px; text-align:center; border-top:3px solid var(--blue); }
+.cc-stat:nth-child(2){ border-top-color:var(--green); }
+.cc-stat:nth-child(3){ border-top-color:var(--orange); }
+.cc-stat:nth-child(4){ border-top-color:var(--violet); }
+.cc-stat .n { font-size:19px; font-weight:800; }
+.cc-stat .l { font-size:10px; color:var(--ink-soft); margin-top:2px; }
+
+.cc-section-title { font-size:14.5px; font-weight:700; margin:22px 0 10px; }
+
+.cc-months { display:flex; flex-wrap:wrap; gap:12px; }
+.cc-month { background:var(--surface); border-radius:12px; padding:9px; flex:1 1 200px; min-width:190px; }
+.cc-month-label { font-size:11px; font-weight:700; color:var(--ink-soft); margin-bottom:6px; display:block; }
+.cc-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; }
+.cc-cell { aspect-ratio:1; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:9px; cursor:pointer; color:var(--ink-soft); border:1.5px solid transparent; background:var(--surface2); }
+.cc-cell.pad { visibility:hidden; cursor:default; }
+.cc-cell.future { opacity:0.3; cursor:default; }
+.cc-cell.selected { border-color:var(--ink); }
+
+.cc-bars { display:flex; flex-direction:column; gap:10px; }
+.cc-bar-row { display:flex; align-items:center; gap:10px; }
+.cc-bar-label { font-size:12.5px; font-weight:600; width:120px; flex:none; }
+.cc-bar-track { flex:1; height:9px; background:var(--surface2); border-radius:6px; overflow:hidden; }
+.cc-bar-fill { height:100%; border-radius:6px; transition:width .3s; }
+.cc-bar-pct { font-size:11px; width:36px; text-align:right; color:var(--ink-soft); flex:none; }
+
+/* VOCAB */
+.cc-vocab-tabs { display:flex; gap:6px; margin-bottom:14px; }
+.cc-vtab { font-size:12px; font-weight:600; padding:7px 12px; border-radius:20px; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+.cc-vtab.active { border-color:var(--ink); color:var(--ink); }
+
+.cc-empty { text-align:center; padding:36px 10px; color:var(--ink-soft); font-size:13px; }
+
+.cc-card { background:var(--surface); border-radius:16px; padding:32px 20px; text-align:center; min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:pointer; position:relative; }
+.cc-card-cat { position:absolute; top:12px; left:12px; font-size:10px; font-weight:700; color:#fff; padding:3px 9px; border-radius:20px; }
+.cc-card-front { font-size:21px; font-weight:800; }
+.cc-card-back { font-size:15px; }
+.cc-card-example { font-size:11.5px; color:var(--ink-soft); max-width:400px; }
+.cc-card-hint { font-size:10.5px; color:var(--ink-soft); }
+
+.cc-grade-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px; }
+
+.cc-path { position:relative; padding:16px 0 8px; }
+.cc-path::before {
+  content:''; position:absolute; top:10px; bottom:30px; left:50%; transform:translateX(-50%);
+  border-left:4px dashed var(--surface2); z-index:0;
+}
+.cc-path-row { display:flex; margin-bottom:22px; position:relative; z-index:1; }
+.cc-path-row.left { justify-content:flex-start; padding-left:8%; }
+.cc-path-row.center { justify-content:center; }
+.cc-path-row.right { justify-content:flex-end; padding-right:8%; }
+.cc-path-node-col { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.cc-path-node {
+  width:64px; height:64px; border-radius:50%; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 5px 0 rgba(20,20,30,0.18); transition:transform .1s;
+}
+.cc-path-node:active { transform:translateY(3px); box-shadow:0 2px 0 rgba(20,20,30,0.18); }
+.cc-path-node:disabled { cursor:default; box-shadow:none; }
+.cc-path-node.pulse { animation: cc-pulse 1.6s ease-in-out infinite; }
+@keyframes cc-pulse {
+  0%, 100% { box-shadow:0 5px 0 rgba(20,20,30,0.18), 0 0 0 0 rgba(45,127,249,0.5); }
+  50% { box-shadow:0 5px 0 rgba(20,20,30,0.18), 0 0 0 10px rgba(45,127,249,0); }
+}
+.cc-path-label { font-size:11px; font-weight:700; text-align:center; max-width:100px; color:var(--ink-soft); }
+
+.cc-ipa-hero {
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  border-radius:18px; padding:20px 18px; margin-bottom:16px; color:#fff;
+  box-shadow:0 8px 20px rgba(45,127,249,0.25);
+}
+.cc-ipa-hero-title { font-size:19px; font-weight:800; margin-bottom:4px; }
+.cc-ipa-hero-sub { font-size:12.5px; opacity:0.9; }
+.cc-ipa-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(84px,1fr)); gap:10px; margin-bottom:18px; }
+.cc-ipa-card {
+  background:#fff; border:2px solid var(--ipa-color); border-radius:14px; padding:12px 6px;
+  display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer;
+  transition:transform .12s, box-shadow .12s;
+}
+.cc-ipa-card:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 6px 14px color-mix(in srgb, var(--ipa-color) 35%, transparent); }
+.cc-ipa-card:active { transform:translateY(0) scale(0.98); }
+.cc-ipa-symbol { font-size:20px; font-weight:800; color:var(--ipa-color); }
+.cc-ipa-word { font-size:11px; color:var(--ink-soft); font-weight:600; }
+.cc-app.dark .cc-ipa-card { background:var(--surface); }
+.cc-grade-btn { font-size:11.5px; font-weight:600; padding:11px 6px; border-radius:12px; cursor:pointer; border:1.5px solid var(--line); background:#fff; line-height:1.3; }
+.cc-grade-btn.bad { border-color:var(--pink); color:var(--pink); }
+.cc-grade-btn.mid { border-color:var(--orange); color:var(--orange); }
+.cc-grade-btn.good { border-color:var(--green); color:var(--green); }
+.cc-grade-btn:active { transform:scale(0.96); }
+
+.cc-form { display:flex; flex-direction:column; gap:9px; background:var(--surface); border-radius:14px; padding:16px; margin-bottom:16px; }
+.cc-form label { font-size:11px; font-weight:600; color:var(--ink-soft); }
+.cc-form input, .cc-form select, .cc-form textarea { font-family:'Inter',sans-serif; font-size:13.5px; padding:9px 10px; border-radius:9px; border:1.5px solid var(--line); background:#fff; color:var(--ink); width:100%; }
+.cc-add-btn { font-size:13px; font-weight:700; background:var(--ink); color:#fff; border:none; border-radius:20px; padding:11px; cursor:pointer; margin-top:2px; }
+
+.cc-list { display:flex; flex-direction:column; gap:7px; }
+.cc-list-item { display:flex; align-items:center; gap:9px; background:var(--surface); border-radius:10px; padding:9px 12px; }
+.cc-list-cat { font-size:9px; font-weight:700; color:#fff; padding:2px 7px; border-radius:20px; flex:none; }
+.cc-list-front { font-weight:600; font-size:13px; flex:1; }
+.cc-list-back { font-size:12px; color:var(--ink-soft); flex:1; }
+.cc-list-box { font-size:10px; color:var(--ink-soft); flex:none; }
+.cc-del { background:none; border:none; color:var(--pink); font-size:11px; font-weight:600; cursor:pointer; flex:none; }
+
+/* GUIA */
+.cc-acc { border:1px solid var(--line); border-radius:14px; margin-bottom:8px; overflow:hidden; }
+.cc-acc-head { display:flex; align-items:center; gap:10px; padding:13px 16px; cursor:pointer; background:#fff; }
+.cc-acc-dot { width:10px; height:10px; border-radius:50%; flex:none; }
+.cc-acc-title { font-weight:600; font-size:14px; flex:1; }
+.cc-acc-arrow-shape { display:inline-block; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--ink-soft); transition:transform .15s; flex:none; }
+.cc-acc.open .cc-acc-arrow-shape { transform:rotate(180deg); }
+.cc-acc-body { display:none; padding:0 16px 16px; font-size:13px; line-height:1.55; color:var(--ink); }
+.cc-acc.open .cc-acc-body { display:block; }
+.cc-acc-body ul { margin:6px 0; padding-left:18px; }
+.cc-acc-body li { margin-bottom:4px; }
+.cc-acc-body b { font-weight:700; }
+
+.cc-footer { display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:14px; border-top:1px solid var(--line); }
+.cc-note { font-size:10.5px; color:var(--ink-soft); }
+.cc-reset { font-size:10.5px; font-weight:600; color:var(--pink); background:none; border:1.5px solid var(--pink); border-radius:20px; padding:6px 12px; cursor:pointer; }
+
+@media (max-width:520px){
+  .cc-stats{ grid-template-columns:repeat(2,1fr); }
+  .cc-title{ font-size:18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cc-app" id="ccApp"><div class="cc-loading">Cargando</div></div>
+
+<script>
+(function(){
+  const HABITS = [
+    { id:'pt', name:'Português', color:'--pt',
+      subtasks:[
+        { id:'drill', text:'Shadowing fonético e gravação (20 minutos)', hint:()=>'Tá Falado ou Marcia Macedo, fixo todos os dias' },
+        { id:'anki',  text:'Revisão de vocabulário (15 minutos)', hint:()=>'Use a aba Vocabulário aqui mesmo' },
+        { id:'input', text:'Menu de input (20 a 25 minutos)', hint:(d,phase)=>{ const base = phase===1?'Tá Falado (lição nova)':phase===2?'Série brasileira com legendas em português':'Podcast brasileiro para iniciantes'; return [base,'Vídeo curto no YouTube para iniciantes','Série ou filme com legendas','Música brasileira (letras)','Vídeo curto no YouTube para iniciantes','Sessão longa: episódio completo','Revisão, sem input novo'][d]; } },
+        { id:'output', text:'Menu de output (10 a 15 minutos)', hint:d=>['Self-talk: apresente-se em voz alta','Grave-se lendo uma frase nova','Escrever 3 frases simples','Self-talk: descreva seu dia','Escrever 3 frases simples','Conversa opcional com nativos (HelloTalk)','Descanso, sem output novo'][d] },
+        { id:'falsofriend', text:'Anotar um falso cognato ou palavra nova', hint:()=>'Direto para sua lista de diferenças com o espanhol' },
+      ]},
+  ];
+
+  const CATS = {
+    'pt-formal': { label:'Portugués formal', color:'#2D7FF9' },
+    'pt-coloquial':  { label:'Portugués coloquial', color:'#FF7A29' },
+    'other':     { label:'Otro', color:'#8B5CF6' },
+  };
+  const BOX_DAYS = [1,2,4,8,16,32];
+
+  const LESSON_NODES = [
+    { id:'l1', title:'Vocales nasales', topic:'las vocales nasales del portugués brasileño (ão, ãe, õe, ã), el sonido más difícil para un hispanohablante porque no existe en español' },
+    { id:'l2', title:'El sonido de la X y la S', topic:'cómo suena la letra X en portugués (puede sonar como sh, ks, z o s según la palabra) y cómo cambia el sonido de la S al final de palabra' },
+    { id:'l3', title:'R fuerte y R suave', topic:'la diferencia entre la R suave (como un golpecito de lengua) y la R fuerte al inicio de palabra o doble RR, que en portugués brasileño suena como una H fuerte, muy distinto al español' },
+    { id:'l4', title:'Entonación del portugués brasileño', topic:'los patrones de entonación y ritmo típicos del portugués brasileño, distintos al español' },
+    { id:'l5', title:'Falsos amigos: cosas cotidianas', topic:'falsos amigos comunes entre español y portugués relacionados con objetos y cosas cotidianas, palabras que se parecen pero significan algo distinto' },
+    { id:'l6', title:'Falsos amigos: comida', topic:'falsos amigos comunes entre español y portugués relacionados con comida y bebida' },
+    { id:'l7', title:'Falsos amigos: personas y emociones', topic:'falsos amigos comunes entre español y portugués relacionados con personas, cuerpo y emociones' },
+    { id:'l8', title:'Artículos y género', topic:'los artículos o, a, os, as y el género de los sustantivos en portugués, incluyendo casos donde el género difiere del español' },
+    { id:'l9', title:'Verbos regulares terminados en AR', topic:'la conjugación en presente de los verbos regulares terminados en ar en portugués, como falar, morar, trabalhar' },
+    { id:'l10', title:'Verbos regulares terminados en ER e IR', topic:'la conjugación en presente de los verbos regulares terminados en er e ir en portugués, como comer, abrir, decidir' },
+    { id:'l11', title:'Ser y Estar', topic:'la diferencia de uso entre ser y estar en portugués, comparado con el español' },
+    { id:'l12', title:'El verbo Ter', topic:'el verbo ter en portugués, su conjugación y sus usos comunes, incluyendo expresiones de edad' },
+    { id:'l13', title:'Verbos irregulares básicos', topic:'la conjugación en presente de los verbos irregulares más comunes en portugués: ir, fazer, poder, querer' },
+    { id:'l14', title:'Números y la hora', topic:'los números en portugués y cómo preguntar y decir la hora' },
+    { id:'l15', title:'Pronombres y posesivos', topic:'los pronombres personales y los adjetivos posesivos en portugués' },
+    { id:'l16', title:'Preguntas básicas', topic:'las palabras de pregunta en portugués: o que, quem, onde, quando, por que, como' },
+    { id:'l17', title:'Futuro próximo con Ir', topic:'la construcción ir más infinitivo para hablar del futuro cercano en portugués, como vou falar, vou comer' },
+    { id:'l18', title:'Conectores y expresiones básicas', topic:'conectores y expresiones de uso diario en portugués para unir ideas simples' },
+  ];
+  const IPA_SOUNDS = [
+    { symbol:'a', type:'vowel', word:'casa', example:'casa' },
+    { symbol:'e', type:'vowel', word:'você', example:'você' },
+    { symbol:'ɛ', type:'vowel', word:'pé', example:'pé' },
+    { symbol:'i', type:'vowel', word:'vida', example:'vida' },
+    { symbol:'o', type:'vowel', word:'avô', example:'avô' },
+    { symbol:'ɔ', type:'vowel', word:'avó', example:'avó' },
+    { symbol:'u', type:'vowel', word:'tudo', example:'tudo' },
+    { symbol:'ã', type:'nasal', word:'maçã', example:'maçã' },
+    { symbol:'ẽ', type:'nasal', word:'também', example:'também' },
+    { symbol:'ĩ', type:'nasal', word:'sim', example:'sim' },
+    { symbol:'õ', type:'nasal', word:'não', example:'não' },
+    { symbol:'ão', type:'nasal', word:'pão', example:'pão' },
+    { symbol:'ãe', type:'nasal', word:'mãe', example:'mãe' },
+    { symbol:'õe', type:'nasal', word:'põe', example:'põe' },
+    { symbol:'p', type:'consonant', word:'pato', example:'pato' },
+    { symbol:'b', type:'consonant', word:'bola', example:'bola' },
+    { symbol:'t', type:'consonant', word:'tudo', example:'tudo' },
+    { symbol:'tʃ', type:'consonant', word:'tia', example:'tia' },
+    { symbol:'d', type:'consonant', word:'dado', example:'dado' },
+    { symbol:'dʒ', type:'consonant', word:'dia', example:'dia' },
+    { symbol:'k', type:'consonant', word:'casa', example:'casa' },
+    { symbol:'g', type:'consonant', word:'gato', example:'gato' },
+    { symbol:'f', type:'consonant', word:'faca', example:'faca' },
+    { symbol:'v', type:'consonant', word:'vida', example:'vida' },
+    { symbol:'s', type:'consonant', word:'sapo', example:'sapo' },
+    { symbol:'z', type:'consonant', word:'casa', example:'casa' },
+    { symbol:'ʃ', type:'consonant', word:'chave', example:'chave' },
+    { symbol:'ʒ', type:'consonant', word:'já', example:'já' },
+    { symbol:'ɲ', type:'consonant', word:'amanhã', example:'amanhã' },
+    { symbol:'ʎ', type:'consonant', word:'trabalho', example:'trabalho' },
+    { symbol:'h', type:'consonant', word:'carro', example:'carro' },
+    { symbol:'ɾ', type:'consonant', word:'caro', example:'caro' },
+    { symbol:'m', type:'consonant', word:'mesa', example:'mesa' },
+    { symbol:'n', type:'consonant', word:'nada', example:'nada' },
+    { symbol:'l', type:'consonant', word:'lua', example:'lua' },
+  ];
+  const MINIMAL_PAIRS = [
+    ['avô','avó'],['pé','pá'],['seco','saco'],['ela','ele'],['fixo','faço'],
+    ['caro','carro'],['pote','porte'],['mas','mãos'],['sede','cede'],['toco','touco'],
+    ['ali','alô'],['pelo','pêlo'],['seu','céu'],['coro','couro'],['mudo','modo'],
+  ];
+  const GUIDE = [
+    { id:'sistema', name:'Como as atividades mudam', color:'#12141A', body:`
+      As atividades têm duas camadas. A primeira é semanal: cada dia da semana traz uma sugestão diferente dentro do mesmo hábito, para que não pareça repetitivo, e essa parte se repete toda semana.
+      A segunda é de fundo, e essa sim avança com o calendário. O plano tem três fases: fase 1 em julho e agosto, fase 2 em setembro e outubro, fase 3 em novembro e dezembro. Na aba Hoje você sempre verá um selo com a fase em que você está.
+      Este app é só de português. A lista diária que você marca aqui se reflete como porcentagem no hub central (Cimientos), e as avaliações e o vocabulário que você gera aqui também alimentam as conquistas do hub, porque compartilham os mesmos dados salvos neste navegador.
+    `},
+    { id:'pt', name:'Português do zero', color:'#16C172', body:`
+      <b>Fixo diário:</b> shadowing com Tá Falado ou Marcia Macedo (20 minutos), gravar-se e comparar (10 minutos), vocabulário em contexto (15 minutos).
+      <b>Menu de input:</b>
+      <ul>
+        <li>Tá Falado, a série de lições feita especialmente para hispanofalantes</li>
+        <li>Vídeos curtos no YouTube para iniciantes em português</li>
+        <li>Série ou filme brasileiro com legendas em português</li>
+        <li>Música brasileira, trabalhando o vocabulário</li>
+      </ul>
+      <b>Menu de output:</b>
+      <ul>
+        <li>Self-talk simples: apresente-se, descreva seu dia</li>
+        <li>Escrever 3 frases simples novas todos os dias</li>
+        <li>Conversa opcional com nativos no HelloTalk quando você se sentir pronto</li>
+      </ul>
+      <b>Fonética por semana:</b>
+      <ul>
+        <li>Semanas 1 e 2: vogais nasais, o som mais diferente para quem fala espanhol</li>
+        <li>Semanas 3 e 4: o som do X e do S</li>
+        <li>Semanas 5 e 6: o R forte (como um H) e o R suave</li>
+        <li>Semanas 7 e 8: entonação e ritmo do português brasileiro</li>
+      </ul>
+      <b>Falsos cognatos:</b> são a armadilha mais comum para quem fala espanhol e está aprendendo português, porque muitas palavras se parecem mas significam algo diferente. Anote cada um que você encontrar na aba Vocabulário, marcado como falso cognato.
+    `},
+    { id:'vocab', name:'Como usar a aba Vocabulário', color:'#12141A', body:`
+      Substitui o Anki com um sistema de caixas. Você adiciona a palavra ou expressão, seu significado e um exemplo, classifica como formal ou coloquial, e o sistema decide quando é hora de revisá-la de acordo com se você sabia bem, mais ou menos, ou nada.
+      Além disso, em Lições você tem exercícios curtos gerados na hora e um jogo de pares mínimos para treinar o ouvido, com pontos de experiência que sobem seu nível.
+    `},
+  ];
+
+  const START = new Date(2026,6,7), END = new Date(2026,11,31);
+  const STORAGE_KEY = 'centro-comando-v2';
+  const KEY_STORAGE = 'speakup-openrouter-key';
+  const UI_STRINGS = {
+    es: {
+      hoy:'Hoy', progreso:'Progreso', vocabulario:'Vocabulario', lecciones:'Lecciones',
+      evaluacion:'Evaluación', guia:'Guía', configuracion:'Configuración',
+      repasar:'Repasar', juego:'Juego', agregar:'Agregar', mazo:'Mazo', analisis:'Análisis',
+      volverALecciones:'Volver a Lecciones', diasRestantes:'días restantes',
+      cambiarClave:'Cambiar clave de OpenRouter', reiniciarDatos:'Reiniciar todos los datos',
+      idiomaInterfaz:'Idioma de la interfaz',
+    },
+    pt: {
+      hoy:'Hoje', progreso:'Progresso', vocabulario:'Vocabulário', lecciones:'Lições',
+      evaluacion:'Avaliação', guia:'Guia', configuracion:'Configurações',
+      repasar:'Revisar', juego:'Jogo', agregar:'Adicionar', mazo:'Baralho', analisis:'Análise',
+      volverALecciones:'Voltar às Lições', diasRestantes:'dias restantes',
+      cambiarClave:'Trocar chave da OpenRouter', reiniciarDatos:'Reiniciar todos os dados',
+      idiomaInterfaz:'Idioma da interface',
+    },
+  };
+  function t(key){
+    const lang = (state.settings && state.settings.uiLang) || 'pt';
+    return (UI_STRINGS[lang] && UI_STRINGS[lang][key]) || UI_STRINGS.es[key] || key;
+  }
+  let OR_KEY = '';
+  const TMDB_KEY_STORAGE = 'speakup-tmdb-key';
+  let TMDB_KEY = '';
+  const MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+  const root = document.getElementById('ccApp');
+  const pad = n => String(n).padStart(2,'0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const sameDay = (a,b) => iso(a)===iso(b);
+  const mondayIndex = d => (d.getDay()+6)%7;
+  const todayISO = () => iso(new Date());
+  const addDays = (isoStr,n) => { const d=new Date(isoStr+'T00:00:00'); d.setDate(d.getDate()+n); return iso(d); };
+  const ICON_PATHS = {
+    en: '<path d="M4 5h16v10H9l-4 4V5z"/>',
+    pt: '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2 2.5 14 0 16M12 4c-2.5 2-2.5 14 0 16"/>',
+    fc: '<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0V5z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0V5z"/>',
+    aj: '<circle cx="12" cy="7" r="3"/><path d="M9 11h6l1 3H8l1-3z"/><path d="M6 20h12l-1.5-4h-9L6 20z"/>',
+    ex: '<path d="M6 12h12"/><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/>',
+    mind: '<circle cx="12" cy="6" r="3"/><path d="M12 9v4"/><path d="M6 20c0-4 3-6 6-6s6 2 6 6"/><path d="M9 14l-3 3M15 14l3 3"/>',
+    pencil: '<path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/>',
+    bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3 11c1 .6 1 1.4 1 2h4c0-.6 0-1.4 1-2a6 6 0 0 0-3-11z"/>',
+    target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+    music: '<circle cx="7" cy="18" r="2.5"/><circle cx="18" cy="16" r="2.5"/><path d="M9.5 18V5l11-2v13"/>',
+    image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/>',
+    home: '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>',
+    chart: '<path d="M4 20V10M12 20V4M20 20v-7"/>',
+    book: '<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0V5z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0V5z"/>',
+    guide: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+    mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3M9 21h6"/>',
+    audio: '<path d="M4 10v4h3l5 4V6L7 10H4z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/>',
+    settings: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7.8l2.1 1.2M17.7 15l2.1 1.2M4.2 16.2l2.1-1.2M17.7 9l2.1-1.2M3 12h3M18 12h3"/>',
+    trophy: '<path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a3 3 0 0 0 3 5M17 5h3a3 3 0 0 1-3 5"/><path d="M12 14v4M9 21h6"/>',
+  };
+  function icon(id, color, size){
+    const s = size || 16;
+    const c = color || 'currentColor';
+    return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none">${ICON_PATHS[id]||''}</svg>`;
+  }
+  const capFirst = s => s ? s.charAt(0).toUpperCase()+s.slice(1) : s;
+  const getPhase = d => { const m = d.getMonth(); if (m<=7) return 1; if (m<=9) return 2; return 3; };
+  const PHASE_NAMES = { 1:'Fase 1: fundamentos', 2:'Fase 2: construção', 3:'Fase 3: consolidação' };
+  const PT_TOPICS = [
+    'Apresente-se: nome, idade e de onde você é',
+    'Descreva sua rotina diária',
+    'Fale sobre sua família',
+    'Descreva sua comida favorita',
+    'Conte o que você fez no fim de semana',
+    'Descreva sua cidade',
+    'Fale sobre seus planos para o futuro',
+    'Descreva um amigo',
+    'Conte uma pequena história',
+    'Dê sua opinião simples sobre um filme',
+    'Descreva seu trabalho ou seus estudos',
+    'Fale sobre seus passatempos',
+  ];
+  const IMAGE_PROMPTS = [
+    { svg:`<rect width="240" height="140" fill="#1B2540"/><rect x="0" y="118" width="240" height="22" fill="#12141A"/><rect x="150" y="30" width="4" height="90" fill="#EFF1F5"/><circle cx="152" cy="26" r="10" fill="#FFE08A"/><rect x="120" y="95" width="60" height="8" fill="#EFF1F5"/><circle cx="135" cy="88" r="7" fill="#D9AD79"/><rect x="130" y="95" width="10" height="14" fill="#2D7FF9"/><path d="M40 10L36 30M70 5L64 28M100 15L95 33" stroke="#3B4A73" stroke-width="2"/>`, caption:'Someone has been waiting here for hours.', captionPt:'Alguém está esperando aqui há horas.', prompt:'a lonely person sitting under a streetlamp at night on an empty city bench, cinematic, moody blue tones' },
+    { svg:`<rect width="240" height="140" fill="#F7F1E6"/><rect x="50" y="80" width="140" height="10" fill="#9C6B3F"/><rect x="60" y="60" width="34" height="20" fill="#fff"/><rect x="146" y="60" width="34" height="20" fill="#fff"/><circle cx="120" cy="75" r="3" fill="#FF7A29"/><rect x="118" y="60" width="4" height="15" fill="#FF7A29"/><circle cx="77" cy="55" r="9" fill="#D9AD79"/><rect x="70" y="64" width="14" height="16" fill="#8B5CF6"/>`, caption:"One chair has been empty all night.", captionPt:'Uma cadeira ficou vazia a noite toda.', prompt:'a cozy dinner table with one empty chair and one person sitting alone, warm indoor lighting, candid photo style' },
+    { svg:`<rect width="240" height="140" fill="#EAF3EA"/><rect x="170" y="40" width="8" height="70" fill="#6B4A2B"/><circle cx="174" cy="35" r="26" fill="#16C172"/><path d="M60 40L80 60L60 80L40 60Z" fill="#F43F5E"/><path d="M60 80Q100 90 150 70" stroke="#12141A" stroke-width="1.5" fill="none"/><circle cx="30" cy="115" r="6" fill="#12141A"/><rect x="26" y="121" width="8" height="14" fill="#2D7FF9"/><circle cx="55" cy="118" r="6" fill="#12141A"/><rect x="51" y="124" width="8" height="14" fill="#8B5CF6"/>`, caption:'Everyone else already walked away.', captionPt:'Todos os outros já foram embora.', prompt:'a park bench with a lone tree and two kites tangled in the branches, everyone else has left, late afternoon light' },
+    { svg:`<rect width="240" height="140" fill="#F0EAF7"/><rect x="20" y="70" width="130" height="45" fill="#EFDBC0"/><rect x="30" y="45" width="60" height="30" fill="#8B5CF6"/><rect x="35" y="50" width="20" height="8" fill="#fff"/><rect x="60" y="50" width="20" height="8" fill="#fff"/><rect x="170" y="20" width="50" height="50" fill="#2D7FF9" opacity="0.3"/><path d="M170 20L220 70M220 20L170 70" stroke="#2D7FF9" stroke-width="2"/>`, caption:"She still hadn't decided if she was really leaving.", captionPt:'Ela ainda não tinha decidido se ia mesmo embora.', prompt:'a suitcase half packed on a bed next to a window with rain outside, soft purple lighting, contemplative mood' },
+    { svg:`<rect width="240" height="140" fill="#FDF3E7"/><path d="M20 100L20 60L55 40L90 60L90 100Z" fill="#FF7A29"/><rect x="45" y="75" width="18" height="25" fill="#12141A"/><path d="M150 100L150 60L185 40L220 60L220 100Z" fill="#3B4A73"/><rect x="175" y="75" width="18" height="25" fill="#12141A"/><rect x="60" y="70" width="6" height="6" fill="#FFE08A"/><rect x="100" y="0" width="4" height="140" fill="#9C6B3F"/>`, caption:'They used to be best friends.', captionPt:'Eles costumavam ser melhores amigos.', prompt:'two houses side by side separated by a tall wooden fence at sunset, warm orange sky, nostalgic feeling' },
+    { svg:`<rect width="240" height="140" fill="#EFF1F5"/><rect x="90" y="30" width="10" height="90" fill="#6B4A2B"/><circle cx="60" cy="90" r="9" fill="#D9AD79"/><path d="M60 99L60 118" stroke="#D9AD79" stroke-width="10" stroke-linecap="round"/><ellipse cx="66" cy="80" rx="4.5" ry="3" fill="#D9AD79"/><path d="M50 130Q65 120 80 130" stroke="#9C6B3F" stroke-width="2" fill="none"/>`, caption:'He still waits by the door every evening.', captionPt:'Ele ainda espera perto da porta todas as noites.', prompt:'a small dog sitting patiently by a front door in the evening, warm hallway light, gentle realistic photo' },
+  ];
+  function micButtonHtml(id, label){
+    return `<button type="button" class="cc-mic-inline" id="${id}">${icon('mic','currentColor',13)} ${label||'Falar para digitar'}</button>`;
+  }
+  function bindMic(btnId, textareaId, lang){
+    const btn = document.getElementById(btnId);
+    const textarea = document.getElementById(textareaId);
+    if (!btn || !textarea) return;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR){
+      btn.addEventListener('click', ()=>alert('Tu navegador no soporta dictado por voz. Prueba en Chrome de escritorio o Android.'));
+      return;
+    }
+    btn.addEventListener('click', ()=>{
+      const rec = new SR();
+      rec.lang = lang;
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+      btn.classList.add('listening');
+      rec.onresult = (e)=>{
+        const text = e.results[0][0].transcript;
+        textarea.value = (textarea.value ? textarea.value + ' ' : '') + text;
+        textarea.dispatchEvent(new Event('input'));
+      };
+      rec.onerror = ()=>{ btn.classList.remove('listening'); };
+      rec.onend = ()=>{ btn.classList.remove('listening'); };
+      rec.start();
+    });
+  }
+  let cachedVoices = [];
+  function loadVoices(){
+    if (!('speechSynthesis' in window)) return;
+    const v = window.speechSynthesis.getVoices();
+    if (v && v.length) cachedVoices = v;
+  }
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function pickVoice(lang){
+    if (!cachedVoices.length) return null;
+    const langPrefix = lang.split('-')[0];
+    const exact = cachedVoices.filter(v=>v.lang===lang);
+    const bySameLang = cachedVoices.filter(v=>v.lang && v.lang.startsWith(langPrefix));
+    const pool = exact.length ? exact : bySameLang;
+    if (!pool.length) return null;
+    const preferred = pool.find(v=>/Google|Natural|Premium|Neural|Enhanced/i.test(v.name));
+    return preferred || pool[0];
+  }
+  function speakText(text, lang){
+    if (!('speechSynthesis' in window)){ alert('Tu navegador no soporta lectura en voz alta.'); return; }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = 0.95;
+    const voice = pickVoice(lang);
+    if (voice) u.voice = voice;
+    window.speechSynthesis.speak(u);
+  }
+  let audioCtx = null;
+  function getAudioCtx(){
+    if (!audioCtx){ const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
+    return audioCtx;
+  }
+  function playTone(freq, duration, type){
+    if (!state.settings || !state.settings.sound) return;
+    try {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.06;
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.stop(ctx.currentTime + duration);
+    } catch(e){}
+  }
+  function playClick(){ playTone(520, 0.08); }
+  function playSuccess(){ playTone(660, 0.12); setTimeout(()=>playTone(880,0.16),110); }
+  let ambientNodes = null;
+  function startAmbient(){
+    if (ambientNodes) return;
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+    const master = ctx.createGain();
+    master.gain.value = 0.0001;
+    master.connect(ctx.destination);
+    master.gain.linearRampToValueAtTime(1, ctx.currentTime + 1.5);
+    const delay = ctx.createDelay();
+    delay.delayTime.value = 0.38;
+    const feedback = ctx.createGain();
+    feedback.gain.value = 0.28;
+    delay.connect(feedback); feedback.connect(delay);
+    delay.connect(master);
+    const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+    let timeoutId = null;
+    function playNote(){
+      const freq = scale[Math.floor(Math.random()*scale.length)];
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.09, ctx.currentTime + 0.06);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.2);
+      osc.connect(g);
+      g.connect(master);
+      g.connect(delay);
+      osc.start();
+      osc.stop(ctx.currentTime + 3.4);
+      timeoutId = setTimeout(playNote, 1600 + Math.random()*2200);
+    }
+    playNote();
+    ambientNodes = { master, ctx, cancel: ()=>clearTimeout(timeoutId) };
+  }
+  function stopAmbient(){
+    if (!ambientNodes) return;
+    const { master, ctx, cancel } = ambientNodes;
+    cancel();
+    master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 1);
+    ambientNodes = null;
+  }
+  function dayCompletionRatio(key){
+    const dd = dayData(key);
+    let done=0, total=0;
+    HABITS.forEach(h=>h.subtasks.forEach(s=>{ total++; if (dd[h.id][s.id]) done++; }));
+    return total ? done/total : 0;
+  }
+  function dayIndexNow(){ return Math.min(DATES.length, Math.max(1, Math.ceil((new Date()-START)/86400000)+1)); }
+  function currentTopic(lang, dayIndex){ const period = Math.floor((dayIndex-1)/15); return PT_TOPICS[period % PT_TOPICS.length]; }
+
+  function allDates(){ const out=[]; let d=new Date(START); while(d<=END){ out.push(new Date(d)); d.setDate(d.getDate()+1); } return out; }
+  const DATES = allDates();
+
+  function emptyEvalDraft(){ return { notes:'', quiz:[], answers:[], reading:{passage:'',questions:[],answers:[]}, listening:{passage:'',questions:[],answers:[]} }; }
+  let state = { days:{}, cards:[], checkins:[], adjustments:[], evalDraft:{pt:emptyEvalDraft()}, evalHistory:[], readingHistory:[], settings:{dark:false,sound:true,music:false}, lessons:{xp:0,done:{}}, skillStats:{}, readingLikes:{}, contentLevel:'principiante', listeningHistory:[], writingHistory:[] };
+  let tab = 'hoy';
+  let vocabTab = 'review';
+  let currentCard = null, flipped = false, reviewGuess = '';
+  let lastLookupUses = [];
+  let gameLang = null, gameQueue = [], gameIndex = 0, gameScore = 0, gameOptions = [], gameAnswered = false, gameSelected = -1;
+  let activeLessonId = null, lessonExercises = [], lessonIndex = 0, lessonScore = 0, lessonAnswered = false, lessonSelected = -1, lessonTextAnswer = '';
+  let mpCurrent = null, mpSpoken = '', mpAnswered = false, mpScore = 0, mpTotal = 0;
+  let ipaSelected = null;
+  let readingGenre = null, readingLength = 'corto', readingPassage = '', readingQuestions = [], readingAnswers = [], readingGraded = false, readingFeedback = '', readingLiked = false;
+  let followupChats = { reading:[], listening:[], writing:[], speaking:[], songs:[], series:[] };
+  let followupDraft = { reading:'', listening:'', writing:'', speaking:'', songs:'', series:'' };
+  let followupLoading = { reading:false, listening:false, writing:false, speaking:false, songs:false, series:false };
+  let contentLevel = 'principiante';
+  function levelSpec(){
+    if (contentLevel==='avanzado') return 'vocabulario más rico, conectores variados y estructuras compuestas con pasado y futuro, apropiado para un estudiante de nivel intermedio alto que ya se defiende y quiere sonar más natural';
+    if (contentLevel==='intermedio') return 'vocabulario algo más variado y estructuras simples de pasado o futuro además del presente, apropiado para un estudiante de nivel intermedio bajo que ya conoce lo básico';
+    return 'vocabulario y gramática muy básicos (presente simple, oraciones cortas), apropiado para un estudiante que está empezando desde cero, nivel principiante absoluto';
+  }
+  let tmdbResults = [], tmdbSelected = null;
+  let listeningPassage = '', listeningQuestions = [], listeningAnswers = [], listeningGraded = false, listeningFeedback = '';
+  let writingMode = null, writingPrompt = '', writingText = '', writingFeedback = '';
+  let ipaQuizTarget = null, ipaQuizWords = [], ipaQuizSpoken = '', ipaQuizAnswered = false, ipaQuizSelectedIdx = -1, ipaQuizScore = 0, ipaQuizTotal = 0;
+  let openAcc = 'sistema';
+  let saveTimer = null;
+
+  let selected = new Date();
+  if (selected < START) selected = new Date(START);
+  if (selected > END) selected = new Date(END);
+
+  async function load(){
+    try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = JSON.parse(raw); }
+    catch(e){ state = { days:{}, cards:[] }; }
+    if (!state.days) state.days = {};
+    if (!state.cards) state.cards = [];
+    if (!state.checkins) state.checkins = [];
+    if (!state.readingHistory) state.readingHistory = [];
+    if (!state.settings) state.settings = { dark:false, sound:true, music:false };
+    if (state.settings.music === undefined) state.settings.music = false;
+    if (!state.adjustments) state.adjustments = [];
+    if (!state.lessons) state.lessons = { xp:0, done:{} };
+    if (!state.skillStats) state.skillStats = {};
+    if (!state.readingLikes) state.readingLikes = {};
+    if (!state.listeningHistory) state.listeningHistory = [];
+    if (!state.writingHistory) state.writingHistory = [];
+    if (!state.contentLevel) state.contentLevel = 'principiante';
+    contentLevel = state.contentLevel;
+    if (!state.evalDraft) state.evalDraft = { pt: emptyEvalDraft() };
+    ['pt'].forEach(l=>{
+      if (!state.evalDraft[l]) state.evalDraft[l] = emptyEvalDraft();
+      if (!state.evalDraft[l].reading) state.evalDraft[l].reading = {passage:'',questions:[],answers:[]};
+      if (!state.evalDraft[l].listening) state.evalDraft[l].listening = {passage:'',questions:[],answers:[]};
+    });
+    if (!state.evalHistory) state.evalHistory = [];
+  }
+  async function save(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){ console.error('Could not save', e); }
+  }
+  function saveDebounced(){ clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+
+  function emptyDay(){
+    const o={};
+    HABITS.forEach(h=>{ o[h.id]={}; h.subtasks.forEach(s=>o[h.id][s.id]=false); });
+    o.pt.songLyrics=''; o.pt.songLyricsResult='';
+    o.pt.episode=''; o.pt.summary=''; o.pt.summaryFeedback='';
+    o.pt.song=''; o.pt.songResult='';
+    o.pt.rouletteTopic=''; o.pt.rouletteQuestion=''; o.pt.rouletteOpinion=''; o.pt.rouletteFeedback='';
+    o.pt.episodeWords=''; o.pt.episodeWordsResult=''; o.pt.songWords=''; o.pt.songWordsResult='';
+    o.pt.imgIndex = 0; o.pt.story=''; o.pt.storyFeedback='';
+    return o;
+  }
+  function dayData(key){
+    const d = state.days[key] || {};
+    const merged = emptyDay();
+    HABITS.forEach(h=>{ merged[h.id] = Object.assign({}, merged[h.id], d[h.id]||{}); });
+    return merged;
+  }
+  function habitDone(dd,h){ return h.subtasks.every(s=>dd[h.id][s.id]); }
+  function fullHabitsCount(key){ const dd=dayData(key); return HABITS.reduce((n,h)=>n+(habitDone(dd,h)?1:0),0); }
+
+  function ensureHabitDay(key, habitId){
+    if (!state.days[key]) state.days[key] = {};
+    if (!state.days[key][habitId]) {
+      const fresh = dayData(key);
+      state.days[key][habitId] = fresh[habitId];
+    }
+  }
+  function toggleSub(key,habitId,subId){
+    ensureHabitDay(key, habitId);
+    const wasFull = fullHabitsCount(key)===HABITS.length;
+    state.days[key][habitId][subId] = !state.days[key][habitId][subId];
+    const isFull = fullHabitsCount(key)===HABITS.length;
+    if (isFull && !wasFull) playSuccess(); else playClick();
+    save(); render();
+  }
+  function setTextField(key, habitId, field, value){
+    ensureHabitDay(key, habitId);
+    state.days[key][habitId][field] = value;
+    saveDebounced();
+  }
+
+  function adjustmentsContext(){
+    if (!state.adjustments.length) return '';
+    return ' Ajustes personalizados que el usuario pidió tener en cuenta en general: ' + state.adjustments.join('; ') + '.';
+  }
+  const NO_REASONING_LEAK = ' Instrucción obligatoria: no muestres tu razonamiento interno, ni borradores, ni comentarios en portugués explicando qué vas a responder, ni frases como "voy a" o "debo". Responde directamente y únicamente con el resultado final pedido, sin preámbulo ni meta comentarios sobre el formato o tus propias instrucciones.';
+  async function callAI(userText, systemPrompt, useSearch){
+    const fullSystem = (systemPrompt||'') + NO_REASONING_LEAK + adjustmentsContext();
+    if (!OR_KEY){ throw new Error('Falta configurar tu clave de API de OpenRouter'); }
+    const body = {
+      model: 'openrouter/free',
+      messages: [
+        { role:'system', content: fullSystem },
+        { role:'user', content: userText },
+      ],
+      max_tokens: 1200,
+    };
+    let res;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(()=>controller.abort(), 60000);
+    try {
+      res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${OR_KEY}`,
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+    } catch(e){
+      if (e.name === 'AbortError') throw new Error('El modelo tardó demasiado en responder (más de 60 segundos). Intenta de nuevo.');
+      throw new Error('Could not connect to the OpenRouter API');
+    } finally { clearTimeout(timeoutId); }
+    const data = await res.json();
+    if (!res.ok || data.error){ throw new Error((data.error && data.error.message) || `Error HTTP ${res.status}`); }
+    const choice = (data.choices && data.choices[0]) || null;
+    if (!choice) throw new Error('El modelo no devolvió ninguna respuesta, intenta de nuevo.');
+    if (choice.finish_reason === 'content_filter'){ throw new Error('El modelo gratuito bloqueó esta respuesta por sus propios filtros de contenido. Intenta de nuevo, a veces cambia el modelo asignado.'); }
+    let text = (choice.message && choice.message.content) || '';
+    text = text.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+    if (/User Safety:\s*unsafe/i.test(text) || /Safety Categories:/i.test(text)){
+      throw new Error('El contenido que enviaste fue marcado por el sistema de seguridad del modelo (por ejemplo, contenido sexual explícito) y no se puede procesar. Prueba con otra canción o texto.');
+    }
+    if (/User Safety:\s*safe/i.test(text)){
+      throw new Error('El modelo devolvió metadatos internos en vez de una respuesta real. Intenta de nuevo.');
+    }
+    if (!text || text.length < 5){ throw new Error('El modelo devolvió una respuesta vacía o inválida, probablemente bloqueada por sus filtros. Intenta de nuevo.'); }
+    const reasoningMarkers = [
+      /\bwe need to\b/i, /\blet'?s draft\b/i, /\blet'?s count\b/i, /\bso output should\b/i,
+      /\bnow quoting\b/i, /\bmake sure\b.*\bwords\b/i, /\bfirst line:/i, /\bwe (must|should) (avoid|ensure|explain)\b/i,
+      /\bthe user'?s (current query|latest message)\b/i, /\bwe also need to\b/i, /\bwe used\b.*\bwhich is okay\b/i,
+      /\bi should\b/i, /\bi need to\b/i, /\bbut wait\b/i, /\bhowever,? in\b/i, /\bthe user\b/i,
+    ];
+    const matchCount = reasoningMarkers.reduce((n,re)=>n+(re.test(text)?1:0), 0);
+    if (matchCount >= 2){ throw new Error('El modelo filtró su razonamiento interno en vez de dar una respuesta limpia. Intenta de nuevo, puede que te toque otro modelo.'); }
+    return text;
+  }
+
+  function computeStreaks(){
+    const today=new Date(); const relevant=DATES.filter(d=>d<=today);
+    let best=0,running=0;
+    relevant.forEach(d=>{ if (fullHabitsCount(iso(d))===HABITS.length){ running++; best=Math.max(best,running); } else running=0; });
+    let current=0;
+    for (let i=relevant.length-1;i>=0;i--){ if (fullHabitsCount(iso(relevant[i]))===HABITS.length) current++; else break; }
+    return { current, best };
+  }
+  function habitPct(h){ const today=new Date(); const el=DATES.filter(d=>d<=today); if(!el.length) return 0; return Math.round(el.filter(d=>habitDone(dayData(iso(d)),h)).length/el.length*100); }
+  function fullDaysCount(){ const today=new Date(); return DATES.filter(d=>d<=today && fullHabitsCount(iso(d))===HABITS.length).length; }
+  function monthBlocks(){ const m={}; DATES.forEach(d=>{ const k=`${d.getFullYear()}-${d.getMonth()}`; (m[k]=m[k]||[]).push(d); }); return Object.values(m); }
+  function cellStyle(count){
+    if (count===0) return { background:'var(--surface2)', color:'var(--ink-soft)' };
+    const pct = count/HABITS.length;
+    const bg = pct>=1 ? 'linear-gradient(135deg,var(--green),var(--blue))' : `rgba(45,127,249,${0.15+pct*0.5})`;
+    return { background:bg, color: pct>=0.6 ? '#fff' : 'var(--ink)' };
+  }
+
+  function myCards(){ return state.cards.filter(c=>c.cat==='pt-formal'||c.cat==='pt-coloquial'); }
+  function dueCards(){ const t=todayISO(); return myCards().filter(c=>c.next<=t); }
+  function pickNext(){ const due=dueCards(); return due.length? due[Math.floor(Math.random()*due.length)] : null; }
+  function grade(card, level){
+    if (level===0) card.box=1;
+    else if (level===1) card.box=Math.max(1,card.box);
+    else card.box=Math.min(6,card.box+1);
+    const days = level===1 ? Math.max(1,Math.floor(BOX_DAYS[card.box-1]/2)) : BOX_DAYS[card.box-1];
+    card.next = addDays(todayISO(), days);
+    card.lastReview = todayISO();
+    save();
+  }
+  function addCard(front,back,example,cat,tipo){
+    state.cards.push({ id:'c'+Date.now()+Math.floor(Math.random()*1000), front,back,example,cat,tipo:tipo||'', box:1, next:todayISO(), lastReview:null });
+    save();
+  }
+  function deleteCard(id){ state.cards = state.cards.filter(c=>c.id!==id); save(); }
+  const WORD_TYPES = ['Sustantivo','Verbo','Adjetivo','Adverbio','Conector','Expresión','Falso amigo','Otro'];
+  async function lookupWord(word){
+    let dictMeanings = [];
+    try {
+      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/pt/${encodeURIComponent(word)}`);
+      if (res.ok){
+        const data = await res.json();
+        const entry = data[0];
+        if (entry && entry.meanings){
+          dictMeanings = entry.meanings.map(m=>({
+            partOfSpeech: m.partOfSpeech || '',
+            definition: m.definitions[0] ? m.definitions[0].definition : '',
+            dictExample: m.definitions[0] ? m.definitions[0].example : '',
+          }));
+        }
+      }
+    } catch(e){ dictMeanings = []; }
+    const dictContext = dictMeanings.length
+      ? `The dictionary found these uses: ${dictMeanings.map(m=>`(${m.partOfSpeech}) ${m.definition}`).join('; ')}.`
+      : 'The dictionary did not find this word or expression (Portuguese coverage in this API is limited, or it may be a colloquial expression).';
+    const aiResult = await callAI(
+      `Word or expression: ${word}. ${dictContext}`,
+      'Você é um tutor de português para um estudante que está começando do zero, nível iniciante. Eu te dou uma palavra ou expressão e, se existir, o que um dicionário automático encontrou. Se a palavra tiver mais de um uso comum (por exemplo pode ser substantivo e também verbo), cubra todos, um por bloco. Responda apenas com blocos neste formato exato, um após o outro, separados por uma linha que diga exatamente ---: USO: (classe gramatical, por exemplo substantivo ou verbo) SIGNIFICADO: (significado breve, sempre em português, nunca em espanhol ou inglês) EXEMPLO: (uma frase completa escrita em português real). Um exemplo real de bloco correto: USO: substantivo SIGNIFICADO: local onde se mora EXEMPLO: Eu moro em uma casa pequena. Repita esse padrão sempre em português.'
+    );
+    return { dictMeanings, aiResult };
+  }
+  
+  function parseAiLookup(text){
+    return text.split(/^---$/m).map(block=>{
+      const tipoMatch = block.match(/USO:\s*(.+?)(?:SIGNIFICADO:|$)/is);
+      const sigMatch = block.match(/SIGNIFICADO:\s*(.+?)(?:EJEMPLO:|EXEMPLO:|$)/is);
+      const ejMatch = block.match(/(?:EJEMPLO|EXEMPLO):\s*(.+)$/is);
+      return {
+        tipo: tipoMatch ? tipoMatch[1].trim() : '',
+        significado: sigMatch ? sigMatch[1].trim() : '',
+        ejemplo: ejMatch ? ejMatch[1].trim() : '',
+      };
+    }).filter(u=>u.significado);
+  }
+  function applyLookupUse(u){
+    const tipoSel = document.getElementById('ccTipo');
+    const backInput = document.getElementById('ccBack');
+    const exampleInput = document.getElementById('ccExample');
+    if (u.tipo){
+      const match = WORD_TYPES.find(t=>t.toLowerCase().includes(u.tipo.toLowerCase()) || u.tipo.toLowerCase().includes(t.toLowerCase()));
+      if (match && tipoSel) tipoSel.value = match;
+    }
+    if (backInput) backInput.value = u.significado;
+    if (exampleInput) exampleInput.value = u.ejemplo;
+  }
+  function bindLookupUseButtons(){
+    root.querySelectorAll('[data-uselookup]').forEach(b=>b.addEventListener('click', ()=>{
+      applyLookupUse(lastLookupUses[parseInt(b.dataset.uselookup)]);
+    }));
+  }
+
+  function render(){
+    const today = new Date();
+    const daysLeft = Math.max(0, Math.ceil((END-today)/86400000));
+    const totalDays = DATES.length;
+    const dayIndex = Math.min(totalDays, Math.max(1, Math.ceil((today-START)/86400000)+1));
+    const todayIsEvalDay = isEvalDay(today);
+    root.classList.toggle('eval-mode', todayIsEvalDay);
+    root.classList.toggle('dark', !!state.settings.dark);
+    document.body.classList.toggle('dark-page', !!state.settings.dark);
+
+    root.innerHTML = `
+      <div class="cc-header">
+        <div class="cc-brand">
+          <span class="cc-logo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <path d="M12 17v3"/>
+            </svg>
+          </span>
+          <div>
+            <p class="cc-title">Speak Up</p>
+            <p class="cc-sub">Português, dia ${dayIndex} de ${totalDays}${todayIsEvalDay ? ', avaliação hoje' : ''}</p>
+          </div>
+        </div>
+        <div class="cc-countdown"><div class="n">${daysLeft}</div><div class="l">${t('diasRestantes')}</div></div>
+      </div>
+      <div class="cc-nav">
+        <button data-tab="hoy" class="${tab==='hoy'?'active':''}">${icon('home')} ${t('hoy')}</button>
+        <button data-tab="progreso" class="${tab==='progreso'?'active':''}">${icon('chart')} ${t('progreso')}</button>
+        <button data-tab="vocab" class="${tab==='vocab'?'active':''}">${icon('book')} ${t('vocabulario')}</button>
+        <button data-tab="lecciones" class="${tab==='lecciones'?'active':''}">${icon('trophy')} ${t('lecciones')}</button>
+        <button data-tab="eval" class="${tab==='eval'?'active':''}">${icon('target')} ${t('evaluacion')}</button>
+        <button data-tab="guia" class="${tab==='guia'?'active':''}">${icon('guide')} ${t('guia')}</button>
+        <button data-tab="ajustes" class="${tab==='ajustes'?'active':''}">${icon('settings')} ${t('configuracion')}</button>
+      </div>
+      <div id="ccBody"></div>
+      <div class="cc-footer">
+        <span class="cc-note">Dados guardados neste navegador</span>
+        <span class="cc-note">Configurações na aba Configurações</span>
+      </div>
+    `;
+    const body = document.getElementById('ccBody');
+    if (tab==='hoy') body.innerHTML = renderHoy();
+    if (tab==='progreso') body.innerHTML = renderProgreso(dayIndex, totalDays);
+    if (tab==='vocab') body.innerHTML = renderVocab();
+    if (tab==='lecciones') body.innerHTML = renderLecciones();
+    if (tab==='guia') body.innerHTML = renderGuia();
+    if (tab==='ajustes') body.innerHTML = renderAjustes();
+    if (tab==='eval') body.innerHTML = renderEval();
+
+    root.querySelectorAll('.cc-nav button').forEach(b=>b.addEventListener('click',()=>{ tab=b.dataset.tab; render(); }));
+
+    if (tab==='hoy') bindHoy();
+    if (tab==='progreso') bindProgreso();
+    if (tab==='vocab') bindVocab();
+    if (tab==='lecciones') bindLecciones();
+    if (tab==='guia') bindGuia();
+    if (tab==='ajustes') bindAjustes();
+    if (tab==='eval') bindEval();
+  }
+
+  function renderHoy(){
+    const selKey = iso(selected);
+    const isToday = sameDay(selected, new Date());
+    const dd = dayData(selKey);
+    const dIdx = mondayIndex(selected);
+    const phase = getPhase(selected);
+    const full = fullHabitsCount(selKey);
+    const dateLabel = capFirst(selected.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'}));
+    return `
+      <div class="cc-today-head">
+        <div>
+          <div class="cc-today-date">${isToday?'Hoje, ':''}${dateLabel}</div>
+          <div class="cc-phase-badge">${PHASE_NAMES[phase]}</div>
+        </div>
+        ${isToday?'':'<button class="cc-back" id="ccBack">Voltar para hoje</button>'}
+      </div>
+      <div class="cc-done-banner ${full===HABITS.length?'show':''}"><span class="cc-banner-check"></span> Dia completo, todos os ${HABITS.length} hábitos a 100%</div>
+      ${isToday && isEvalDay(selected) ? `<div class="cc-eval-banner">${icon('target','#fff',16)} Avaliação prevista para hoje. Vá até a aba Avaliação para completá-la.</div>` : ''}
+      ${HABITS.map(h=>{
+        const done = h.subtasks.filter(s=>dd[h.id][s.id]).length;
+        return `<div class="cc-habit" style="--card-accent:var(${h.color})">
+          <div class="cc-habit-head">
+            <span class="cc-habit-icon" style="background:var(${h.color});box-shadow:0 3px 8px color-mix(in srgb, var(${h.color}) 45%, transparent)">${icon(h.id,'#fff')}</span>
+            <span class="cc-habit-name">${h.name}</span>
+            <span class="cc-habit-frac">${done}/${h.subtasks.length}</span>
+          </div>
+          ${h.subtasks.map(s=>`
+            <div class="cc-sub-row">
+              <button class="cc-check ${dd[h.id][s.id]?'on':''}" style="--habit-color:var(${h.color})" data-h="${h.id}" data-s="${s.id}"></button>
+              <div class="cc-sub-text">${s.text}<span class="cc-sub-hint">${s.hint(dIdx,phase)}</span></div>
+            </div>
+          `).join('')}
+        </div>`;
+      }).join('')}
+      <div class="cc-feedback" style="margin-top:6px">Músicas, séries, escrita, fala e todo o resto agora vivem na aba Lições.</div>
+    `;
+  }
+  const ROULETTE_TOPICS = [
+    'Sua família', 'Sua comida favorita', 'Sua rotina diária', 'Seus passatempos',
+    'O clima hoje', 'Sua casa ou seu quarto', 'Um animal que você gosta', 'Suas cores favoritas',
+    'Sua cidade', 'Um amigo seu', 'Suas férias ideais', 'Seu trabalho ou seus estudos',
+    'Um dia especial', 'Sua música favorita', 'Um lugar que você quer conhecer', 'Como é seu fim de semana',
+  ];
+  function bindHoy(){
+    const selKey = iso(selected);
+    const isToday = sameDay(selected, new Date());
+    root.querySelectorAll('.cc-check').forEach(b=>b.addEventListener('click',()=>toggleSub(selKey, b.dataset.h, b.dataset.s)));
+    const back = document.getElementById('ccBack');
+    if (back) back.addEventListener('click', ()=>{ selected = new Date(); render(); });
+  }
+  function renderProgreso(dayIndex, totalDays){
+    const s = computeStreaks();
+    const skillNames = { gram:'Gramática', ipa:'IPA', listening:'Listening', reading:'Reading', writing:'Writing', speaking:'Speaking', songs:'Canciones', series:'Series y películas' };
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${s.current}</div><div class="l">Racha actual</div></div>
+        <div class="cc-stat"><div class="n">${s.best}</div><div class="l">Mejor racha</div></div>
+        <div class="cc-stat"><div class="n">${fullDaysCount()}</div><div class="l">Días al 100%</div></div>
+        <div class="cc-stat"><div class="n">${dayIndex}/${totalDays}</div><div class="l">Avance</div></div>
+      </div>
+      <p class="cc-section-title">Actividades por destreza</p>
+      <div class="cc-list">
+        ${Object.keys(skillNames).map(k=>`<div class="cc-list-item">
+          <span class="cc-list-front" style="flex:1">${skillNames[k]}</span>
+          <span class="cc-list-box">${(state.skillStats && state.skillStats['pt-'+k])||0} feitas</span>
+        </div>`).join('')}
+      </div>
+      <p class="cc-section-title">Mapa de constância</p>
+      <div class="cc-months">
+        ${monthBlocks().map(month=>{
+          const first=month[0]; const offset=mondayIndex(first);
+          const pads = Array.from({length:offset},()=>'<div class="cc-cell pad"></div>').join('');
+          const cells = month.map(d=>{
+            const key=iso(d); const c=fullHabitsCount(key); const isFuture=d>new Date(); const isSel=sameDay(d,selected);
+            const st = isFuture? {background:'transparent',color:'var(--ink-soft)'} : cellStyle(c);
+            return `<div class="cc-cell ${isFuture?'future':''} ${isSel?'selected':''}" style="background:${st.background};color:${st.color}" data-date="${key}">${d.getDate()}</div>`;
+          }).join('');
+          return `<div class="cc-month"><span class="cc-month-label">${capFirst(MONTHS[first.getMonth()])}</span><div class="cc-grid">${pads}${cells}</div></div>`;
+        }).join('')}
+      </div>
+      <p class="cc-section-title">Por hábito</p>
+      <div class="cc-bars">
+        ${HABITS.map(h=>{ const pct=habitPct(h); return `<div class="cc-bar-row"><span class="cc-bar-label">${h.name}</span><div class="cc-bar-track"><div class="cc-bar-fill" style="width:${pct}%;background:var(${h.color})"></div></div><span class="cc-bar-pct">${pct}%</span></div>`; }).join('')}
+      </div>
+      <p class="cc-section-title">Resumen semanal</p>
+      ${renderWeeklySummary()}
+      <button class="cc-extra-btn" id="ccWeekAnalysisBtn" style="background:var(--violet);margin-top:10px">${icon('bulb','#fff',14)} Análise semanal da IA</button>
+      <div class="cc-feedback" id="ccWeekAnalysisResult" style="display:none;margin-top:8px"></div>
+    `;
+  }
+  function renderWeeklySummary(){
+    const today = new Date();
+    const days = [];
+    for (let i=0;i<7;i++){ const d=new Date(today); d.setDate(d.getDate()-i); if (d>=START) days.push(d); }
+    return `<div class="cc-list">
+      ${HABITS.map(h=>{
+        const doneDays = days.filter(d=>habitDone(dayData(iso(d)),h)).length;
+        const ratioDays = days.length ? Math.round((doneDays/days.length)*100) : 0;
+        return `<div class="cc-list-item">
+          <span class="cc-habit-icon" style="background:var(${h.color})">${icon(h.id,'#fff',14)}</span>
+          <span class="cc-list-front" style="flex:1">${h.name}</span>
+          <span class="cc-list-back">${doneDays}/${days.length} días</span>
+          <span class="cc-list-box">${ratioDays}%</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function bindProgreso(){
+    root.querySelectorAll('.cc-cell[data-date]').forEach(cell=>cell.addEventListener('click',()=>{
+      const d = new Date(cell.dataset.date+'T00:00:00');
+      if (d > new Date()) return;
+      selected = d; tab='hoy'; render();
+    }));
+    const weekBtn = document.getElementById('ccWeekAnalysisBtn');
+    if (weekBtn) weekBtn.addEventListener('click', async ()=>{
+      const box = document.getElementById('ccWeekAnalysisResult');
+      box.style.display = 'block'; box.className = 'cc-feedback loading'; box.textContent = 'Analisando sua semana';
+      weekBtn.disabled = true;
+      try {
+        const today = new Date();
+        const days = [];
+        for (let i=0;i<7;i++){ const d=new Date(today); d.setDate(d.getDate()-i); if (d>=START) days.push(d); }
+        const checklistDone = days.filter(d=>habitDone(dayData(iso(d)),HABITS[0])).length;
+        const skillNames = { gram:'Gramática', ipa:'IPA', listening:'Listening', reading:'Reading', writing:'Writing', speaking:'Speaking', songs:'Canciones', series:'Series y películas' };
+        const skillLine = Object.keys(skillNames).map(k=>`${skillNames[k]}: ${(state.skillStats && state.skillStats['pt-'+k])||0} veces en total`).join(', ');
+        const mastered = myCards().filter(c=>c.box>=6).length;
+        const totalCards = myCards().length;
+        const streaks = computeStreaks();
+        const lastEval = state.evalHistory.filter(e=>e.lang==='pt').slice(-1)[0];
+        const evalLine = lastEval ? `Last evaluation score: ${lastEval.score} out of one hundred.` : 'No evaluations recorded yet.';
+        const context = `Daily Portuguese checklist completed on ${checklistDone} of ${days.length} days this week. Current streak: ${streaks.current} days, best streak: ${streaks.best}. Cumulative use of each Lessons activity: ${skillLine}. Vocabulary: ${totalCards} words saved, ${mastered} mastered. ${evalLine}`;
+        const result = await callAI(
+          context,
+          'Você é um coach de português honesto que analisa como foi a última semana de um estudante que está começando do zero, nível iniciante. Com base apenas nos dados que eu te dou, dê uma análise de quatro a seis frases: qual atividade ele está usando mais, qual está negligenciando, como está a constância dele, e uma recomendação concreta e realista para a próxima semana. Não invente dados que eu não te dei. Se a informação for limitada, diga isso com honestidade. Não use travessões nem símbolos incomuns. Responda em português.'
+        );
+        box.textContent = result || 'Não foi possível gerar a análise, tente novamente.';
+        box.className = 'cc-feedback';
+      } catch(e){ box.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; box.className = 'cc-feedback'; }
+      weekBtn.disabled = false;
+    });
+  }
+
+  function renderVocab(){
+    const due = dueCards();
+    const mastered = myCards().filter(c=>c.box>=6).length;
+    const slangCount = myCards().filter(c=>c.cat==='pt-coloquial').length;
+    if (vocabTab==='review' && (!currentCard || !due.find(c=>c.id===currentCard.id))){ currentCard = pickNext(); flipped=false; reviewGuess=''; }
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${due.length}</div><div class="l">Pendientes</div></div>
+        <div class="cc-stat"><div class="n">${myCards().length}</div><div class="l">Cartões</div></div>
+        <div class="cc-stat"><div class="n">${mastered}</div><div class="l">Dominadas</div></div>
+        <div class="cc-stat"><div class="n">${slangCount}</div><div class="l">Slang</div></div>
+      </div>
+      <div class="cc-vocab-tabs">
+        <button class="cc-vtab ${vocabTab==='review'?'active':''}" data-vt="review">${t('repasar')}</button>
+        <button class="cc-vtab ${vocabTab==='juego'?'active':''}" data-vt="juego">${t('juego')}</button>
+        <button class="cc-vtab ${vocabTab==='add'?'active':''}" data-vt="add">${t('agregar')}</button>
+        <button class="cc-vtab ${vocabTab==='list'?'active':''}" data-vt="list">${t('mazo')} (${myCards().length})</button>
+        <button class="cc-vtab ${vocabTab==='analisis'?'active':''}" data-vt="analisis">${t('analisis')}</button>
+      </div>
+      ${vocabTab==='review' ? renderReview(due) : ''}
+      ${vocabTab==='juego' ? renderGame() : ''}
+      ${vocabTab==='add' ? renderAdd() : ''}
+      ${vocabTab==='list' ? renderList() : ''}
+      ${vocabTab==='analisis' ? renderVocabAnalysis() : ''}
+    `;
+  }
+  function renderVocabAnalysis(){
+    return `
+      <div class="cc-feedback" style="margin-bottom:10px">A IA revisa quantas palavras você tem, como elas se dividem por tipo, e quais têm sido mais difíceis ao revisar, para te dar uma análise honesta e recomendações.</div>
+      <button class="cc-extra-btn" id="ccVocabAnalysisBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Analizar mi vocabulario</button>
+      <div class="cc-feedback" id="ccVocabAnalysisResult" style="display:none;margin-top:10px"></div>
+    `;
+  }
+  function pickLangCards(lang){
+    if (lang==='pt') return state.cards.filter(c=>c.cat==='pt-formal'||c.cat==='pt-coloquial');
+    return [];
+  }
+  function shuffleArr(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+  function setupGameOptions(){
+    const pool = pickLangCards(gameLang);
+    const correct = gameQueue[gameIndex];
+    const distractorCount = Math.min(3, pool.length-1);
+    const distractors = shuffleArr(pool.filter(c=>c.id!==correct.id)).slice(0,distractorCount).map(c=>c.back);
+    gameOptions = shuffleArr([correct.back, ...distractors]);
+    gameAnswered = false; gameSelected = -1;
+  }
+  function startGame(lang){
+    gameLang = lang;
+    const pool = pickLangCards(lang);
+    gameQueue = shuffleArr(pool).slice(0, Math.min(10, pool.length));
+    gameIndex = 0; gameScore = 0;
+    if (gameQueue.length) setupGameOptions();
+  }
+  function renderGame(){
+    if (!gameLang) startGame('pt');
+    if (gameQueue.length < 2){
+      return `<div class="cc-empty">Todavía no tienes suficientes tarjetas de portugués (necesitas al menos 2). Agrega más en la pestaña Agregar.</div>`;
+    }
+    if (gameIndex >= gameQueue.length){
+      const pct = Math.round((gameScore/gameQueue.length)*100);
+      return `<div class="cc-card">
+        <div class="cc-card-front">${gameScore}/${gameQueue.length}</div>
+        <div class="cc-card-hint">${pct}% correcto</div>
+      </div>
+      <button class="cc-extra-btn" id="ccGameAgain" style="background:var(--violet);margin-top:10px">Jogar de novo</button>`;
+    }
+    const card = gameQueue[gameIndex];
+    return `
+      <div class="cc-habit-frac" style="margin-bottom:8px">Pergunta ${gameIndex+1} de ${gameQueue.length}, pontos: ${gameScore}</div>
+      <div class="cc-card"><div class="cc-card-front">${card.front}</div></div>
+      <div class="cc-grade-row" style="grid-template-columns:1fr 1fr">
+        ${gameOptions.map((opt,i)=>{
+          let cls='';
+          if (gameAnswered){
+            if (opt===card.back) cls='good';
+            else if (i===gameSelected) cls='bad';
+          }
+          return `<button class="cc-grade-btn ${cls}" data-gi="${i}" ${gameAnswered?'disabled':''}>${opt}</button>`;
+        }).join('')}
+      </div>
+      ${gameAnswered ? `<button class="cc-extra-btn" id="ccGameNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    `;
+  }
+  function bindGame(){
+    const againBtn = document.getElementById('ccGameAgain');
+    if (againBtn) againBtn.addEventListener('click', ()=>{ startGame(gameLang); render(); });
+    root.querySelectorAll('[data-gi]').forEach(b=>b.addEventListener('click', ()=>{
+      if (gameAnswered) return;
+      gameSelected = parseInt(b.dataset.gi);
+      gameAnswered = true;
+      const card = gameQueue[gameIndex];
+      if (gameOptions[gameSelected]===card.back){ gameScore++; playSuccess(); }
+      else playTone(220,0.2);
+      render();
+    }));
+    const nextBtn = document.getElementById('ccGameNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{
+      gameIndex++;
+      if (gameIndex < gameQueue.length) setupGameOptions();
+      render();
+    });
+  }
+
+  function lessonLevel(){ return Math.floor(state.lessons.xp/100)+1; }
+  const LEC_CATEGORIES = [
+    { id:'gram', name:'Gramática e Falsos Cognatos', color:'--pt', icon:'trophy' },
+    { id:'ipa', name:'IPA e pronúncia', color:'--blue', icon:'audio' },
+    { id:'listening', name:'Compreensão Auditiva', color:'--violet', icon:'audio' },
+    { id:'reading', name:'Leitura', color:'--green', icon:'book' },
+    { id:'writing', name:'Escrita', color:'--orange', icon:'pencil' },
+    { id:'speaking', name:'Fala', color:'--pink', icon:'pt' },
+    { id:'songs', name:'Músicas', color:'--violet', icon:'music' },
+    { id:'series', name:'Séries e filmes', color:'--blue', icon:'image' },
+  ];
+  const READING_GENRES = ['Mistério','Terror','Ficção científica','Notícias e cultura','Biografia curta','Humor','Motivação e desenvolvimento pessoal','Aventura','Drama cotidiano'];
+  let lecCategory = null;
+  function renderLecciones(){
+    if (!lecCategory) return renderLecMenu();
+    const cat = LEC_CATEGORIES.find(c=>c.id===lecCategory);
+    return `
+      <button class="cc-back" id="ccLecBack" style="margin-bottom:12px">Voltar às Lições</button>
+      <p class="cc-section-title" style="margin-top:0">${cat.name}</p>
+      ${lecCategory==='gram' ? renderGramCategory() : ''}
+      ${lecCategory==='ipa' ? renderIPA() : ''}
+      ${lecCategory==='listening' ? renderListeningCategory() : ''}
+      ${lecCategory==='reading' ? renderReadingCategory() : ''}
+      ${lecCategory==='writing' ? renderWritingCategory() : ''}
+      ${lecCategory==='speaking' ? renderRoulette(dayData(iso(selected))) : ''}
+      ${lecCategory==='songs' ? renderSongsCategory() : ''}
+      ${lecCategory==='series' ? renderSeriesCategory() : ''}
+    `;
+  }
+  function renderLecMenu(){
+    const doneCount = LESSON_NODES.filter(n=>state.lessons.done[n.id]).length;
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${state.lessons.xp}</div><div class="l">XP</div></div>
+        <div class="cc-stat"><div class="n">${lessonLevel()}</div><div class="l">Nivel</div></div>
+        <div class="cc-stat"><div class="n">${doneCount}/${LESSON_NODES.length}</div><div class="l">Gramática</div></div>
+        <div class="cc-stat"><div class="n">${Object.values(state.skillStats||{}).reduce((a,b)=>a+b,0)}</div><div class="l">Actividades</div></div>
+      </div>
+      <div class="cc-feedback" style="margin-bottom:10px">
+        <b>Tu nivel actual:</b> súbelo tú mismo cuando sientas que el contenido se te queda corto. Afecta Reading, Listening y Writing.
+        <div class="cc-vocab-tabs" style="margin-top:8px">
+          <button class="cc-vtab ${contentLevel==='principiante'?'active':''}" data-lvl="principiante">Principiante</button>
+          <button class="cc-vtab ${contentLevel==='intermedio'?'active':''}" data-lvl="intermedio">Intermedio</button>
+          <button class="cc-vtab ${contentLevel==='avanzado'?'active':''}" data-lvl="avanzado">Avanzado</button>
+        </div>
+      </div>
+      <div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(140px,1fr))">
+        ${LEC_CATEGORIES.map(c=>`
+          <button class="cc-ipa-card" style="--ipa-color:var(${c.color});padding:18px 10px" data-cat="${c.id}">
+            <span class="cc-habit-icon" style="background:var(${c.color});margin-bottom:4px">${icon(c.icon,'#fff',18)}</span>
+            <span class="cc-ipa-word" style="font-size:12px">${c.name}</span>
+            <span class="cc-ipa-word" style="font-size:10px;opacity:0.7">${(state.skillStats && state.skillStats['pt-'+c.id])||0} feitas</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+  function bumpSkillStat(catId){
+    if (!state.skillStats) state.skillStats = {};
+    const key = 'pt-'+catId;
+    state.skillStats[key] = (state.skillStats[key]||0) + 1;
+    save();
+  }
+  function renderGramCategory(){
+    const doneCount = LESSON_NODES.filter(n=>state.lessons.done[n.id]).length;
+    return `
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="n">${state.lessons.xp}</div><div class="l">XP</div></div>
+        <div class="cc-stat"><div class="n">${lessonLevel()}</div><div class="l">Nivel</div></div>
+        <div class="cc-stat"><div class="n">${doneCount}/${LESSON_NODES.length}</div><div class="l">Lecciones</div></div>
+      </div>
+      ${activeLessonId ? renderLessonPlay() : renderLessonPath()}
+    `;
+  }
+  function renderLessonPath(){
+    return `<div class="cc-path">
+      ${LESSON_NODES.map((n,i)=>{
+        const done = state.lessons.done[n.id];
+        const locked = i>0 && !state.lessons.done[LESSON_NODES[i-1].id];
+        const isNext = !done && !locked;
+        const side = i%3===0 ? 'left' : (i%3===1 ? 'center' : 'right');
+        const bg = done ? 'var(--green)' : locked ? 'var(--surface2)' : 'var(--pt)';
+        return `<div class="cc-path-row ${side}">
+          <div class="cc-path-node-col">
+            <button class="cc-path-node ${isNext?'pulse':''}" style="background:${bg}" data-lesson="${locked?'':n.id}" ${locked?'disabled':''}>
+              ${done ? icon('target','#fff',24) : locked ? icon('settings','var(--ink-soft)',20) : icon('book','#fff',24)}
+            </button>
+            <div class="cc-path-label">${n.title}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function renderLessonPlay(){
+    const node = LESSON_NODES.find(n=>n.id===activeLessonId);
+    if (!lessonExercises.length){
+      return `<div class="cc-habit">
+        <div class="cc-habit-name" style="margin-bottom:10px">${node.title}</div>
+        <button class="cc-extra-btn" id="ccLessonGen" style="background:var(--pt)">${icon('bulb','#fff',14)} Generar ejercicios</button>
+        <button class="cc-extra-btn" id="ccLessonExit" style="background:var(--ink-soft);margin-left:8px">Voltar</button>
+      </div>`;
+    }
+    if (lessonIndex >= lessonExercises.length){
+      return `<div class="cc-card">
+        <div class="cc-card-front">${lessonScore}/${lessonExercises.length}</div>
+        <div class="cc-card-hint">Lição completada, mais 20 XP</div>
+      </div>
+      <button class="cc-extra-btn" id="ccLessonExit" style="background:var(--pt);margin-top:10px">Voltar ao caminho</button>`;
+    }
+    const ex = lessonExercises[lessonIndex];
+    return `<div class="cc-habit">
+      <div class="cc-habit-frac" style="margin-bottom:8px">Exercício ${lessonIndex+1} de ${lessonExercises.length}</div>
+      <div class="cc-card-front" style="font-size:16px;margin-bottom:10px">${ex.question}</div>
+      ${ex.type==='mc' ? `
+        <div class="cc-grade-row" style="grid-template-columns:1fr 1fr">
+          ${ex.options.map((opt,i)=>{
+            let cls='';
+            if (lessonAnswered){ if (opt===ex.answer) cls='good'; else if (i===lessonSelected) cls='bad'; }
+            return `<button class="cc-grade-btn ${cls}" data-li="${i}" ${lessonAnswered?'disabled':''}>${opt}</button>`;
+          }).join('')}
+        </div>
+      ` : `
+        <input id="ccLessonTextAns" placeholder="Escribe tu respuesta" value="${(lessonTextAnswer||'').replace(/"/g,'&quot;')}" ${lessonAnswered?'disabled':''}>
+        ${!lessonAnswered ? `<button class="cc-extra-btn" id="ccLessonCheck" style="background:var(--pt);margin-top:8px">Comprobar</button>` : `
+          <div class="cc-feedback" style="margin-top:8px">${lessonSelected===1?'Correto.':'A resposta esperada era: '+ex.answer}</div>
+        `}
+      `}
+      ${lessonAnswered ? `<button class="cc-extra-btn" id="ccLessonNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    </div>`;
+  }
+  function renderMinimalPairs(){
+    if (!mpCurrent) mpCurrent = MINIMAL_PAIRS[Math.floor(Math.random()*MINIMAL_PAIRS.length)];
+    return `<div class="cc-habit">
+      <div class="cc-habit-frac" style="margin-bottom:10px">Puntaje: ${mpScore}/${mpTotal}</div>
+      <button class="cc-extra-btn" id="ccMpPlay" style="background:var(--pt)">${icon('audio','#fff',14)} Reproducir palabra</button>
+      <div class="cc-grade-row" style="grid-template-columns:1fr 1fr;margin-top:10px">
+        ${mpCurrent.map((w,i)=>{
+          let cls='';
+          if (mpAnswered){ if (w===mpSpoken) cls='good'; else if (i===mpSelectedIdx) cls='bad'; }
+          return `<button class="cc-grade-btn ${cls}" data-mp="${i}" ${mpAnswered?'disabled':''}>${w}</button>`;
+        }).join('')}
+      </div>
+      ${mpAnswered ? `<button class="cc-extra-btn" id="ccMpNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+    </div>`;
+  }
+  let mpSelectedIdx = -1;
+
+  function renderFollowup(key){
+    const chat = followupChats[key];
+    return `
+      <div class="cc-habit" style="margin-top:10px;background:var(--surface2)">
+        <div class="cc-habit-name" style="margin-bottom:8px;font-size:13px">Pergunte à IA sobre esta correção</div>
+        ${chat.map(m=>`<div class="cc-feedback" style="margin-bottom:6px">${m.role==='user'?'<b>Você:</b> ':'<b>IA:</b> '}${m.text}</div>`).join('')}
+        ${followupLoading[key] ? `<div class="cc-feedback loading">Pensando</div>` : `
+          <input id="ccFollowup-${key}" placeholder="ex: o que você quer dizer com...? me dê outro exemplo" value="${(followupDraft[key]||'').replace(/"/g,'&quot;')}">
+          <button class="cc-extra-btn" id="ccFollowupBtn-${key}" style="background:var(--ink);margin-top:6px">Perguntar</button>
+        `}
+      </div>
+    `;
+  }
+  function bindFollowup(key, getContext){
+    const input = document.getElementById(`ccFollowup-${key}`);
+    if (input) input.addEventListener('input', ()=>{ followupDraft[key] = input.value; });
+    const btn = document.getElementById(`ccFollowupBtn-${key}`);
+    if (btn) btn.addEventListener('click', async ()=>{
+      const question = (followupDraft[key]||'').trim();
+      if (!question) return;
+      followupChats[key].push({role:'user', text:question});
+      followupDraft[key] = '';
+      followupLoading[key] = true;
+      render();
+      try {
+        const context = getContext();
+        const answer = await callAI(
+          `Correção ou contexto original: ${context}. Pergunta de seguimento do estudante: ${question}`,
+          'Você é um tutor de português. O estudante está fazendo uma pergunta de seguimento sobre uma correção ou feedback que você deu antes. Responda a pergunta específica dele de forma clara e direta, dê outro exemplo se ele pedir, explique mais se ele perguntar o que algo significa. Seja breve, máximo 100 palavras. Não use travessões nem símbolos incomuns. Responda em português.'
+        );
+        followupChats[key].push({role:'ai', text:answer});
+      } catch(e){ followupChats[key].push({role:'ai', text:'Erro: ' + (e.message||'tente de novo')}); }
+      followupLoading[key] = false;
+      render();
+    });
+  }
+  function renderReadingCategory(){
+    if (!readingGenre){
+      return `<div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(120px,1fr))">
+        ${READING_GENRES.map(g=>`<button class="cc-ipa-card" style="--ipa-color:var(--green)" data-genre="${g}"><span class="cc-ipa-word">${g}</span></button>`).join('')}
+      </div>`;
+    }
+    const likedCount = (state.readingLikes && state.readingLikes[readingGenre] || []).length;
+    return `
+      <div class="cc-feedback" style="margin-bottom:10px">Gênero: <b>${readingGenre}</b> (${likedCount} curtiu antes). <button class="cc-back" id="ccReadingChangeGenre" style="display:inline">Mudar</button></div>
+      ${!readingPassage ? `
+        <div class="cc-vocab-tabs" style="margin-bottom:12px">
+          <button class="cc-vtab ${readingLength==='corto'?'active':''}" data-rlen="corto">Curto</button>
+          <button class="cc-vtab ${readingLength==='mediano'?'active':''}" data-rlen="mediano">Médio</button>
+          <button class="cc-vtab ${readingLength==='largo'?'active':''}" data-rlen="largo">Longo</button>
+        </div>
+        <button class="cc-extra-btn" id="ccReadingGen" style="background:var(--green)">${icon('bulb','#fff',14)} Gerar nova leitura</button>
+      ` : `
+        <div class="cc-habit">
+          <div class="cc-feedback" style="margin-bottom:10px">${readingPassage}</div>
+          <button class="cc-extra-btn ${readingLiked?'':''}" id="ccReadingLike" style="background:${readingLiked?'var(--pink)':'var(--surface2)'};color:${readingLiked?'#fff':'var(--ink-soft)'}">${readingLiked?'Você curtiu':'Eu gosto desta história'}</button>
+          ${readingQuestions.map((q,i)=>`<label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">${q}</label><textarea id="ccReadingAns-${i}" rows="2" style="margin-bottom:8px">${readingAnswers[i]||''}</textarea>`).join('')}
+          ${!readingGraded ? `<button class="cc-extra-btn" id="ccReadingGrade" style="background:var(--green)">${icon('target','#fff',14)} Corrigir</button>` : `<div class="cc-feedback" id="ccReadingFeedback">${readingFeedback}</div>${renderFollowup('reading')}`}
+          ${readingGraded ? `<button class="cc-extra-btn" id="ccReadingNext" style="background:var(--ink);margin-top:8px">Outra leitura</button>` : ''}
+        </div>
+      `}
+    `;
+  }
+  function renderListeningCategory(){
+    return `
+      ${!listeningPassage ? `<button class="cc-extra-btn" id="ccListenGen" style="background:var(--violet)">${icon('bulb','#fff',14)} Gerar novo áudio</button>` : `
+        <div class="cc-habit">
+          <button class="cc-extra-btn" id="ccListenPlay" style="background:var(--violet)">${icon('audio','#fff',14)} Reproduzir áudio</button>
+          ${listeningGraded ? `<div class="cc-feedback" style="margin:10px 0">${listeningPassage}</div>` : ''}
+          <div style="margin-top:10px">
+            ${listeningQuestions.map((q,i)=>`<label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">${q}</label><textarea id="ccListenAns-${i}" rows="2" style="margin-bottom:8px">${listeningAnswers[i]||''}</textarea>`).join('')}
+            ${!listeningGraded ? `<button class="cc-extra-btn" id="ccListenGrade" style="background:var(--violet)">${icon('target','#fff',14)} Corrigir</button>` : `<div class="cc-feedback">${listeningFeedback}</div>${renderFollowup('listening')}`}
+            ${listeningGraded ? `<button class="cc-extra-btn" id="ccListenNext" style="background:var(--ink);margin-top:8px">Outro áudio</button>` : ''}
+          </div>
+        </div>
+      `}
+    `;
+  }
+  function renderWritingCategory(){
+    if (!writingMode){
+      return `<div class="cc-ipa-grid" style="grid-template-columns:repeat(auto-fill, minmax(120px,1fr))">
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="image"><span class="cc-ipa-word">História com imagem</span></button>
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="topic"><span class="cc-ipa-word">Texto sobre um tema</span></button>
+        <button class="cc-ipa-card" style="--ipa-color:var(--orange)" data-wmode="dialogue"><span class="cc-ipa-word">Escrever um diálogo</span></button>
+      </div>`;
+    }
+    if (writingMode==='image'){
+      const dd = dayData(iso(selected));
+      return `
+        <button class="cc-back" id="ccWritingModeBack" style="margin-bottom:10px">Mudar tipo de escrita</button>
+        <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+          <div class="cc-img-box" id="ccImgBox">${imgSvg(dd.pt.imgIndex||0)}</div>
+          <div class="cc-img-caption" id="ccImgCaption">${imgCaption(dd.pt.imgIndex||0,'pt')}</div>
+          <button class="cc-extra-btn" id="ccNewImg" style="background:var(--violet)">${icon('image','#fff',14)} Nova imagem</button>
+          <button class="cc-extra-btn" id="ccRealImg" style="background:var(--pt)">${icon('image','#fff',14)} Ver imagem real (beta)</button>
+          <textarea id="ccStoryText" rows="3" placeholder="Escreva uma história curta em português">${dd.pt.story||''}</textarea>
+          ${micButtonHtml('ccStoryMic')}
+          <button class="cc-extra-btn" id="ccStoryCorrect" style="background:var(--pt)">${icon('pencil','#fff',14)} Corrigir</button>
+          <div class="cc-feedback" id="ccStoryFeedback" style="display:${dd.pt.storyFeedback?'block':'none'}">${dd.pt.storyFeedback||''}</div>
+          ${dd.pt.storyFeedback ? renderFollowup('writing') : ''}
+        </div>
+      `;
+    }
+    if (writingMode==='topic' || writingMode==='dialogue'){
+      return `
+        <button class="cc-back" id="ccWritingModeBack" style="margin-bottom:10px">Mudar tipo de escrita</button>
+        <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+          ${!writingPrompt ? `<button class="cc-extra-btn" id="ccWritingGen" style="background:var(--orange)">${icon('bulb','#fff',14)} Gerar tema</button>` : `
+            <div class="cc-feedback" style="margin-bottom:8px">${writingPrompt}</div>
+            <textarea id="ccWritingText" rows="4" placeholder="Escreva aqui em português">${writingText||''}</textarea>
+            ${micButtonHtml('ccWritingMic')}
+            <button class="cc-extra-btn" id="ccWritingCorrect" style="background:var(--orange)">${icon('pencil','#fff',14)} Corrigir</button>
+            <div class="cc-feedback" id="ccWritingFeedback" style="display:${writingFeedback?'block':'none'}">${writingFeedback||''}</div>
+            ${writingFeedback ? renderFollowup('writing') : ''}
+            <button class="cc-extra-btn" id="ccWritingNewPrompt" style="background:var(--ink);margin-top:8px">Outro tema</button>
+          `}
+        </div>
+      `;
+    }
+  }
+  function renderSongsCategory(){
+    const dd = dayData(iso(selected));
+    const songVal = (dd.pt.song||'').replace(/"/g,'&quot;');
+    return `
+      <div class="cc-suggest-wrap">
+        <label>Prática com músicas</label>
+        <input id="ccSong" value="${songVal}" placeholder="Nome da música e artista">
+        <button class="cc-extra-btn" id="ccSongBtn" style="background:var(--pt)">${icon('music','#fff',14)} Praticar vocabulário desta música</button>
+        <div class="cc-suggest-list" id="ccSongResult"></div>
+        <label style="margin-top:10px">Cole a letra completa para identificar vocabulário (opcional)</label>
+        <textarea id="ccSongLyrics" rows="4" placeholder="Cole aqui a letra completa">${dd.pt.songLyrics||''}</textarea>
+        <button class="cc-extra-btn" id="ccSongLyricsBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Analisar letra colada</button>
+        <div class="cc-feedback" id="ccSongLyricsResult" style="display:${dd.pt.songLyricsResult?'block':'none'}">${dd.pt.songLyricsResult||''}</div>
+        <label style="margin-top:10px">Palavras que chamaram sua atenção nesta música (opcional)</label>
+        <textarea id="ccSongWords" rows="2" placeholder="Escreva as palavras ou frases separadas por vírgula">${dd.pt.songWords||''}</textarea>
+        <button class="cc-extra-btn" id="ccSongWordsBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Explicar estas palavras</button>
+        <div class="cc-feedback" id="ccSongWordsResult" style="display:${dd.pt.songWordsResult?'block':'none'}">${dd.pt.songWordsResult||''}</div>
+        ${(dd.pt.songLyricsResult||dd.pt.songWordsResult) ? renderFollowup('songs') : ''}
+      </div>
+    `;
+  }
+  function renderSeriesCategory(){
+    const dd = dayData(iso(selected));
+    const episodeVal = (dd.pt.episode||'').replace(/"/g,'&quot;');
+    return `
+      <div class="cc-extra" style="border-top:none;padding-top:0;margin-top:0">
+        ${!TMDB_KEY ? `<div class="cc-feedback" style="margin-bottom:10px">Você pode buscar o título real no TMDB se salvar sua chave gratuita em Configurações. Enquanto isso, escreva o nome manualmente.</div>` : `
+          <label>Buscar série ou filme real</label>
+          <input id="ccTmdbQuery" placeholder="Por exemplo: Friends, Breaking Bad, Oppenheimer">
+          <button class="cc-extra-btn" id="ccTmdbSearchBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Buscar no TMDB</button>
+          <div class="cc-suggest-list" id="ccTmdbResults"></div>
+        `}
+        ${tmdbSelected ? `<div class="cc-feedback" style="margin-bottom:10px">Você selecionou: <b>${tmdbSelected.title}</b> (${tmdbSelected.year||'sem data'}). A IA vai usar o contexto real disso ao corrigir.</div>` : ''}
+        <label style="margin-top:10px">Episódio ou vídeo que você assistiu (nome, número do episódio, ou link)</label>
+        <input id="ccEpisode" value="${episodeVal}" placeholder="Por exemplo: Friends 1x02, ou um link">
+        <label>Seu resumo em português</label>
+        <textarea id="ccSummaryText" rows="3" placeholder="Escreva um resumo curto em português">${dd.pt.summary||''}</textarea>
+        ${micButtonHtml('ccSummaryMic')}
+        <button class="cc-extra-btn" id="ccSummaryCorrect" style="background:var(--pt)">${icon('pencil','#fff',14)} Corrigir</button>
+        <div class="cc-feedback" id="ccSummaryFeedback" style="display:${dd.pt.summaryFeedback?'block':'none'}">${dd.pt.summaryFeedback||''}</div>
+        <label style="margin-top:10px">Palavras que chamaram sua atenção nesse vídeo (opcional)</label>
+        <textarea id="ccEpisodeWords" rows="2" placeholder="Escreva as palavras ou frases separadas por vírgula">${dd.pt.episodeWords||''}</textarea>
+        <button class="cc-extra-btn" id="ccEpisodeWordsBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Explicar estas palavras</button>
+        <div class="cc-feedback" id="ccEpisodeWordsResult" style="display:${dd.pt.episodeWordsResult?'block':'none'}">${dd.pt.episodeWordsResult||''}</div>
+        ${(dd.pt.summaryFeedback||dd.pt.episodeWordsResult) ? renderFollowup('series') : ''}
+      </div>
+    `;
+  }
+  function renderRoulette(dd){
+    const hasTopic = !!dd.pt.rouletteTopic;
+    return `<div class="cc-suggest-wrap">
+      <label>Roda de temas</label>
+      <div class="cc-wheel-row">
+        <div class="cc-wheel-wrap">
+          <div class="cc-wheel-pointer"></div>
+          <div class="cc-wheel" id="ccWheel"></div>
+        </div>
+        <button class="cc-extra-btn" id="ccSpinBtn" style="background:var(--pink)">${icon('target','#fff',14)} Girar a roda</button>
+      </div>
+      <div id="ccRouletteResult">
+        ${hasTopic ? `
+          <div class="cc-feedback" style="margin-top:10px"><b>Tema:</b> ${dd.pt.rouletteTopic}${dd.pt.rouletteQuestion?`<br><b>Pergunta:</b> ${dd.pt.rouletteQuestion}`:''}</div>
+          <textarea id="ccRouletteOpinion" rows="3" placeholder="Escreva sua resposta em português">${dd.pt.rouletteOpinion||''}</textarea>
+          ${micButtonHtml('ccRouletteMic')}
+          <button class="cc-extra-btn" id="ccRouletteCorrect" style="background:var(--pt)">${icon('pencil','#fff',14)} Corrigir</button>
+          <div class="cc-feedback" id="ccRouletteFeedback" style="display:${dd.pt.rouletteFeedback?'block':'none'}">${dd.pt.rouletteFeedback||''}</div>
+          ${dd.pt.rouletteFeedback ? renderFollowup('speaking') : ''}
+        ` : ''}
+      </div>
+    </div>`;
+  }
+  function imgIdx(i){ return ((i%IMAGE_PROMPTS.length)+IMAGE_PROMPTS.length)%IMAGE_PROMPTS.length; }
+  function imgSvg(i){
+    const idx = imgIdx(i);
+    return `<svg width="100%" height="120" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet">${IMAGE_PROMPTS[idx].svg}</svg>`;
+  }
+  function imgCaption(i, lang){ const p = IMAGE_PROMPTS[imgIdx(i)]; return lang==='pt' ? p.captionPt : p.caption; }
+
+  function bindLecciones(){
+    root.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click', ()=>{ lecCategory = b.dataset.cat; render(); }));
+    const lecBack = document.getElementById('ccLecBack');
+    if (lecBack) lecBack.addEventListener('click', ()=>{ lecCategory=null; render(); });
+    root.querySelectorAll('[data-lvl]').forEach(b=>b.addEventListener('click', ()=>{
+      contentLevel = b.dataset.lvl; state.contentLevel = contentLevel; save(); render();
+    }));
+    if (!lecCategory) return;
+
+    if (lecCategory==='gram') bindGramCategory();
+    if (lecCategory==='ipa') bindIPA();
+    if (lecCategory==='listening') bindListeningCategory();
+    if (lecCategory==='reading') bindReadingCategory();
+    if (lecCategory==='writing') bindWritingCategory();
+    if (lecCategory==='speaking') bindSpeakingCategory();
+    if (lecCategory==='songs') bindSongsCategory();
+    if (lecCategory==='series') bindSeriesCategory();
+  }
+
+  function bindGramCategory(){
+    root.querySelectorAll('[data-lesson]').forEach(b=>b.addEventListener('click', ()=>{
+      if (!b.dataset.lesson) return;
+      activeLessonId = b.dataset.lesson; lessonExercises=[]; lessonIndex=0; lessonScore=0; render();
+    }));
+    const genBtn = document.getElementById('ccLessonGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Gerando...';
+      const node = LESSON_NODES.find(n=>n.id===activeLessonId);
+      async function attempt(){
+        const result = await callAI(
+          `Tema: ${node.topic}`,
+          'Crie 4 exercícios curtos de português estilo Duolingo sobre o tema dado, para um estudante que está começando do zero, nível iniciante. Responda apenas com um array JSON, nada de texto antes ou depois, nada de blocos de codigo. Formato exato: [{"type":"mc","question":"...","options":["a","b","c","d"],"answer":"b"},{"type":"text","question":"...","options":[],"answer":"..."}]. Dois exercicios tipo mc e dois tipo text. Perguntas em portugues, vocabulario e gramatica muito basicos apropriados para quem esta comecando do zero.'
+        );
+        const start = result.indexOf('[');
+        const end = result.lastIndexOf(']');
+        if (start===-1 || end===-1 || end<start) throw new Error('sin arreglo JSON reconocible');
+        const parsed = JSON.parse(result.slice(start, end+1));
+        if (!Array.isArray(parsed) || !parsed.length) throw new Error('arreglo vacío');
+        return parsed;
+      }
+      try {
+        let parsed;
+        try { parsed = await attempt(); }
+        catch(e1){ genBtn.textContent = 'Tentando de novo...'; parsed = await attempt(); }
+        lessonExercises = parsed.slice(0,4).map(ex=>({ type: ex.type==='mc'?'mc':'text', question: ex.question||'', options: Array.isArray(ex.options)?ex.options:[], answer: ex.answer||'' }));
+        lessonIndex = 0; lessonScore = 0; lessonAnswered = false; lessonSelected = -1; lessonTextAnswer='';
+      } catch(e){ alert('El modelo gratuito no respondió con un formato usable después de dos intentos. Prueba de nuevo, a veces cambia el modelo que te toca y funciona mejor.'); }
+      genBtn.disabled = false;
+      render();
+    });
+    const exitBtn = document.getElementById('ccLessonExit');
+    if (exitBtn) exitBtn.addEventListener('click', ()=>{ activeLessonId=null; lessonExercises=[]; render(); });
+    root.querySelectorAll('[data-li]').forEach(b=>b.addEventListener('click', ()=>{
+      if (lessonAnswered) return;
+      lessonSelected = parseInt(b.dataset.li);
+      lessonAnswered = true;
+      const ex = lessonExercises[lessonIndex];
+      if (ex.options[lessonSelected]===ex.answer){ lessonScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    }));
+    const textInput = document.getElementById('ccLessonTextAns');
+    if (textInput) textInput.addEventListener('input', ()=>{ lessonTextAnswer = textInput.value; });
+    const checkBtn = document.getElementById('ccLessonCheck');
+    if (checkBtn) checkBtn.addEventListener('click', ()=>{
+      const ex = lessonExercises[lessonIndex];
+      const correct = (lessonTextAnswer||'').trim().toLowerCase() === (ex.answer||'').trim().toLowerCase();
+      lessonAnswered = true; lessonSelected = correct?1:0;
+      if (correct){ lessonScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    });
+    const nextBtn = document.getElementById('ccLessonNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{
+      lessonIndex++; lessonAnswered=false; lessonSelected=-1; lessonTextAnswer='';
+      if (lessonIndex >= lessonExercises.length){
+        if (!state.lessons.done[activeLessonId]){ state.lessons.xp += 20; state.lessons.done[activeLessonId] = true; bumpSkillStat('gram'); save(); }
+      }
+      render();
+    });
+  }
+
+  function bindReadingCategory(){
+    root.querySelectorAll('[data-genre]').forEach(b=>b.addEventListener('click', ()=>{
+      readingGenre = b.dataset.genre; readingPassage=''; readingQuestions=[]; readingAnswers=[]; readingGraded=false; readingFeedback=''; readingLiked=false;
+      render();
+    }));
+    const changeGenreBtn = document.getElementById('ccReadingChangeGenre');
+    if (changeGenreBtn) changeGenreBtn.addEventListener('click', ()=>{ readingGenre=null; readingPassage=''; render(); });
+    root.querySelectorAll('[data-rlen]').forEach(b=>b.addEventListener('click', ()=>{ readingLength = b.dataset.rlen; render(); }));
+    const genBtn = document.getElementById('ccReadingGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Gerando...';
+      const liked = (state.readingLikes[readingGenre]||[]).slice(-3);
+      const likedLine = liked.length ? ` O usuário gostou antes de histórias com esta essência neste gênero: ${liked.map(l=>l.slice(0,150)).join(' | ')}. Gere algo com espírito ou tom semelhante, mas uma história completamente nova, não repita o enredo.` : '';
+      const lengthSpec = readingLength==='largo' ? '120 a 180 palavras, com 4 perguntas de compreensão' : readingLength==='mediano' ? '70 a 100 palavras, com 3 perguntas de compreensão' : '40 a 60 palavras, com 3 perguntas de compreensão';
+      const minWords = readingLength==='largo' ? 90 : readingLength==='mediano' ? 50 : 25;
+      async function attemptReading(){
+        const result = await callAI(
+          `Gênero: ${readingGenre}.${likedLine}`,
+          `Escreva um texto em português de ${lengthSpec}, do gênero indicado, apropriado para todos os públicos e sem violência gráfica explícita mesmo que o gênero seja suspense ou terror, usando ${levelSpec()}. Depois escreva as perguntas de compreensão sobre esse texto, em português, numeradas a partir de 1. Responda com este formato exato e nada mais, sem explicações ou comentários sobre a tarefa: TEXTO: o texto aqui PERGUNTAS: 1) primeira pergunta 2) segunda pergunta e assim por diante`
+        );
+        const parts = result.split(/PREGUNTAS:|PERGUNTAS:|QUESTIONS:/i);
+        const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+        const wordCount = passage.split(/\s+/).filter(Boolean).length;
+        const looksLikeReasoning = /\bI (should|need to|can't|must)\b|\bthe user\b|\bwait,?\b|\bhowever,? in\b|User Safety/i.test(passage);
+        const looksLikeEnglish = /\b(the|and|is|was|with|this|that|from|have|they)\b/i.test(passage);
+        if (wordCount < minWords || looksLikeReasoning || looksLikeEnglish) throw new Error('texto muito curto, no idioma errado, ou inválido');
+        const qBlock = parts[1] || '';
+        const maxQ = readingLength==='largo' ? 4 : 3;
+        let questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,maxQ);
+        if (!questions.length) questions = ['Pergunta 1','Pergunta 2','Pergunta 3'];
+        return { passage, questions };
+      }
+      try {
+        let out, lastErr;
+        for (let i=0;i<3;i++){
+          try { out = await attemptReading(); break; }
+          catch(e1){ lastErr = e1; genBtn.textContent = `Tentando de novo (${i+2}/3)...`; }
+        }
+        if (!out) throw lastErr || new Error('failed');
+        readingPassage = out.passage;
+        readingQuestions = out.questions;
+        readingAnswers = readingQuestions.map(()=>''); readingGraded = false; readingFeedback=''; readingLiked=false;
+      } catch(e){ alert('O modelo gratuito não gerou um texto utilizável depois de três tentativas (às vezes bloqueia certos gêneros por seus próprios filtros). Tente novamente ou com outro gênero.'); }
+      finally { genBtn.disabled = false; render(); }
+    });
+    const likeBtn = document.getElementById('ccReadingLike');
+    if (likeBtn) likeBtn.addEventListener('click', ()=>{
+      if (readingLiked) return;
+      if (!state.readingLikes[readingGenre]) state.readingLikes[readingGenre] = [];
+      state.readingLikes[readingGenre].push(readingPassage);
+      state.readingLikes[readingGenre] = state.readingLikes[readingGenre].slice(-5);
+      readingLiked = true;
+      save(); render();
+    });
+    readingQuestions.forEach((q,i)=>{
+      const ans = document.getElementById(`ccReadingAns-${i}`);
+      if (ans) ans.addEventListener('input', ()=>{ readingAnswers[i]=ans.value; });
+    });
+    const gradeBtn = document.getElementById('ccReadingGrade');
+    if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+      gradeBtn.disabled = true; gradeBtn.textContent = 'Corrigindo...';
+      try {
+        const qa = readingQuestions.map((q,i)=>`Pregunta: ${q} Respuesta: ${readingAnswers[i]||'sin responder'}`).join(' ');
+        const result = await callAI(
+          `Texto original: ${readingPassage}. ${qa}`,
+          'Você é um avaliador de compreensão de leitura em português. Compare as respostas com o texto original e diga se estão corretas. Dê uma pontuação sobre cem na primeira linha com o formato Pontuação: número. Depois, para cada resposta, cite a parte específica do texto relevante e explique exatamente o que estava certo ou errado. Máximo cem palavras. Não use travessões nem símbolos incomuns. Responda em português.'
+        );
+        readingFeedback = result || 'Não foi possível corrigir, tente novamente.';
+        readingGraded = true;
+        bumpSkillStat('reading');
+      } catch(e){ alert('Houve um erro ao corrigir, tente novamente.'); }
+      gradeBtn.disabled = false;
+      render();
+    });
+    const nextReadBtn = document.getElementById('ccReadingNext');
+    if (nextReadBtn) nextReadBtn.addEventListener('click', ()=>{
+      readingPassage=''; readingQuestions=[]; readingAnswers=[]; readingGraded=false; readingFeedback=''; readingLiked=false;
+      followupChats.reading = [];
+      render();
+    });
+    if (readingGraded) bindFollowup('reading', ()=>`Text: ${readingPassage}. Feedback given: ${readingFeedback}`);
+  }
+
+  function bindListeningCategory(){
+    const genBtn = document.getElementById('ccListenGen');
+    if (genBtn) genBtn.addEventListener('click', async ()=>{
+      genBtn.disabled = true; genBtn.textContent = 'Gerando...';
+      async function attemptListening(){
+        const recent = (state.listeningHistory||[]).slice(-8);
+        const avoidLine = recent.length ? ` Não repita estes temas ou aberturas usados recentemente: ${recent.join(' | ')}. Escolha um tema cotidiano genuinamente diferente.` : '';
+        const result = await callAI(
+          'Escreva o texto e as perguntas agora, no formato pedido.',
+          `Escreva um texto curto em português de 40 a 60 palavras sobre um tema cotidiano interessante, usando ${levelSpec()}.${avoidLine} Este texto vai ser lido em voz alta com a função de texto para voz do navegador, você não gera áudio, apenas escreve o texto. Depois escreva exatamente 3 perguntas de compreensão em português, numeradas de 1 a 3. Responda com este formato exato e nada mais, sem explicações ou comentários sobre a tarefa: TEXTO: o texto aqui PERGUNTAS: 1) primeira pergunta 2) segunda pergunta 3) terceira pergunta`
+        );
+        const parts = result.split(/PREGUNTAS:|PERGUNTAS:|QUESTIONS:/i);
+        const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+        const wordCount = passage.split(/\s+/).filter(Boolean).length;
+        const looksLikeReasoning = /\bI (should|need to|can't|must)\b|\bthe user\b|\bwait,?\b|\bhowever,? in\b|User Safety/i.test(passage);
+        const looksLikeEnglish = /\b(the|and|is|was|with|this|that|from|have|they)\b/i.test(passage);
+        if (wordCount < 15 || wordCount > 200 || looksLikeReasoning || looksLikeEnglish) throw new Error('texto inválido, no idioma errado, ou parece razonamento interno');
+        const qBlock = parts[1] || '';
+        let questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,3);
+        if (!questions.length) questions = ['Pergunta 1','Pergunta 2','Pergunta 3'];
+        return { passage, questions };
+      }
+      try {
+        let out, lastErr;
+        for (let i=0;i<3;i++){
+          try { out = await attemptListening(); break; }
+          catch(e1){ lastErr = e1; genBtn.textContent = `Tentando de novo (${i+2}/3)...`; }
+        }
+        if (!out) throw lastErr || new Error('failed');
+        listeningPassage = out.passage;
+        listeningQuestions = out.questions;
+        listeningAnswers = listeningQuestions.map(()=>''); listeningGraded = false; listeningFeedback='';
+        state.listeningHistory = [...(state.listeningHistory||[]), listeningPassage.slice(0,80)].slice(-10);
+        save();
+      } catch(e){ alert('O modelo gratuito não gerou um texto utilizável depois de três tentativas. Tente novamente, às vezes o modelo designado muda.'); }
+      finally { genBtn.disabled = false; render(); }
+    });
+    const playBtn = document.getElementById('ccListenPlay');
+    if (playBtn) playBtn.addEventListener('click', ()=>{ speakText(listeningPassage, 'pt-BR'); });
+    listeningQuestions.forEach((q,i)=>{
+      const ans = document.getElementById(`ccListenAns-${i}`);
+      if (ans) ans.addEventListener('input', ()=>{ listeningAnswers[i]=ans.value; });
+    });
+    const gradeBtn = document.getElementById('ccListenGrade');
+    if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+      gradeBtn.disabled = true; gradeBtn.textContent = 'Corrigindo...';
+      try {
+        const qa = listeningQuestions.map((q,i)=>`Pregunta: ${q} Respuesta: ${listeningAnswers[i]||'sin responder'}`).join(' ');
+        const result = await callAI(
+          `Texto original: ${listeningPassage}. ${qa}`,
+          'Você é um avaliador de compreensão auditiva em português. Compare as respostas com o texto original e diga se estão corretas. Dê uma pontuação sobre cem na primeira linha com o formato Pontuação: número. Depois, para cada resposta, cite a parte específica do texto relevante e explique exatamente o que estava certo ou errado. Máximo cem palavras. Não use travessões nem símbolos incomuns. Responda em português.'
+        );
+        listeningFeedback = result || 'Não foi possível corrigir, tente novamente.';
+        listeningGraded = true;
+        bumpSkillStat('listening');
+      } catch(e){ alert('Houve um erro ao corrigir, tente novamente.'); }
+      gradeBtn.disabled = false;
+      render();
+    });
+    const nextListenBtn = document.getElementById('ccListenNext');
+    if (nextListenBtn) nextListenBtn.addEventListener('click', ()=>{
+      listeningPassage=''; listeningQuestions=[]; listeningAnswers=[]; listeningGraded=false; listeningFeedback='';
+      followupChats.listening = [];
+      render();
+    });
+    if (listeningGraded) bindFollowup('listening', ()=>`Text: ${listeningPassage}. Feedback given: ${listeningFeedback}`);
+  }
+
+  function bindWritingCategory(){
+    root.querySelectorAll('[data-wmode]').forEach(b=>b.addEventListener('click', ()=>{
+      writingMode = b.dataset.wmode; writingPrompt=''; writingText=''; writingFeedback=''; followupChats.writing=[]; render();
+    }));
+    const modeBackBtn = document.getElementById('ccWritingModeBack');
+    if (modeBackBtn) modeBackBtn.addEventListener('click', ()=>{ writingMode=null; render(); });
+    const selKey = iso(selected);
+    if (writingMode==='image'){
+      const newImgBtn = document.getElementById('ccNewImg');
+      if (newImgBtn) newImgBtn.addEventListener('click', ()=>{
+        const box = document.getElementById('ccImgBox');
+        const capEl = document.getElementById('ccImgCaption');
+        const current = (state.days[selKey] && state.days[selKey].pt && state.days[selKey].pt.imgIndex) || 0;
+        let next = Math.floor(Math.random()*IMAGE_PROMPTS.length);
+        if (next === current) next = (next+1)%IMAGE_PROMPTS.length;
+        setTextField(selKey,'pt','imgIndex', next); save();
+        box.innerHTML = imgSvg(next);
+        if (capEl) capEl.textContent = imgCaption(next,'pt');
+      });
+      const realImgBtn = document.getElementById('ccRealImg');
+      if (realImgBtn) realImgBtn.addEventListener('click', ()=>{
+        const box = document.getElementById('ccImgBox');
+        const current = (state.days[selKey] && state.days[selKey].pt && state.days[selKey].pt.imgIndex) || 0;
+        const prompt = IMAGE_PROMPTS[imgIdx(current)].prompt;
+        const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=480&height=280&nologo=true`;
+        box.innerHTML = `<img src="${url}" alt="Imagem gerada" style="width:100%;border-radius:10px" onerror="this.parentElement.innerHTML='<div class=&quot;cc-feedback&quot;>Não foi possível carregar a imagem real agora, é um serviço gratuito de terceiros. Tente novamente ou use Nova imagem para voltar ao desenho.</div>'">`;
+      });
+      const storyText = document.getElementById('ccStoryText');
+      if (storyText){
+        storyText.addEventListener('input', ()=>setTextField(selKey,'pt','story',storyText.value));
+        storyText.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+      }
+      bindMic('ccStoryMic','ccStoryText','pt-BR');
+      const storyBtn = document.getElementById('ccStoryCorrect');
+      if (storyBtn) storyBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById('ccStoryFeedback');
+        const text = (storyText.value||'').trim();
+        if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escreva sua história primeiro.'; return; }
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+        storyBtn.disabled = true;
+        try {
+          const result = await callAI(
+            `Story written by the user in Portuguese: ${text}`,
+            'Você é um tutor de português para um estudante que está começando do zero, nível iniciante. O usuário escreveu uma pequena história em português inspirada em uma imagem. Primeiro mostre a versão corrigida completa. Depois, citando a frase original exata cada vez, explique exatamente o que estava errado e por quê. Comente se a história tem uma estrutura clara, e dê uma sugestão para enriquecer o vocabulário. Máximo cento e quarenta palavras. Não use travessões nem símbolos incomuns. Responda em português.'
+          );
+          fb.textContent = result || 'Não foi possível gerar o feedback, tente novamente.';
+          fb.className = 'cc-feedback';
+          setTextField(selKey,'pt','storyFeedback', result); save();
+          bumpSkillStat('writing');
+        } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+        storyBtn.disabled = false;
+      });
+    }
+    if (writingMode==='topic' || writingMode==='dialogue'){
+      const genBtn = document.getElementById('ccWritingGen');
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        genBtn.disabled = true; genBtn.textContent = 'Gerando...';
+        try {
+          const recent = (state.writingHistory||[]).slice(-8);
+          const avoidLine = recent.length ? ` Não repita estes temas ou cenários usados recentemente: ${recent.join(' | ')}. Escolha algo genuinamente diferente.` : '';
+          const instr = writingMode==='topic'
+            ? `Gere um único tema simples, em português, para o usuário escrever um texto curto em português sobre esse tema, usando ${levelSpec()}.${avoidLine} Responda apenas com o tema, nada mais.`
+            : `Gere um único cenário cotidiano simples, em português, para o usuário escrever um diálogo curto em português entre dois personagens nesse cenário, usando ${levelSpec()}.${avoidLine} Responda apenas com o cenário, nada mais.`;
+          const result = await callAI('Gere o tema agora.', instr);
+          writingPrompt = result.trim(); writingText=''; writingFeedback='';
+          state.writingHistory = [...(state.writingHistory||[]), writingPrompt.slice(0,80)].slice(-10);
+          save();
+        } catch(e){ alert('Houve um erro ao gerar o tema, tente novamente.'); }
+        genBtn.disabled = false;
+        render();
+      });
+      const textArea = document.getElementById('ccWritingText');
+      if (textArea) textArea.addEventListener('input', ()=>{ writingText = textArea.value; });
+      bindMic('ccWritingMic','ccWritingText','pt-BR');
+      const correctBtn = document.getElementById('ccWritingCorrect');
+      if (correctBtn) correctBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById('ccWritingFeedback');
+        const text = (textArea.value||'').trim();
+        if (!text){ fb.style.display='block'; fb.textContent='Escreva seu texto primeiro.'; return; }
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+        correctBtn.disabled = true;
+        const kind = writingMode==='topic' ? 'um texto curto' : 'um diálogo entre dois personagens';
+        try {
+          let result, lastErr;
+          for (let i=0;i<3;i++){
+            try {
+              result = await callAI(
+                `Tema ou cenário: ${writingPrompt}. Texto do usuário: ${text}`,
+                `Você é um tutor de português para um estudante que está começando do zero, nível iniciante. O usuário escreveu ${kind} em português sobre o tema ou cenário dado. Primeiro mostre a versão corrigida completa. Depois, citando a frase original exata cada vez, explique exatamente o que estava errado e por quê. Comente a estrutura e a coerência. Máximo cento e cinquenta palavras. Não use travessões nem símbolos incomuns. Responda em português.`
+              );
+              break;
+            } catch(e1){ lastErr = e1; fb.textContent = `Tentando de novo (${i+2}/3)...`; }
+          }
+          if (!result) throw lastErr || new Error('failed');
+          writingFeedback = result;
+          fb.textContent = writingFeedback; fb.className='cc-feedback';
+          bumpSkillStat('writing');
+        } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+        correctBtn.disabled = false;
+      });
+      const newPromptBtn = document.getElementById('ccWritingNewPrompt');
+      if (newPromptBtn) newPromptBtn.addEventListener('click', ()=>{ writingPrompt=''; writingText=''; writingFeedback=''; followupChats.writing=[]; render(); });
+      if (writingFeedback) bindFollowup('writing', ()=>`Prompt: ${writingPrompt}. Feedback given: ${writingFeedback}`);
+    }
+    if (writingMode==='image'){
+      const dd = dayData(selKey);
+      if (dd.pt.storyFeedback) bindFollowup('writing', ()=>`Feedback given: ${dd.pt.storyFeedback}`);
+    }
+  }
+
+  function bindSpeakingCategory(){
+    const selKey = iso(selected);
+    const spinBtn = document.getElementById('ccSpinBtn');
+    if (spinBtn) spinBtn.addEventListener('click', async ()=>{
+      const wheel = document.getElementById('ccWheel');
+      spinBtn.disabled = true;
+      const extraTurns = 4 + Math.floor(Math.random()*2);
+      const finalAngle = Math.floor(Math.random()*360);
+      wheel.style.transform = `rotate(${extraTurns*360 + finalAngle}deg)`;
+      const topic = ROULETTE_TOPICS[Math.floor(Math.random()*ROULETTE_TOPICS.length)];
+      setTimeout(async ()=>{
+        setTextField(selKey,'pt','rouletteTopic', topic);
+        setTextField(selKey,'pt','rouletteOpinion', '');
+        setTextField(selKey,'pt','rouletteFeedback', '');
+        try {
+          const q = await callAI(
+            `Tema: ${topic}`,
+            'Gere uma única pergunta simples em português sobre o tema indicado, apropriada para um estudante que está começando do zero, usando vocabulário e gramática básicos. A pergunta deve poder ser respondida com uma frase simples. Responda apenas com a pergunta, nada mais.'
+          );
+          setTextField(selKey,'pt','rouletteQuestion', q.trim());
+        } catch(e){ setTextField(selKey,'pt','rouletteQuestion',''); }
+        save(); render();
+      }, 2100);
+    });
+    const rouletteOpinion = document.getElementById('ccRouletteOpinion');
+    if (rouletteOpinion){
+      rouletteOpinion.addEventListener('input', ()=>setTextField(selKey,'pt','rouletteOpinion',rouletteOpinion.value));
+      rouletteOpinion.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+    }
+    bindMic('ccRouletteMic','ccRouletteOpinion','pt-BR');
+    const rouletteBtn = document.getElementById('ccRouletteCorrect');
+    if (rouletteBtn) rouletteBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccRouletteFeedback');
+      const text = (rouletteOpinion.value||'').trim();
+      if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escreva sua opinião primeiro.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+      rouletteBtn.disabled = true;
+      try {
+        const currentQuestion = dayData(selKey).pt.rouletteQuestion;
+        let result, lastErr;
+        for (let i=0;i<3;i++){
+          try {
+            result = await callAI(
+              `Question: ${currentQuestion}. User's opinion: ${text}`,
+              'Você é um tutor de português para um estudante que está começando do zero, nível iniciante. O usuário deu sua opinião em português sobre uma pergunta. Primeiro mostre a versão corrigida completa. Depois, citando a frase original exata cada vez, explique exatamente o que estava errado e por quê. Comente se a pergunta foi respondida bem. Máximo cento e vinte palavras. Não use travessões nem símbolos incomuns. Responda em português.'
+            );
+            break;
+          } catch(e1){ lastErr = e1; fb.textContent = `Tentando de novo (${i+2}/3)...`; }
+        }
+        if (!result) throw lastErr || new Error('failed');
+        fb.textContent = result;
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'pt','rouletteFeedback', result); save();
+        bumpSkillStat('speaking');
+      } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+      rouletteBtn.disabled = false;
+    });
+    const dd2 = dayData(selKey);
+    if (dd2.pt.rouletteFeedback) bindFollowup('speaking', ()=>`Question: ${dd2.pt.rouletteQuestion}. Feedback given: ${dd2.pt.rouletteFeedback}`);
+  }
+
+  function bindSongsCategory(){
+    const selKey = iso(selected);
+    const songInput = document.getElementById('ccSong');
+    if (songInput) songInput.addEventListener('input', ()=>setTextField(selKey,'pt','song',songInput.value));
+    const songBtn = document.getElementById('ccSongBtn');
+    if (songBtn) songBtn.addEventListener('click', async ()=>{
+      const result = document.getElementById('ccSongResult');
+      const song = (songInput.value||'').trim();
+      if (!song){ result.innerHTML = '<div class="cc-feedback">Escreva o nome da música primeiro.</div>'; return; }
+      result.innerHTML = '<div class="cc-feedback loading">Procurando vocabulário</div>';
+      songBtn.disabled = true;
+      try {
+        const r = await callAI(
+          `Song: ${song}`,
+          'Você é um tutor de português. O usuário vai aprender uma música para praticar pronúncia e vocabulário. Não reproduza nem cite a letra da música em nenhuma circunstância, nem mesmo trechos curtos, por direitos autorais. Em vez disso, identifique o artista e o estilo se reconhecer, e descreva em geral o tipo de vocabulário e contrações típicas do português falado que costumam aparecer em músicas desse artista ou gênero. Sugira 4 ou 5 expressões de português coloquial para o usuário procurar e identificar por conta própria enquanto ouve. Responda em português, breve, sem travessões nem símbolos incomuns.'
+        );
+        result.innerHTML = `<div class="cc-feedback">${(r||'Não foi possível gerar a prática, tente novamente.').replace(/\n/g,'<br>')}</div>`;
+        setTextField(selKey,'pt','songResult', r); save();
+        bumpSkillStat('songs');
+      } catch(e){ result.innerHTML = '<div class="cc-feedback">Erro: ' + (e.message||'tente novamente') + '.</div>'; }
+      songBtn.disabled = false;
+    });
+    const songWordsText = document.getElementById('ccSongWords');
+    if (songWordsText) songWordsText.addEventListener('input', ()=>setTextField(selKey,'pt','songWords',songWordsText.value));
+    const songWordsBtn = document.getElementById('ccSongWordsBtn');
+    if (songWordsBtn) songWordsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSongWordsResult');
+      const words = (songWordsText.value||'').trim();
+      const song = (songInput.value||'').trim();
+      if (!words){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escreva primeiro as palavras que chamaram sua atenção.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Procurando significados';
+      songWordsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Song: ${song || 'not specified'}. User's words: ${words}`,
+          'Você é um tutor de português. O usuário te dá uma lista de palavras ou frases que chamaram a atenção dele em uma música, e o nome dessa música. Para cada palavra ou frase, responda seguindo EXATAMENTE este formato: **palavra** - significado em português, segundo o contexto provável da música. Exemplo: frase completa em português aqui. Um exemplo real de formato correto: **oi** - cumprimento informal. Exemplo: Oi, tudo bem com você? Não cite nem reproduza a letra original da música em nenhuma circunstância, nem mesmo trechos curtos, por direitos autorais. Responda em uma lista clara, sem preâmbulo nem símbolos incomuns.'
+        );
+        fb.textContent = result || 'Não foi possível gerar a explicação, tente novamente.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'pt','songWordsResult', result); save();
+      } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+      songWordsBtn.disabled = false;
+    });
+    const songLyricsText = document.getElementById('ccSongLyrics');
+    if (songLyricsText) songLyricsText.addEventListener('input', ()=>setTextField(selKey,'pt','songLyrics',songLyricsText.value));
+    const songLyricsBtn = document.getElementById('ccSongLyricsBtn');
+    if (songLyricsBtn) songLyricsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSongLyricsResult');
+      const lyrics = (songLyricsText.value||'').trim();
+      const song = (songInput.value||'').trim();
+      if (!lyrics){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Cole a letra da música primeiro.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Analisando';
+      songLyricsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Song: ${song || 'not specified'}. Lyrics pasted by the user: ${lyrics}`,
+          'Você é um tutor de português para um estudante que está começando do zero, nível iniciante. O usuário colou a letra completa de uma música. Não reproduza nem cite a letra na sua resposta, nem trechos dela, em nenhuma circunstância, por direitos autorais. Identifique de seis a dez palavras ou expressões (gírias, expressões coloquiais, vocabulário um pouco além do básico) que você reconheça como presentes nesse texto e que sejam úteis para esse salto de nível. Responda seguindo EXATAMENTE este formato para cada uma: **palavra ou expressão** - significado em português. Exemplo: frase completa em português aqui. Um exemplo real de formato correto seria: **oi** - cumprimento informal. Exemplo: Oi, tudo bem com você? Responda em uma lista clara, sem preâmbulo nem símbolos incomuns.'
+        );
+        const formatted = (result||'Não foi possível gerar a análise, tente novamente.').replace(/\*\*(.*?)\*\*/g,'<u><b>$1</b></u>').replace(/\n/g,'<br>');
+        fb.innerHTML = formatted;
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'pt','songLyricsResult', formatted); save();
+      } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+      songLyricsBtn.disabled = false;
+    });
+    const dd3 = dayData(selKey);
+    if (dd3.pt.songLyricsResult || dd3.pt.songWordsResult) bindFollowup('songs', ()=>`Song: ${dd3.pt.song}. Feedback given: ${dd3.pt.songLyricsResult||''} ${dd3.pt.songWordsResult||''}`);
+  }
+
+  function bindSeriesCategory(){
+    const selKey = iso(selected);
+    const tmdbSearchBtn = document.getElementById('ccTmdbSearchBtn');
+    if (tmdbSearchBtn) tmdbSearchBtn.addEventListener('click', async ()=>{
+      const query = (document.getElementById('ccTmdbQuery').value||'').trim();
+      const resultsBox = document.getElementById('ccTmdbResults');
+      if (!query){ resultsBox.innerHTML = '<div class="cc-feedback">Escreva um nome primeiro.</div>'; return; }
+      resultsBox.innerHTML = '<div class="cc-feedback loading">Procurando</div>';
+      tmdbSearchBtn.disabled = true;
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${encodeURIComponent(TMDB_KEY)}&query=${encodeURIComponent(query)}&language=pt-BR`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.status_message || 'Invalid key or network error');
+        tmdbResults = (data.results||[]).filter(r=>r.media_type==='tv'||r.media_type==='movie').slice(0,6);
+        if (!tmdbResults.length){ resultsBox.innerHTML = '<div class="cc-feedback">No results found.</div>'; }
+        else {
+          resultsBox.innerHTML = tmdbResults.map((r,i)=>{
+            const title = r.title || r.name;
+            const date = r.release_date || r.first_air_date || '';
+            const year = date ? date.slice(0,4) : '';
+            return `<div class="cc-list-item"><span class="cc-list-front" style="flex:1">${title} ${year?`(${year})`:''} — ${r.media_type==='tv'?'TV Show':'Movie'}</span><button class="cc-extra-btn" data-tmdb="${i}" style="background:var(--pt)">Choose</button></div>`;
+          }).join('');
+          resultsBox.querySelectorAll('[data-tmdb]').forEach(b=>b.addEventListener('click', ()=>{
+            const r = tmdbResults[parseInt(b.dataset.tmdb)];
+            const date = r.release_date || r.first_air_date || '';
+            tmdbSelected = { title: r.title || r.name, overview: r.overview || '', year: date ? date.slice(0,4) : '', type: r.media_type };
+            const epInput = document.getElementById('ccEpisode');
+            if (epInput) { epInput.value = tmdbSelected.title; setTextField(selKey,'pt','episode',tmdbSelected.title); save(); }
+            render();
+          }));
+        }
+      } catch(e){ resultsBox.innerHTML = `<div class="cc-feedback">Error: ${e.message}</div>`; }
+      tmdbSearchBtn.disabled = false;
+    });
+    const episodeInput = document.getElementById('ccEpisode');
+    if (episodeInput) episodeInput.addEventListener('input', ()=>setTextField(selKey,'pt','episode',episodeInput.value));
+    const summaryText = document.getElementById('ccSummaryText');
+    if (summaryText){
+      summaryText.addEventListener('input', ()=>setTextField(selKey,'pt','summary',summaryText.value));
+      summaryText.addEventListener('blur', ()=>{ clearTimeout(saveTimer); save(); });
+    }
+    bindMic('ccSummaryMic','ccSummaryText','pt-BR');
+    const summaryBtn = document.getElementById('ccSummaryCorrect');
+    if (summaryBtn) summaryBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccSummaryFeedback');
+      const text = (summaryText.value||'').trim();
+      if (!text){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escreva seu resumo em português primeiro.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+      summaryBtn.disabled = true;
+      try {
+        const episode = (episodeInput.value||'').trim();
+        const contextLine = tmdbSelected && tmdbSelected.title===episode
+          ? ` Real context confirmed by database: ${tmdbSelected.title} (${tmdbSelected.year}), official synopsis: ${tmdbSelected.overview}. Use this real context to verify if the user's summary is coherent with the real plot, not just the grammar.`
+          : '';
+        const result = await callAI(
+          `Episode or video: ${episode || 'not specified'}.${contextLine} User's summary: ${text}`,
+          'Você é um tutor de português para um estudante que está começando do zero, nível iniciante, cujo foco é perder o medo de falar. O usuário escreveu um resumo em português de um episódio ou vídeo que assistiu. Primeiro mostre o texto corrigido completo. Depois, citando a frase original exata cada vez, explique exatamente o que estava errado, e dê uma ou duas sugestões para soar mais natural, por exemplo com contrações típicas do português falado. Se eu te dei contexto real confirmado, comente também se o resumo coincide com a trama real. Seja breve, máximo cento e cinquenta palavras, sem travessões nem símbolos incomuns. Responda em português.'
+        );
+        fb.textContent = result || 'Não foi possível gerar o feedback, tente novamente.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'pt','summaryFeedback', result); save();
+        bumpSkillStat('series');
+      } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+      summaryBtn.disabled = false;
+    });
+    const episodeWordsText = document.getElementById('ccEpisodeWords');
+    if (episodeWordsText) episodeWordsText.addEventListener('input', ()=>setTextField(selKey,'pt','episodeWords',episodeWordsText.value));
+    const episodeWordsBtn = document.getElementById('ccEpisodeWordsBtn');
+    if (episodeWordsBtn) episodeWordsBtn.addEventListener('click', async ()=>{
+      const fb = document.getElementById('ccEpisodeWordsResult');
+      const words = (episodeWordsText.value||'').trim();
+      const episode = (episodeInput.value||'').trim();
+      if (!words){ fb.style.display='block'; fb.className='cc-feedback'; fb.textContent='Escreva primeiro as palavras que chamaram sua atenção.'; return; }
+      fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Procurando significados';
+      episodeWordsBtn.disabled = true;
+      try {
+        const result = await callAI(
+          `Episode or video: ${episode || 'not specified'}. User's words: ${words}`,
+          'Você é um tutor de português. O usuário te dá uma lista de palavras ou frases que chamaram a atenção dele em um episódio ou vídeo que assistiu, e opcionalmente o nome desse episódio ou vídeo. Para cada palavra ou frase, responda seguindo EXATAMENTE este formato: **palavra** - significado em português, segundo o contexto provável desse conteúdo. Exemplo: frase completa em português aqui. Um exemplo real de formato correto: **oi** - cumprimento informal. Exemplo: Oi, tudo bem com você? Não cite nem reproduza diálogos textuais do episódio. Responda em uma lista clara, sem preâmbulo nem símbolos incomuns.'
+        );
+        fb.textContent = result || 'Não foi possível gerar a explicação, tente novamente.';
+        fb.className = 'cc-feedback';
+        setTextField(selKey,'pt','episodeWordsResult', result); save();
+      } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; }
+      episodeWordsBtn.disabled = false;
+    });
+    const dd4 = dayData(selKey);
+    if (dd4.pt.summaryFeedback || dd4.pt.episodeWordsResult) bindFollowup('series', ()=>`Episode/video: ${dd4.pt.episode}. Feedback given: ${dd4.pt.summaryFeedback||''} ${dd4.pt.episodeWordsResult||''}`);
+  }
+
+  function renderIPA(){
+    if (!ipaQuizWords.length) startIpaQuiz();
+    const vowels = IPA_SOUNDS.filter(s=>s.type==='vowel');
+    const nasals = IPA_SOUNDS.filter(s=>s.type==='nasal');
+    const consonants = IPA_SOUNDS.filter(s=>s.type==='consonant');
+    return `
+      <div class="cc-ipa-hero">
+        <div class="cc-ipa-hero-title">Alfabeto fonético (IPA)</div>
+        <div class="cc-ipa-hero-sub">Toque em qualquer símbolo para ouvir seu som com uma palavra de exemplo</div>
+      </div>
+      <p class="cc-section-title">Vocales</p>
+      <div class="cc-ipa-grid">
+        ${vowels.map(s=>renderIpaCard(s,'var(--blue)')).join('')}
+      </div>
+      <p class="cc-section-title">Vogais nasais (não existem em português falado como consoante, mas o som em si não existe em espanhol)</p>
+      <div class="cc-ipa-grid">
+        ${nasals.map(s=>renderIpaCard(s,'var(--orange)')).join('')}
+      </div>
+      <p class="cc-section-title">Consonantes</p>
+      <div class="cc-ipa-grid">
+        ${consonants.map(s=>renderIpaCard(s,'var(--violet)')).join('')}
+      </div>
+      <p class="cc-section-title">Pratique o ouvido com o IPA</p>
+      <div class="cc-habit" style="border-left-color:var(--pt)">
+        <div class="cc-habit-frac" style="margin-bottom:10px">Puntaje: ${ipaQuizScore}/${ipaQuizTotal}</div>
+        <div class="cc-card-front" style="font-size:24px;margin-bottom:6px">/${ipaQuizTarget}/</div>
+        <div class="cc-card-hint" style="margin-bottom:10px">Qual palavra tem esse som?</div>
+        <button class="cc-extra-btn" id="ccIpaPlay" style="background:var(--pt)">${icon('audio','#fff',14)} Escuchar palabra</button>
+        <div class="cc-grade-row" style="grid-template-columns:1fr 1fr;margin-top:10px">
+          ${ipaQuizWords.map((w,i)=>{
+            let cls='';
+            if (ipaQuizAnswered){ if (w.word===ipaQuizSpoken) cls='good'; else if (i===ipaQuizSelectedIdx) cls='bad'; }
+            return `<button class="cc-grade-btn ${cls}" data-ipaq="${i}" ${ipaQuizAnswered?'disabled':''}>${w.word}</button>`;
+          }).join('')}
+        </div>
+        ${ipaQuizAnswered ? `<button class="cc-extra-btn" id="ccIpaQuizNext" style="background:var(--ink);margin-top:10px">Siguiente</button>` : ''}
+      </div>
+    `;
+  }
+  function renderIpaCard(s, color){
+    return `<button class="cc-ipa-card" style="--ipa-color:${color}" data-ipa="${s.symbol}">
+      <span class="cc-ipa-symbol">/${s.symbol}/</span>
+      <span class="cc-ipa-word">${s.example}</span>
+    </button>`;
+  }
+  const IPA_CONFUSABLES = {
+    'e':['ɛ','ẽ'], 'ɛ':['e'], 'o':['ɔ','õ'], 'ɔ':['o'],
+    'a':['ã'], 'ã':['a'], 'ẽ':['e'], 'i':['ĩ'], 'ĩ':['i'], 'õ':['o'],
+    's':['z'], 'z':['s'], 'ʃ':['ʒ'], 'ʒ':['ʃ'],
+    'h':['ɾ'], 'ɾ':['h'], 't':['tʃ'], 'tʃ':['t'], 'd':['dʒ'], 'dʒ':['d'],
+    'ɲ':['n'], 'n':['ɲ'], 'ʎ':['l'], 'l':['ʎ'],
+  };
+  function startIpaQuiz(){
+    ipaQuizTarget = IPA_SOUNDS[Math.floor(Math.random()*IPA_SOUNDS.length)].symbol;
+    const targetSound = IPA_SOUNDS.find(s=>s.symbol===ipaQuizTarget);
+    const confusableSymbols = IPA_CONFUSABLES[ipaQuizTarget] || [];
+    const confusableSounds = shuffleArr(confusableSymbols.map(sym=>IPA_SOUNDS.find(s=>s.symbol===sym)).filter(Boolean));
+    const sameType = shuffleArr(IPA_SOUNDS.filter(s=>s.symbol!==ipaQuizTarget && s.type===targetSound.type && !confusableSymbols.includes(s.symbol)));
+    const otherType = shuffleArr(IPA_SOUNDS.filter(s=>s.symbol!==ipaQuizTarget && s.type!==targetSound.type && !confusableSymbols.includes(s.symbol)));
+    const distractors = [...confusableSounds, ...sameType, ...otherType].slice(0,3);
+    ipaQuizWords = shuffleArr([targetSound, ...distractors]);
+    ipaQuizSpoken = ''; ipaQuizAnswered = false; ipaQuizSelectedIdx = -1;
+  }
+  function bindIPA(){
+    root.querySelectorAll('[data-ipa]').forEach(b=>b.addEventListener('click', ()=>{
+      const s = IPA_SOUNDS.find(x=>x.symbol===b.dataset.ipa);
+      ipaSelected = s.symbol;
+      speakText(s.example, 'pt-BR');
+    }));
+    const playBtn = document.getElementById('ccIpaPlay');
+    if (playBtn) playBtn.addEventListener('click', ()=>{
+      ipaQuizSpoken = ipaQuizWords.find(w=>w.symbol===ipaQuizTarget).word;
+      speakText(ipaQuizSpoken, 'pt-BR');
+    });
+    root.querySelectorAll('[data-ipaq]').forEach(b=>b.addEventListener('click', ()=>{
+      if (ipaQuizAnswered || !ipaQuizSpoken) return;
+      ipaQuizSelectedIdx = parseInt(b.dataset.ipaq);
+      ipaQuizAnswered = true; ipaQuizTotal++;
+      if (ipaQuizWords[ipaQuizSelectedIdx].word===ipaQuizSpoken){ ipaQuizScore++; playSuccess(); } else playTone(220,0.2);
+      render();
+    }));
+    const nextBtn = document.getElementById('ccIpaQuizNext');
+    if (nextBtn) nextBtn.addEventListener('click', ()=>{ startIpaQuiz(); render(); });
+  }
+  function renderReview(due){
+    if (!due.length) return `<div class="cc-empty">No tienes tarjetas pendientes hoy.<br>Adicione vocabulário novo ou volte amanhã.</div>`;
+    const c = currentCard; const cat = CATS[c.cat] || CATS.other;
+    return `
+      <div class="cc-card" id="ccCardFace">
+        <span class="cc-card-cat" style="background:${cat.color}">${cat.label}</span>
+        <div class="cc-card-front">${c.front}</div>
+        ${!flipped ? `<div class="cc-card-hint">Escreva o que você acha que significa antes de revelar</div>` : ''}
+      </div>
+      ${!flipped ? `
+        <input id="ccReviewGuess" placeholder="Tu intento de significado (opcional)" value="${(reviewGuess||'').replace(/"/g,'&quot;')}" style="margin-top:10px">
+        <button class="cc-extra-btn" id="ccRevealBtn" style="background:var(--ink);margin-top:8px">Revelar respuesta</button>
+      ` : `
+        <div class="cc-feedback" style="margin-top:10px">
+          ${reviewGuess ? `<div><b>Tu intento:</b> ${reviewGuess}</div>` : ''}
+          <div style="margin-top:4px"><b>Respuesta:</b> ${c.back}</div>
+          ${c.example?`<div class="cc-card-example" style="margin-top:4px">${c.example}</div>`:''}
+        </div>
+        <div class="cc-grade-row">
+          <button class="cc-grade-btn bad" data-g="0">No me<br>acordaba</button>
+          <button class="cc-grade-btn mid" data-g="1">Mais ou menos<br>menos</button>
+          <button class="cc-grade-btn good" data-g="2">Lo sabía<br>bien</button>
+        </div>
+      `}
+    `;
+  }
+  function renderAdd(){
+    return `<div class="cc-form">
+      <label>Palavra ou expressão</label>
+      <input id="ccFront" placeholder="Por ejemplo: to bail on someone">
+      <button class="cc-add-btn" id="ccLookupBtn" style="background:var(--pt)">${icon('bulb','#fff',14)} Buscar significado</button>
+      <div class="cc-feedback" id="ccLookupResult" style="display:none"></div>
+      <label>Classe gramatical</label>
+      <select id="ccTipo">${WORD_TYPES.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+      <label>Categoría</label>
+      <select id="ccCat">${Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('')}</select>
+      <label>Significado</label>
+      <input id="ccBack" placeholder="Por ejemplo: dejar plantado, cancelar sin avisar">
+      <label>Exemplo ou contexto</label>
+      <textarea id="ccExample" rows="2" placeholder="Se rellena solo al buscar, o escribe el tuyo"></textarea>
+      <button class="cc-add-btn" id="ccAddBtn">Agregar al mazo</button>
+    </div>`;
+  }
+  let openVocabGroups = {};
+  function renderList(){
+    if (!myCards().length) return `<div class="cc-empty">Você ainda não adicionou cartões.</div>`;
+    const groups = {};
+    myCards().forEach(c=>{
+      const key = c.tipo || 'Sin clasificar';
+      (groups[key] = groups[key] || []).push(c);
+    });
+    const order = [...WORD_TYPES, 'Sin clasificar'].filter(t=>groups[t]);
+    return `<div class="cc-list">
+      ${order.map(type=>{
+        const cards = [...groups[type]].sort((a,b)=>a.next.localeCompare(b.next));
+        const open = !!openVocabGroups[type];
+        return `<div class="cc-acc ${open?'open':''}" data-group="${type}">
+          <div class="cc-acc-head">
+            <span class="cc-acc-dot" style="background:var(--pt)"></span>
+            <span class="cc-acc-title">${type} (${cards.length})</span>
+            <span class="cc-acc-arrow-shape"></span>
+          </div>
+          <div class="cc-acc-body">
+            <div class="cc-list">
+              ${cards.map(c=>{ const cat=CATS[c.cat]||CATS.other; return `<div class="cc-list-item">
+                <span class="cc-list-cat" style="background:${cat.color}">${cat.label}</span>
+                <span class="cc-list-front">${c.front}</span><span class="cc-list-back">${c.back}</span>
+                <span class="cc-list-box">Caja ${c.box}</span><button class="cc-del" data-id="${c.id}">Borrar</button>
+              </div>`; }).join('')}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  function bindVocab(){
+    root.querySelectorAll('.cc-vtab').forEach(b=>b.addEventListener('click',()=>{ vocabTab=b.dataset.vt; render(); }));
+    if (vocabTab==='review'){
+      const guessInput = document.getElementById('ccReviewGuess');
+      if (guessInput) guessInput.addEventListener('input', ()=>{ reviewGuess = guessInput.value; });
+      const revealBtn = document.getElementById('ccRevealBtn');
+      if (revealBtn) revealBtn.addEventListener('click', ()=>{ flipped=true; render(); });
+      root.querySelectorAll('.cc-grade-btn').forEach(b=>b.addEventListener('click',(e)=>{ e.stopPropagation(); grade(currentCard, parseInt(b.dataset.g)); currentCard=null; reviewGuess=''; render(); }));
+    }
+    if (vocabTab==='juego') bindGame();
+    if (vocabTab==='add'){
+      const lookupBtn = document.getElementById('ccLookupBtn');
+      if (lookupBtn) lookupBtn.addEventListener('click', async ()=>{
+        const front = document.getElementById('ccFront').value.trim();
+        const resultBox = document.getElementById('ccLookupResult');
+        if (!front){ resultBox.style.display='block'; resultBox.textContent='Escreva a palavra ou expressão primeiro.'; return; }
+        resultBox.style.display='block'; resultBox.className='cc-feedback loading'; resultBox.textContent='Procurando no dicionário e pedindo a opinião da IA';
+        lookupBtn.disabled = true;
+        try {
+          const { dictMeanings, aiResult } = await lookupWord(front);
+          const uses = parseAiLookup(aiResult);
+          lastLookupUses = uses;
+          resultBox.className = 'cc-feedback';
+          const dictHtml = dictMeanings.length
+            ? `<b>Diccionario:</b><br>${dictMeanings.map(m=>`(${m.partOfSpeech}) ${m.definition}`).join('<br>')}`
+            : `<b>Diccionario:</b> no la encontró (la Free Dictionary API es limitada para portugués, así que la IA es la fuente principal aquí).`;
+          const usesHtml = uses.map((u,i)=>`
+            <div class="cc-list-item" style="margin-top:6px">
+              <span class="cc-list-front" style="flex:1"><b>${u.tipo}:</b> ${u.significado}<br><i style="color:var(--ink-soft)">${u.ejemplo}</i></span>
+              <button class="cc-extra-btn" data-uselookup="${i}" style="background:var(--pt)">Usar</button>
+            </div>
+          `).join('');
+          resultBox.innerHTML = `${dictHtml}<div style="margin-top:8px"><b>Usos segundo a IA:</b></div>${usesHtml}`;
+          if (uses.length===1){
+            applyLookupUse(uses[0]);
+          }
+          bindLookupUseButtons();
+        } catch(e){ resultBox.className='cc-feedback'; resultBox.textContent='Houve um erro na busca, você pode escrever o significado você mesmo.'; }
+        lookupBtn.disabled = false;
+      });
+      const btn = document.getElementById('ccAddBtn');
+      if (btn) btn.addEventListener('click', ()=>{
+        const front=document.getElementById('ccFront').value.trim();
+        const back=document.getElementById('ccBack').value.trim();
+        const example=document.getElementById('ccExample').value.trim();
+        const cat=document.getElementById('ccCat').value;
+        const tipo=document.getElementById('ccTipo').value;
+        if (!front||!back) return;
+        addCard(front,back,example,cat,tipo); render();
+        setTimeout(()=>{ const f=document.getElementById('ccFront'); if(f) f.focus(); },0);
+      });
+    }
+    if (vocabTab==='list'){
+      root.querySelectorAll('.cc-del').forEach(b=>b.addEventListener('click',()=>{ deleteCard(b.dataset.id); render(); }));
+      root.querySelectorAll('.cc-acc-head').forEach(h=>h.addEventListener('click',()=>{
+        const key = h.parentElement.dataset.group;
+        openVocabGroups[key] = !openVocabGroups[key];
+        render();
+      }));
+    }
+    if (vocabTab==='analisis'){
+      const genBtn = document.getElementById('ccVocabAnalysisBtn');
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        const box = document.getElementById('ccVocabAnalysisResult');
+        box.style.display='block';
+        if (myCards().length < 8){
+          box.className = 'cc-feedback';
+          box.textContent = `Você ainda tem poucas palavras (${myCards().length}) para que uma análise diga algo real. Adicione pelo menos 8 e volte aqui, assim o padrão que eu te der será baseado em dados reais, não inventado.`;
+          return;
+        }
+        box.className='cc-feedback loading'; box.textContent='Analisando seu vocabulário';
+        genBtn.disabled = true;
+        try {
+          const total = myCards().length;
+          const mastered = myCards().filter(c=>c.box>=6).length;
+          const struggling = myCards().filter(c=>c.lastReview && c.box<=2).map(c=>c.front);
+          const byType = {};
+          myCards().forEach(c=>{ const t=c.tipo||'Não classificado'; byType[t]=(byType[t]||0)+1; });
+          const typeSummary = Object.entries(byType).map(([t,n])=>`${t}: ${n}`).join(', ');
+          const context = `Total de palabras: ${total}. Dominadas (caja 6 o más): ${mastered}. Por tipo: ${typeSummary}. Palabras con las que ha costado más (caja baja después de repasar): ${struggling.length?struggling.join(', '):'ninguna detectada todavía'}.`;
+          const result = await callAI(
+            context,
+            'Você é um tutor de português que analisa o vocabulário salvo por um estudante que está começando do zero, nível iniciante. Com base apenas nos dados exatos que eu te dou, dê uma análise honesta de três a cinco frases. Não invente palavras, categorias, erros nem padrões que não estejam nos dados que te dei. Se a informação for limitada, diga isso com honestidade. Interprete apenas o que os números reais permitem interpretar, e dê uma recomendação concreta e realista para a próxima semana. Não use travessões nem símbolos incomuns. Responda em português.'
+          );
+          box.textContent = result || 'Não foi possível gerar a análise, tente novamente.';
+          box.className = 'cc-feedback';
+        } catch(e){ box.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; box.className='cc-feedback'; }
+        genBtn.disabled = false;
+      });
+    }
+  }
+
+  function renderGuia(){
+    return GUIDE.map(g=>`
+      <div class="cc-acc ${openAcc===g.id?'open':''}" data-acc="${g.id}">
+        <div class="cc-acc-head">
+          <span class="cc-acc-dot" style="background:${g.color}"></span>
+          <span class="cc-acc-title">${g.name}</span>
+          <span class="cc-acc-arrow-shape"></span>
+        </div>
+        <div class="cc-acc-body">${g.body}</div>
+      </div>
+    `).join('');
+  }
+  function bindGuia(){
+    root.querySelectorAll('.cc-acc-head').forEach(h=>h.addEventListener('click',()=>{
+      const id = h.parentElement.dataset.acc;
+      openAcc = openAcc===id ? null : id;
+      render();
+    }));
+  }
+
+  function renderAjustes(){
+    const uiLang = (state.settings && state.settings.uiLang) || 'pt';
+    return `
+      <p class="cc-section-title">${t('idiomaInterfaz')}</p>
+      <div class="cc-habit">
+        <div class="cc-vocab-tabs">
+          <button class="cc-vtab ${uiLang==='es'?'active':''}" data-uilang="es">Español</button>
+          <button class="cc-vtab ${uiLang==='pt'?'active':''}" data-uilang="pt">Português</button>
+        </div>
+        <div class="cc-feedback" style="margin-top:8px">Muda os nomes das abas e botões principais.</div>
+      </div>
+      <p class="cc-section-title">Apariencia</p>
+      <div class="cc-habit">
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.dark?'on':''}" style="--habit-color:var(--violet)" id="ccToggleDark"></button>
+          <div class="cc-sub-text">Modo oscuro<span class="cc-sub-hint">Muda o fundo e os tons de superfície, as cores vivas permanecem</span></div>
+        </div>
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.sound?'on':''}" style="--habit-color:var(--violet)" id="ccToggleSound"></button>
+          <div class="cc-sub-text">Efeitos sonoros<span class="cc-sub-hint">Um clique suave ao marcar, um som diferente ao completar o dia</span></div>
+        </div>
+        <div class="cc-sub-row">
+          <button class="cc-check ${state.settings.music?'on':''}" style="--habit-color:var(--violet)" id="ccToggleMusic"></button>
+          <div class="cc-sub-text">Música de fundo enquanto você trabalha<span class="cc-sub-hint">Un ambiente suave y relajante generado en el momento, sin depender de ninguna pista con derechos de autor</span></div>
+        </div>
+      </div>
+      <p class="cc-section-title">Cuenta</p>
+      <div class="cc-habit">
+        <button class="cc-extra-btn" id="ccChangeKeyBtn" style="background:var(--ink)">${t('cambiarClave')}</button>
+        <button class="cc-extra-btn" id="ccResetBtn" style="background:var(--pink);margin-left:8px">${t('reiniciarDatos')}</button>
+      </div>
+      <p class="cc-section-title">TMDB (opcional, para Séries e Filmes)</p>
+      <div class="cc-habit">
+        <div class="cc-feedback" style="margin-bottom:8px">Pega tu clave de TMDB para que puedas buscar series y películas reales. Se guarda solo en este navegador, nunca en el archivo. Consíguela gratis en themoviedb.org, en tu perfil, apartado API.</div>
+        <input id="ccTmdbKeyInput" placeholder="Tu clave de TMDB" value="${TMDB_KEY}">
+        <button class="cc-extra-btn" id="ccTmdbKeySave" style="background:var(--pt)">Salvar chave do TMDB</button>
+      </div>
+    `;
+  }
+  function bindAjustes(){
+    root.querySelectorAll('[data-uilang]').forEach(b=>b.addEventListener('click', ()=>{
+      state.settings.uiLang = b.dataset.uilang; save(); render();
+    }));
+    const darkBtn = document.getElementById('ccToggleDark');
+    if (darkBtn) darkBtn.addEventListener('click', ()=>{
+      state.settings.dark = !state.settings.dark; save(); render();
+    });
+    const soundBtn = document.getElementById('ccToggleSound');
+    if (soundBtn) soundBtn.addEventListener('click', ()=>{
+      state.settings.sound = !state.settings.sound; save();
+      if (state.settings.sound) playClick();
+      render();
+    });
+    const musicBtn = document.getElementById('ccToggleMusic');
+    if (musicBtn) musicBtn.addEventListener('click', ()=>{
+      state.settings.music = !state.settings.music; save();
+      if (state.settings.music) startAmbient(); else stopAmbient();
+      render();
+    });
+    const changeKeyBtn = document.getElementById('ccChangeKeyBtn');
+    if (changeKeyBtn) changeKeyBtn.addEventListener('click', ()=>{
+      if (confirm('¿Quieres reemplazar la clave de API guardada?')) {
+        try { localStorage.removeItem(KEY_STORAGE); } catch(e){}
+        OR_KEY = '';
+        renderSetup();
+      }
+    });
+    const tmdbSaveBtn = document.getElementById('ccTmdbKeySave');
+    if (tmdbSaveBtn) tmdbSaveBtn.addEventListener('click', ()=>{
+      const val = document.getElementById('ccTmdbKeyInput').value.trim();
+      TMDB_KEY = val;
+      try { if (val) localStorage.setItem(TMDB_KEY_STORAGE, val); else localStorage.removeItem(TMDB_KEY_STORAGE); } catch(e){}
+      alert(val ? 'Clave de TMDB guardada.' : 'Clave de TMDB borrada.');
+    });
+    const resetBtn = document.getElementById('ccResetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', async ()=>{
+      if (confirm('¿Borrar todo el progreso, hábitos y vocabulario? No se puede deshacer.')) {
+        const keepSettings = state.settings;
+        state = { days:{}, cards:[], checkins:[], adjustments:[], evalDraft:{en:emptyEvalDraft(),pt:emptyEvalDraft()}, evalHistory:[], readingHistory:[], settings:keepSettings };
+        await save(); render();
+      }
+    });
+  }
+
+  function renderEvalCard(lang, dayIndex){
+    const topic = currentTopic(lang, dayIndex);
+    const draft = state.evalDraft[lang];
+    const label = 'Português';
+    const color = 'var(--pt)';
+    return `<div class="cc-habit">
+      <div class="cc-habit-head">
+        <span class="cc-habit-icon" style="background:${color}">${icon(lang,'#fff')}</span>
+        <span class="cc-habit-name">Avaliação de ${label}: fala e escrita</span>
+      </div>
+      <div style="font-size:13px;margin-bottom:8px"><b>Tema destes quinze dias:</b> ${topic}</div>
+      <label style="font-size:11px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:4px">Prepare o que você diria, em português</label>
+      <textarea id="ccEvalNotes-${lang}" rows="3" placeholder="Escreva suas notas ou roteiro aqui">${draft.notes||''}</textarea>
+      ${micButtonHtml('ccEvalNotesMic-'+lang, 'Fale em português')}
+      <button class="cc-extra-btn" id="ccEvalGen-${lang}" style="background:${color}">${icon('bulb','#fff',14)} Gerar perguntas</button>
+      ${draft.quiz && draft.quiz.length ? `<div class="cc-extra">
+        ${draft.quiz.map((q,i)=>`<label>${q}</label><textarea id="ccEvalAns-${lang}-${i}" rows="2">${draft.answers[i]||''}</textarea>${micButtonHtml('ccEvalAnsMic-'+lang+'-'+i, 'Fale em português')}`).join('')}
+        <button class="cc-extra-btn" id="ccEvalGrade-${lang}" style="background:var(--ink)">${icon('target','#fff',14)} Corrigir e avaliar</button>
+        <div class="cc-feedback" id="ccEvalFeedback-${lang}" style="display:none"></div>
+      </div>` : ''}
+    </div>`;
+  }
+  function renderCompCard(lang, type, dayIndex){
+    const topic = currentTopic(lang, dayIndex);
+    const comp = state.evalDraft[lang][type];
+    const label = 'Português';
+    const skillLabel = type==='reading' ? 'Leitura' : 'Compreensão auditiva';
+    const color = 'var(--pt)';
+    const hasPassage = !!comp.passage;
+    const graded = comp.graded;
+    return `<div class="cc-habit">
+      <div class="cc-habit-head">
+        <span class="cc-habit-icon" style="background:${color}">${icon(type==='reading'?'book':'audio','#fff')}</span>
+        <span class="cc-habit-name">Avaliação de ${label}: ${skillLabel}</span>
+      </div>
+      <div style="font-size:13px;margin-bottom:8px"><b>Tema destes quinze dias:</b> ${topic}</div>
+      ${!hasPassage ? `<button class="cc-extra-btn" id="ccCompGen-${lang}-${type}" style="background:${color}">${icon('bulb','#fff',14)} Gerar ${type==='reading'?'texto':'áudio'}</button>` : `
+        ${type==='reading' ? `<div class="cc-feedback" style="margin-bottom:10px">${comp.passage}</div>` : `
+          <button class="cc-extra-btn" id="ccCompPlay-${lang}" style="background:${color}">${icon('audio','#fff',14)} Reproduzir áudio</button>
+          ${graded ? `<div class="cc-feedback" style="margin:10px 0">${comp.passage}</div>` : ''}
+        `}
+        <div class="cc-extra">
+          ${comp.questions.map((q,i)=>`<label>${q}</label><textarea id="ccCompAns-${lang}-${type}-${i}" rows="2">${comp.answers[i]||''}</textarea>`).join('')}
+          <button class="cc-extra-btn" id="ccCompGrade-${lang}-${type}" style="background:var(--ink)">${icon('target','#fff',14)} Corrigir e avaliar</button>
+          <div class="cc-feedback" id="ccCompFeedback-${lang}-${type}" style="display:none"></div>
+        </div>
+      `}
+    </div>`;
+  }
+  function evalDateForPeriod(periodIndex){
+    const day = Math.min(DATES.length-1, periodIndex*15+14);
+    return DATES[day];
+  }
+  function isEvalDay(date){
+    const idx = Math.ceil((date-START)/86400000)+1;
+    return idx % 15 === 0;
+  }
+  function renderEvalCalendar(){
+    const totalPeriods = Math.ceil(DATES.length/15);
+    const currentPeriod = Math.floor((dayIndexNow()-1)/15);
+    const today = new Date();
+    const fmt = d => capFirst(d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'}));
+    const rows = [];
+    for (let p=0; p<totalPeriods; p++){
+      const d = evalDateForPeriod(p);
+      const isPast = d < today && !sameDay(d,today);
+      const isNext = p===currentPeriod;
+      rows.push(`<div class="cc-list-item" style="${isNext?'border:1.5px solid var(--orange)':''}">
+        <span class="cc-list-box" style="flex:none;width:150px;${isPast?'text-decoration:line-through':''}">${fmt(d)}</span>
+        <span class="cc-list-front" style="flex:1">${PT_TOPICS[p % PT_TOPICS.length]}</span>
+      </div>`);
+    }
+    const nextDate = evalDateForPeriod(currentPeriod);
+    const daysToNext = Math.max(0, Math.ceil((nextDate-today)/86400000));
+    return `<p class="cc-section-title">Calendário de avaliações</p>
+      <div class="cc-feedback" style="margin-bottom:10px"><b>Sua próxima avaliação é em ${fmt(nextDate)}</b>, em ${daysToNext} dia${daysToNext===1?'':'s'}. É um dia fixo, não uma janela aberta: nesse dia você precisa demonstrar as quatro habilidades. O tema pode ser ajustado se você falar sobre isso na Revisão Semanal, mas a data não muda.</div>
+      <div class="cc-list">${rows.join('')}</div>`;
+  }
+  function renderEval(){
+    const dayIndex = dayIndexNow();
+    const currentPeriod = Math.floor((dayIndex-1)/15);
+    const nextDate = evalDateForPeriod(currentPeriod);
+    const today = new Date();
+    const daysToNext = Math.max(0, Math.ceil((nextDate-today)/86400000));
+    const fmtFull = d => capFirst(d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'}));
+    const sorted = [...state.evalHistory].sort((a,b)=>b.date.localeCompare(a.date));
+    return `
+      <div class="cc-eval-banner" style="cursor:default;margin-bottom:16px">${icon('target','#fff',16)} Sua próxima avaliação é em ${fmtFull(nextDate)}, em ${daysToNext} dia${daysToNext===1?'':'s'}. Data fixa, não é uma janela aberta.</div>
+      <div class="cc-feedback" style="margin-bottom:16px">Estas avaliações são baseadas no que você escreve, não em áudio ou vídeo: não posso processar uma gravação diretamente. Você pode usar o botão de ditado para falar em vez de digitar, e o texto é transcrito automaticamente para eu revisar.</div>
+      ${renderEvalCard('pt', dayIndex)}
+      ${renderCompCard('pt','reading', dayIndex)}
+      ${renderCompCard('pt','listening', dayIndex)}
+      <p class="cc-section-title">Histórico de notas</p>
+      ${sorted.length===0 ? '<div class="cc-empty">Você ainda não tem avaliações corrigidas.</div>' :
+        sorted.map(e=>`<div class="cc-list-item">
+          <span class="cc-list-cat" style="background:#16C172">Português</span>
+          <span class="cc-list-front" style="flex:2">${e.topic}</span>
+          <span class="cc-list-box">${e.score}/100</span>
+        </div>`).join('')
+      }
+      ${renderEvalCalendar()}
+    `;
+  }
+  function bindEval(){
+    ['pt'].forEach(lang=>{
+      const draft = state.evalDraft[lang];
+      const notes = document.getElementById(`ccEvalNotes-${lang}`);
+      if (notes) notes.addEventListener('input', ()=>{ draft.notes = notes.value; saveDebounced(); });
+      bindMic('ccEvalNotesMic-'+lang, `ccEvalNotes-${lang}`, 'pt-BR');
+      const genBtn = document.getElementById(`ccEvalGen-${lang}`);
+      if (genBtn) genBtn.addEventListener('click', async ()=>{
+        const topic = currentTopic(lang, dayIndexNow());
+        const notesVal = (notes.value||'').trim();
+        genBtn.disabled = true;
+        try {
+          const result = await callAI(
+            `Topic: ${topic}. User's notes: ${notesVal || 'no notes yet'}`,
+            `Generate exactly three short follow-up questions in Portuguese, related to the topic and to the user's notes if they exist, to evaluate their ability to speak about the topic. Respond only with the three questions, each on a new line, numbered one to three, no preamble or additional text.`
+          );
+          const qs = result.split('\n').map(l=>l.trim()).filter(Boolean).slice(0,3);
+          draft.quiz = qs;
+          draft.answers = qs.map(()=>'');
+          save(); render();
+        } catch(e){ alert('Houve um erro ao gerar as perguntas, tente novamente.'); }
+        genBtn.disabled = false;
+      });
+      (draft.quiz||[]).forEach((q,i)=>{
+        const ans = document.getElementById(`ccEvalAns-${lang}-${i}`);
+        if (ans) ans.addEventListener('input', ()=>{ draft.answers[i]=ans.value; saveDebounced(); });
+        bindMic('ccEvalAnsMic-'+lang+'-'+i, `ccEvalAns-${lang}-${i}`, 'pt-BR');
+      });
+      const gradeBtn = document.getElementById(`ccEvalGrade-${lang}`);
+      if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+        const fb = document.getElementById(`ccEvalFeedback-${lang}`);
+        fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+        gradeBtn.disabled = true;
+        try {
+          const topic = currentTopic(lang, dayIndexNow());
+          const qa = draft.quiz.map((q,i)=>`Question: ${q} Answer: ${draft.answers[i]||'no answer'}`).join(' ');
+          const result = await callAI(
+            `Topic: ${topic}. Previous notes: ${draft.notes||'none'}. ${qa}`,
+            `Você é um avaliador de português para um estudante que está começando do zero, nível iniciante. Corrija a gramática e o vocabulário das respostas de forma compreensiva, e avalie a coerência com o tema, levando em conta que ele está apenas começando com o idioma. Dê uma pontuação geral sobre cem na primeira linha com o formato Pontuação: número. Na segunda linha dê três subpontuações sobre cem separadas por vírgula com o formato Gramática: número, Vocabulário: número, Fluência: número. Depois explique brevemente os acertos e os erros principais, citando a frase original exata cada vez, com a versão corrigida de pelo menos uma frase com erro, e uma sugestão concreta do que praticar na próxima quinzena. Máximo cento e oitenta palavras. Não use travessões nem símbolos incomuns. Responda em português.`
+          );
+          const scoreMatch = result.match(/(?:Calificaci[oó]n|Pontua[cç][aã]o|Score):\s*(\d{1,3})/i);
+          const score = scoreMatch ? parseInt(scoreMatch[1]) : '-';
+          fb.textContent = result;
+          fb.className = 'cc-feedback';
+          state.evalHistory.push({ date: todayISO(), lang, topic, score, feedback: result });
+          state.evalDraft[lang] = Object.assign(emptyEvalDraft(), { reading: draft.reading, listening: draft.listening });
+          save();
+          setTimeout(render, 1400);
+        } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; gradeBtn.disabled=false; }
+      });
+    });
+    bindComp();
+  }
+
+  function bindComp(){
+    ['pt'].forEach(lang=>{
+      ['reading','listening'].forEach(type=>{
+        const comp = state.evalDraft[lang][type];
+        const genBtn = document.getElementById(`ccCompGen-${lang}-${type}`);
+        if (genBtn) genBtn.addEventListener('click', async ()=>{
+          genBtn.disabled = true;
+          try {
+            const topic = currentTopic(lang, dayIndexNow());
+            const result = await callAI(
+              `Topic: ${topic}`,
+              `Write a short text in Portuguese of seventy to one hundred words, appropriate for a beginner level student starting from zero, with simple sentences, about the given topic. Then write exactly three comprehension questions about that text, in Portuguese, numbered one to three. Respond with this exact format and nothing else: TEXT: the text here QUESTIONS: 1) first question 2) second question 3) third question`
+            );
+            const parts = result.split(/PREGUNTAS:|PERGUNTAS:|QUESTIONS:/i);
+            const passage = (parts[0]||'').replace(/TEXTO:|TEXT:/i,'').trim();
+            const qBlock = parts[1] || '';
+            const questions = qBlock.split(/\d\)/).map(s=>s.trim()).filter(Boolean).slice(0,3);
+            comp.passage = passage;
+            comp.questions = questions.length ? questions : ['Pergunta 1','Pergunta 2','Pergunta 3'];
+            comp.answers = comp.questions.map(()=>'');
+            comp.graded = false;
+            save(); render();
+          } catch(e){ alert('Houve um erro ao gerar o conteúdo, tente novamente.'); genBtn.disabled=false; }
+        });
+        const playBtn = document.getElementById(`ccCompPlay-${lang}`);
+        if (playBtn && type==='listening') playBtn.addEventListener('click', ()=>{
+          speakText(comp.passage, 'pt-BR');
+        });
+        comp.questions.forEach((q,i)=>{
+          const ans = document.getElementById(`ccCompAns-${lang}-${type}-${i}`);
+          if (ans) ans.addEventListener('input', ()=>{ comp.answers[i]=ans.value; saveDebounced(); });
+        });
+        const gradeBtn = document.getElementById(`ccCompGrade-${lang}-${type}`);
+        if (gradeBtn) gradeBtn.addEventListener('click', async ()=>{
+          const fb = document.getElementById(`ccCompFeedback-${lang}-${type}`);
+          fb.style.display='block'; fb.className='cc-feedback loading'; fb.textContent='Corrigindo';
+          gradeBtn.disabled = true;
+          try {
+            const qa = comp.questions.map((q,i)=>`Question: ${q} Answer: ${comp.answers[i]||'no answer'}`).join(' ');
+            const result = await callAI(
+              `Original text: ${comp.passage}. ${qa}`,
+              `Você é um avaliador de compreensão de ${type==='reading'?'leitura':'escuta'}. Compare as respostas do usuário com o texto original e determine se estão corretas. Dê uma pontuação sobre cem na primeira linha com o formato Pontuação: número. Depois, para cada resposta, cite a parte específica do texto relevante e explique exatamente o que estava certo ou errado. Máximo cem palavras. Não use travessões nem símbolos incomuns. Responda em português.`
+            );
+            const scoreMatch = result.match(/(?:Calificaci[oó]n|Pontua[cç][aã]o|Score):\s*(\d{1,3})/i);
+            const score = scoreMatch ? parseInt(scoreMatch[1]) : '-';
+            fb.textContent = result;
+            fb.className = 'cc-feedback';
+            comp.graded = true;
+            const topic = currentTopic(lang, dayIndexNow());
+            state.evalHistory.push({ date: todayISO(), lang, topic: `${type==='reading'?'Leitura':'Compreensão auditiva'}: ${topic}`, score, feedback: result });
+            save();
+            setTimeout(render, 1400);
+          } catch(e){ fb.textContent = 'Erro: ' + (e.message||'tente novamente') + '.'; fb.className='cc-feedback'; gradeBtn.disabled=false; }
+        });
+      });
+    });
+  }
+
+  function renderSetup(){
+    root.innerHTML = `
+      <div class="cc-header">
+        <div class="cc-brand">
+          <span class="cc-logo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0V4z"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <path d="M12 17v3"/>
+            </svg>
+          </span>
+          <div><p class="cc-title">Speak Up</p><p class="cc-sub">Português, edición DeepSeek R1</p></div>
+        </div>
+      </div>
+      <div class="cc-form">
+        <label>Cole sua chave de API da OpenRouter (começa com sk-or-v1-...)</label>
+        <input id="ccKeyInput" type="password" placeholder="sk-or-v1-...">
+        <button class="cc-add-btn" id="ccKeySave">Guardar y continuar</button>
+        <div class="cc-feedback">La consigues gratis en openrouter.ai/keys (inicia sesión con Google, clic en Create Key, no pide tarjeta). Esta clave se guarda solo en tu navegador (localStorage) y se usa únicamente para hablar directo con la API de OpenRouter. Nunca se envía a ningún otro lado. Si abres la app en otro navegador o computadora, tendrás que pegarla de nuevo ahí.</div>
+        <div class="cc-feedback">Nota sobre o modelo: usa o roteador automático de modelos gratuitos da OpenRouter (openrouter/free), que sempre escolhe um modelo disponível naquele momento (DeepSeek R1, Llama, Qwen, etc.) sem quebrar se algum deixar de estar disponível.</div>
+        <div class="cc-feedback">Aviso: se você usa o ditado por voz e abre este arquivo com duplo clique (protocolo file://), é possível que o navegador bloqueie o microfone por segurança. A leitura em voz alta (escuta) não tem esse problema.</div>
+      </div>
+    `;
+    document.getElementById('ccKeySave').addEventListener('click', ()=>{
+      let val = (document.getElementById('ccKeyInput').value||'');
+      val = val.replace(/[\r\n\t]/g,'').replace(/\s+/g,'').trim();
+      val = val.replace(/^bearer\s*/i,'');
+      if (!val){ alert('Pega tu clave antes de continuar.'); return; }
+      if (!val.startsWith('sk-or-')){ alert('Esa clave no parece de OpenRouter (debería empezar con sk-or-). Revísala e intenta de nuevo.'); return; }
+      OR_KEY = val;
+      try { localStorage.setItem(KEY_STORAGE, val); } catch(e){}
+      init();
+    });
+  }
+
+  async function init(){
+    if (!OR_KEY){
+      try { OR_KEY = localStorage.getItem(KEY_STORAGE) || ''; } catch(e){}
+    }
+    try { TMDB_KEY = localStorage.getItem(TMDB_KEY_STORAGE) || ''; } catch(e){}
+    if (!OR_KEY){ renderSetup(); return; }
+    await load();
+    render();
+  }
+  init();
+})();
+</script>
+
+</body>
+</html>
