@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cimientos — hábitos diarios</title>
+<style>
+  :root{
+    --accent:#6d5ce8; --accent-2:#5641d6; --accent-bg:#f1eefe;
+    --ink:#20232c; --ink-soft:#63697a; --line:#e6e7f0; --page:#f7f7fb; --card:#ffffff;
+    --good:#1f8a4c; --danger:#dc2626;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--page);color:var(--ink);}
+  #app{max-width:640px;margin:0 auto;padding:22px 16px 70px;}
+  h1,h2,h3{margin:0 0 4px;}
+  .muted{color:var(--ink-soft);}
+  .row{display:flex;align-items:center;gap:10px;}
+  .row.wrap{flex-wrap:wrap;}
+  .spacer{flex:1;}
+  button{font:inherit;cursor:pointer;border:none;border-radius:10px;padding:9px 15px;background:var(--accent);color:#fff;transition:transform .05s ease;}
+  button:active{transform:scale(.96);}
+  button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  button.ghost{background:transparent;color:var(--accent);padding:6px 10px;}
+  button.danger{background:var(--danger);}
+  button.small{padding:6px 10px;font-size:13px;border-radius:8px;}
+  input[type=text]{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;width:100%;background:#fff;color:var(--ink);}
+  .topbar{display:flex;align-items:center;margin-bottom:6px;}
+  .brand{font-weight:800;font-size:20px;letter-spacing:-.02em;}
+  .datepill{font-size:13px;color:var(--ink-soft);text-transform:capitalize;}
+  .banner{background:#fff7e6;border:1px solid #f3d38a;color:#7a5b06;padding:10px 14px;border-radius:12px;font-size:13px;margin:14px 0;}
+  .banner.info{background:var(--accent-bg);border-color:#cfc6f7;color:var(--accent-2);}
+  .hero{text-align:center;margin:18px 0 22px;}
+  .hero .ring{width:118px;height:118px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;position:relative;}
+  .hero .ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+  .hero .ring .num{font-size:28px;font-weight:800;}
+  .hero .sub{font-size:14px;color:var(--ink-soft);}
+  .habit-list{display:flex;flex-direction:column;gap:10px;}
+  .habit-row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;}
+  .habit-row .emoji{font-size:26px;width:34px;text-align:center;}
+  .habit-row .info{flex:1;min-width:0;}
+  .habit-row .name{font-weight:700;font-size:16px;}
+  .habit-row .streak{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .habit-row .streak b{color:var(--ink);}
+  .check-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:20px;color:transparent;transition:all .15s ease;}
+  .check-btn.done{background:var(--good);border-color:var(--good);color:#fff;}
+  .check-btn:active{transform:scale(.9);}
+  .habit-edit-btn{background:transparent;color:#c7cad6;padding:4px 6px;font-size:15px;}
+  .section-title{margin:26px 0 10px;font-size:14px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;}
+  .heatmap{display:flex;flex-wrap:wrap;gap:4px;}
+  .heatmap .cell{width:13px;height:13px;border-radius:3px;background:#e9ebf1;cursor:pointer;}
+  .heatmap .cell.today{outline:2px solid var(--accent);outline-offset:1px;}
+  .legend{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-soft);margin-top:8px;}
+  .legend .cell{width:11px;height:11px;border-radius:2px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;}
+  .field{margin-bottom:12px;}
+  .field label{display:block;font-size:13px;font-weight:650;margin-bottom:5px;color:var(--ink-soft);}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(20,20,30,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px;}
+  .modal{background:#fff;border-radius:16px;padding:22px;max-width:420px;width:100%;max-height:88vh;overflow:auto;}
+  .modal h2{text-transform:capitalize;}
+  .modal-habit-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .modal-habit-row:last-child{border-bottom:none;}
+  .emoji-input{width:56px;text-align:center;}
+  .habit-config-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);}
+  .habit-config-row:last-child{border-bottom:none;}
+  .autosave-status{font-size:12.5px;display:flex;align-items:center;gap:6px;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .dot.ok{background:var(--good);} .dot.bad{background:var(--danger);}
+  .empty-state{text-align:center;padding:40px 20px;color:var(--ink-soft);}
+  footer.appfoot{margin-top:36px;text-align:center;font-size:12px;color:#b3b6c2;}
+  .celebrate{text-align:center;font-size:14px;font-weight:700;color:var(--good);margin-top:8px;}
+  .mini-progress{height:6px;background:#eceef4;border-radius:99px;overflow:hidden;margin-top:7px;}
+  .mini-progress .fill{height:100%;background:var(--accent);border-radius:99px;transition:width .2s ease;}
+  .next-goal{font-size:11.5px;color:var(--ink-soft);margin-top:3px;}
+  .trophy-badge{background:#fff6e0;color:#946200;border:1px solid #f3d38a;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap;}
+  .trophy-badge:hover{background:#fdedc4;}
+  .achv-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .achv-chip{border-radius:12px;padding:10px 8px;text-align:center;min-width:64px;border:1px solid var(--line);}
+  .achv-chip.unlocked{background:#fff6e0;border-color:#f3d38a;}
+  .achv-chip .ic{font-size:20px;}
+  .achv-chip .lbl{font-size:11px;font-weight:700;margin-top:2px;}
+  .achv-chip.locked{opacity:.45;}
+  .celebrate-modal{text-align:center;}
+  .celebrate-modal .big-emoji{font-size:56px;margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ============================= DATOS POR DEFECTO ============================= */
+const DEFAULT_HABITS = [
+  {id:'ingles',    name:'Inglés',      emoji:'🇬🇧', color:'#2563eb'},
+  {id:'portugues', name:'Portugués',   emoji:'🇧🇷', color:'#059669'},
+  {id:'meditacion',name:'Meditación',  emoji:'🧘',  color:'#7c3aed'},
+  {id:'ajedrez',   name:'Ajedrez',     emoji:'♟️',  color:'#334155'},
+  {id:'ejercicio', name:'Ejercicio',   emoji:'🏋️', color:'#ea580c'},
+];
+const COLOR_ROTATION = ['#2563eb','#059669','#7c3aed','#334155','#ea580c','#db2777','#0891b2','#65a30d'];
+
+/* Metas de racha — logros que se van desbloqueando a medida que subes de racha */
+const MILESTONES = [7, 15, 30, 45, 60, 90, 120, 180, 365];
+
+const state = {
+  route: 'today',              // 'today' | 'settings'
+  habits: DEFAULT_HABITS.map(h=>({...h})),
+  checkins: {},                 // {'YYYY-MM-DD': {habitId: true/false}}
+  autosaveOK: null,
+  lastSavedAt: null,
+  editingDate: null,           // fecha que se está editando en el modal del heatmap
+};
+
+function uid(){ return 'h'+Math.random().toString(36).slice(2,9); }
+
+/* ============================ FECHAS ============================ */
+function pad(n){ return String(n).padStart(2,'0'); }
+function dateKey(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+function todayKey(){ return dateKey(new Date()); }
+function addDays(d, n){ const nd = new Date(d); nd.setDate(nd.getDate()+n); return nd; }
+function prettyDate(dateStr){
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const dt = new Date(y, m-1, d);
+  return dt.toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+}
+
+/* ============================ AUTOGUARDADO ============================ */
+const LS_KEY = 'habitos_cimientos_v1';
+function loadFromStorage(){
+  try{
+    const raw = window.localStorage.getItem(LS_KEY);
+    if(raw){
+      const d = JSON.parse(raw);
+      if(Array.isArray(d.habits) && d.habits.length) state.habits = d.habits;
+      if(d.checkins) state.checkins = d.checkins;
+      state.lastSavedAt = d.savedAt || null;
+    }
+    state.autosaveOK = true;
+  }catch(e){ state.autosaveOK = false; }
+}
+function saveToStorage(){
+  if(state.autosaveOK===false) return;
+  try{
+    const payload = {habits: state.habits, checkins: state.checkins, savedAt: Date.now()};
+    window.localStorage.setItem(LS_KEY, JSON.stringify(payload));
+    state.autosaveOK = true;
+    state.lastSavedAt = payload.savedAt;
+  }catch(e){ state.autosaveOK = false; }
+}
+
+/* ============================ LÓGICA DE HÁBITOS ============================ */
+function isChecked(dateStr, habitId){
+  return !!(state.checkins[dateStr] && state.checkins[dateStr][habitId]);
+}
+function setChecked(dateStr, habitId, value){
+  state.checkins[dateStr] = state.checkins[dateStr] || {};
+  state.checkins[dateStr][habitId] = value;
+}
+function toggleToday(habitId){
+  const key = todayKey();
+  const wasChecked = isChecked(key, habitId);
+  const oldStreak = currentStreak(habitId);
+  setChecked(key, habitId, !wasChecked);
+  const newStreak = currentStreak(habitId);
+  render();
+  if(!wasChecked && newStreak>oldStreak && MILESTONES.includes(newStreak)){
+    showAchievementCelebration(habitId, newStreak);
+  }
+}
+function currentStreak(habitId){
+  let d = new Date();
+  if(!isChecked(dateKey(d), habitId)) d = addDays(d, -1);
+  let streak = 0;
+  while(isChecked(dateKey(d), habitId)){ streak++; d = addDays(d, -1); }
+  return streak;
+}
+function bestStreak(habitId){
+  const dates = Object.keys(state.checkins).filter(k=>isChecked(k, habitId)).sort();
+  let best = 0, run = 0, prevDate = null;
+  for(const ds of dates){
+    const [y,m,d] = ds.split('-').map(Number);
+    const cur = new Date(y, m-1, d);
+    if(prevDate){
+      const diff = Math.round((cur-prevDate)/86400000);
+      run = diff===1 ? run+1 : 1;
+    } else { run = 1; }
+    if(run>best) best = run;
+    prevDate = cur;
+  }
+  return Math.max(best, currentStreak(habitId));
+}
+/* ============================ LOGROS POR RACHA ============================ */
+function nextMilestoneFor(streak){
+  const found = MILESTONES.find(m=>m>streak);
+  if(found!==undefined) return found;
+  return Math.ceil((streak+1)/100)*100; // más allá de la última meta, sigue subiendo de 100 en 100
+}
+function milestoneBase(next){
+  const idx = MILESTONES.indexOf(next);
+  if(idx>0) return MILESTONES[idx-1];
+  if(idx===0) return 0;
+  return next-100;
+}
+function milestoneProgress(streak){
+  const next = nextMilestoneFor(streak);
+  const base = milestoneBase(next);
+  const span = Math.max(1, next-base);
+  const pct = Math.max(0, Math.min(100, Math.round(((streak-base)/span)*100)));
+  return {next, pct};
+}
+function achievementsFor(habitId){
+  const best = bestStreak(habitId);
+  return MILESTONES.map(m=>({m, unlocked: best>=m}));
+}
+function unlockedCount(habitId){
+  return achievementsFor(habitId).filter(a=>a.unlocked).length;
+}
+
+function completionForDate(dateStr){
+  const total = state.habits.length;
+  if(total===0) return {done:0, total:0, ratio:0};
+  const done = state.habits.filter(h=>isChecked(dateStr, h.id)).length;
+  return {done, total, ratio: done/total};
+}
+function lastNDays(n){
+  const arr = []; const today = new Date();
+  for(let i=n-1;i>=0;i--) arr.push(dateKey(addDays(today, -i)));
+  return arr;
+}
+function cellColor(ratio){
+  if(ratio<=0) return '#e9ebf1';
+  if(ratio<0.34) return '#c9e8d3';
+  if(ratio<0.67) return '#8bd4a5';
+  if(ratio<1) return '#45b877';
+  return '#1f8a4c';
+}
+
+/* ============================ RENDER ============================ */
+function root(){ return document.getElementById('app'); }
+function esc(s){ return (s+'').replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+function go(route){ state.route = route; render(); }
+function closeModal(){ const m=document.getElementById('modal-root'); if(m) m.remove(); }
+
+function topbar(){
+  return `
+  <div class="topbar">
+    <div class="brand">🌱 Cimientos</div>
+    <div class="spacer"></div>
+    <button class="ghost" onclick="go(state.route==='today'?'settings':'today')">${state.route==='today'?'⚙️ Ajustes':'← Volver'}</button>
+  </div>
+  <div class="datepill">${prettyDate(todayKey())}</div>`;
+}
+
+function viewToday(){
+  const today = todayKey();
+  const {done, total} = completionForDate(today);
+  const pct = total? Math.round((done/total)*100) : 0;
+  const R = 52, C = 2*Math.PI*R;
+  const offset = C - (pct/100)*C;
+
+  const rows = state.habits.map(h=>{
+    const checked = isChecked(today, h.id);
+    const streak = currentStreak(h.id);
+    const best = bestStreak(h.id);
+    const streakTxt = streak>0 ? `🔥 <b>${streak}</b> día${streak===1?'':'s'} seguido${streak===1?'':'s'}` : 'empieza hoy';
+    const {next, pct} = milestoneProgress(streak);
+    const nUnlocked = unlockedCount(h.id);
+    return `
+    <div class="habit-row" style="flex-wrap:wrap;">
+      <div class="emoji">${h.emoji}</div>
+      <div class="info">
+        <div class="row" style="gap:8px;">
+          <div class="name">${esc(h.name)}</div>
+          <span class="trophy-badge" onclick="openAchievements('${h.id}')">🏆 ${nUnlocked}</span>
+        </div>
+        <div class="streak">${streakTxt}${best>streak && best>0 ? ` · récord ${best}` : ''}</div>
+        <div class="mini-progress"><div class="fill" style="width:${pct}%"></div></div>
+        <div class="next-goal">meta: ${next} días (${Math.max(0,next-streak)} más)</div>
+      </div>
+      <button class="check-btn ${checked?'done':''}" onclick="toggleToday('${h.id}')">✓</button>
+    </div>`;
+  }).join('') || `<div class="empty-state">No tienes hábitos todavía.<br><button style="margin-top:10px;" onclick="go('settings')">Agregar el primero</button></div>`;
+
+  const days = lastNDays(70);
+  const heatCells = days.map(ds=>{
+    const {ratio} = completionForDate(ds);
+    const isToday = ds===today;
+    return `<div class="cell ${isToday?'today':''}" title="${prettyDate(ds)}" style="background:${cellColor(ratio)}" onclick="openDayEditor('${ds}')"></div>`;
+  }).join('');
+
+  root().innerHTML = `
+    ${topbar()}
+    ${state.autosaveOK===false ? `<div class="banner">⚠️ Este navegador/vista no permite guardar tu progreso automáticamente aquí. Abre el archivo .html directamente en tu navegador para activarlo, y usa Ajustes → Exportar como respaldo mientras tanto.</div>` : ''}
+
+    <div class="hero">
+      <div class="ring">
+        <svg width="118" height="118">
+          <circle cx="59" cy="59" r="${R}" stroke="#eceef4" stroke-width="10" fill="none"/>
+          <circle cx="59" cy="59" r="${R}" stroke="var(--accent)" stroke-width="10" fill="none"
+            stroke-dasharray="${C}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+        </svg>
+        <div class="num">${done}/${total}</div>
+      </div>
+      <div class="sub">completados hoy</div>
+      ${total>0 && done===total ? `<div class="celebrate">🎉 ¡Día completo!</div>` : ''}
+    </div>
+
+    <div class="habit-list">${rows}</div>
+
+    <div class="section-title">Últimos ${days.length} días</div>
+    <div class="card">
+      <div class="heatmap">${heatCells}</div>
+      <div class="legend">
+        menos
+        <span class="cell" style="background:${cellColor(0)}"></span>
+        <span class="cell" style="background:${cellColor(0.2)}"></span>
+        <span class="cell" style="background:${cellColor(0.5)}"></span>
+        <span class="cell" style="background:${cellColor(0.8)}"></span>
+        <span class="cell" style="background:${cellColor(1)}"></span>
+        más
+      </div>
+      <p class="muted" style="font-size:12px;margin-top:8px;margin-bottom:0;">Toca cualquier día para editarlo (por si olvidaste marcar algo).</p>
+    </div>
+
+    <footer class="appfoot">Hábitos simples, todos los días. Tu progreso se guarda solo en este navegador.</footer>
+  `;
+  saveToStorage();
+}
+
+function viewSettings(){
+  const savedTxt = state.lastSavedAt ? new Date(state.lastSavedAt).toLocaleString('es-VE') : 'todavía no';
+  const rows = state.habits.map(h=>`
+    <div class="habit-config-row">
+      <span style="font-size:20px;">${h.emoji}</span>
+      <input type="text" value="${esc(h.name)}" style="flex:1;" onchange="renameHabit('${h.id}', this.value)">
+      <button class="small danger" onclick="removeHabit('${h.id}')">Eliminar</button>
+    </div>`).join('') || `<p class="muted">No tienes hábitos. Agrega uno abajo.</p>`;
+
+  root().innerHTML = `
+    ${topbar()}
+    <h1 style="margin-top:14px;">⚙️ Ajustes</h1>
+
+    <div class="card" style="margin-bottom:14px;">
+      <h3>💾 Guardado automático</h3>
+      <div class="autosave-status">
+        <span class="dot ${state.autosaveOK===false?'bad':'ok'}"></span>
+        ${state.autosaveOK===false ? 'No disponible en esta vista — abre el archivo .html directamente en tu navegador.' : `Activo · última vez guardado: ${savedTxt}`}
+      </div>
+      <p class="muted" style="font-size:13px;margin-top:8px;">Esta app no depende de internet ni de ningún asistente — es un solo archivo que guarda tu progreso solo en este navegador.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <h3>Tus hábitos</h3>
+      ${rows}
+      <div class="row" style="margin-top:12px;">
+        <input type="text" id="new-emoji" class="emoji-input" placeholder="🙂" maxlength="4">
+        <input type="text" id="new-name" placeholder="Nombre del hábito nuevo">
+        <button onclick="addHabit()">➕ Agregar</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <h3>⬇️⬆️ Respaldo</h3>
+      <p class="muted" style="font-size:13px;">Descarga un archivo con tu historial completo, o impórtalo en otro navegador/computadora.</p>
+      <div class="row wrap" style="margin-top:8px;">
+        <button onclick="exportData()">⬇️ Exportar</button>
+        <button class="secondary" onclick="document.getElementById('import-file').click()">⬆️ Importar</button>
+        <input type="file" id="import-file" accept="application/json" style="display:none" onchange="importData(event)">
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Reiniciar</h3>
+      <p class="muted" style="font-size:13px;">Borra todo el historial de check-ins (no los hábitos en sí).</p>
+      <button class="danger" onclick="resetHistory()">Borrar historial</button>
+    </div>
+  `;
+}
+
+/* ============================ ACCIONES ============================ */
+function addHabit(){
+  const emojiInput = document.getElementById('new-emoji');
+  const nameInput = document.getElementById('new-name');
+  const name = nameInput.value.trim();
+  if(!name){ alert('Ponle un nombre al hábito.'); return; }
+  const emoji = emojiInput.value.trim() || '⭐';
+  const color = COLOR_ROTATION[state.habits.length % COLOR_ROTATION.length];
+  state.habits.push({id: uid(), name, emoji, color});
+  go('settings');
+}
+function renameHabit(id, name){
+  const h = state.habits.find(h=>h.id===id);
+  if(h){ h.name = name.trim() || h.name; saveToStorage(); }
+}
+function removeHabit(id){
+  if(!confirm('¿Eliminar este hábito? También se borra su historial.')) return;
+  state.habits = state.habits.filter(h=>h.id!==id);
+  Object.keys(state.checkins).forEach(ds=>{ if(state.checkins[ds]) delete state.checkins[ds][id]; });
+  go('settings');
+}
+function resetHistory(){
+  if(!confirm('¿Borrar todo el historial de check-ins? Esta acción no se puede deshacer.')) return;
+  state.checkins = {};
+  go('settings');
+}
+
+/* --------------------------- logros --------------------------- */
+function openAchievements(habitId){
+  closeModal();
+  const h = state.habits.find(h=>h.id===habitId);
+  if(!h) return;
+  const chips = achievementsFor(habitId).map(a=>`
+    <div class="achv-chip ${a.unlocked?'unlocked':'locked'}">
+      <div class="ic">${a.unlocked?'🏆':'🔒'}</div>
+      <div class="lbl">${a.m}d</div>
+    </div>`).join('');
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="modal-root" class="modal-backdrop" onclick="if(event.target===this) closeModal()">
+      <div class="modal">
+        <h2>${h.emoji} Logros de ${esc(h.name)}</h2>
+        <p class="muted" style="font-size:13px;">Cada logro se desbloquea al llegar a esa cantidad de días seguidos, y queda tuyo para siempre — aunque después se rompa la racha.</p>
+        <div class="achv-grid">${chips}</div>
+        <div class="row" style="margin-top:16px;justify-content:flex-end;">
+          <button class="secondary" onclick="closeModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>`);
+}
+
+function showAchievementCelebration(habitId, streakNum){
+  closeModal();
+  const h = state.habits.find(h=>h.id===habitId);
+  if(!h) return;
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="modal-root" class="modal-backdrop" onclick="if(event.target===this) closeModal()">
+      <div class="modal celebrate-modal">
+        <div class="big-emoji">🏆</div>
+        <h2>¡Nuevo logro!</h2>
+        <p style="font-size:16px;"><b>${streakNum} días seguidos</b> de ${h.emoji} ${esc(h.name)}</p>
+        <p class="muted" style="font-size:13px;">Sigue así — la próxima meta es ${nextMilestoneFor(streakNum)} días.</p>
+        <button style="margin-top:10px;" onclick="closeModal()">🎉 Genial</button>
+      </div>
+    </div>`);
+}
+
+/* --------------------------- editor de días pasados --------------------------- */
+function openDayEditor(dateStr){
+  closeModal();
+  const rows = state.habits.map(h=>{
+    const checked = isChecked(dateStr, h.id);
+    return `
+    <div class="modal-habit-row">
+      <span style="font-size:20px;">${h.emoji}</span>
+      <span style="flex:1;">${esc(h.name)}</span>
+      <button class="check-btn ${checked?'done':''}" onclick="toggleDay('${dateStr}','${h.id}', this)">✓</button>
+    </div>`;
+  }).join('') || `<p class="muted">No tienes hábitos configurados.</p>`;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="modal-root" class="modal-backdrop" onclick="if(event.target===this) closeModal()">
+      <div class="modal">
+        <h2>${prettyDate(dateStr)}</h2>
+        ${rows}
+        <div class="row" style="margin-top:16px;justify-content:flex-end;">
+          <button class="secondary" onclick="closeModal(); render();">Listo</button>
+        </div>
+      </div>
+    </div>`);
+}
+function toggleDay(dateStr, habitId, btnEl){
+  setChecked(dateStr, habitId, !isChecked(dateStr, habitId));
+  saveToStorage();
+  btnEl.classList.toggle('done');
+}
+
+/* --------------------------- export / import --------------------------- */
+function exportData(){
+  const payload = {kind:'habitos-cimientos', version:1, exportedAt:new Date().toISOString(), habits: state.habits, checkins: state.checkins};
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `habitos-${todayKey()}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function importData(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const data = JSON.parse(reader.result);
+      if(data.kind!=='habitos-cimientos') throw new Error('formato inválido');
+      state.habits = data.habits || state.habits;
+      state.checkins = data.checkins || {};
+      saveToStorage();
+      alert('¡Historial importado correctamente!');
+      go('today');
+    }catch(e){
+      alert('No se pudo leer ese archivo. Asegúrate de que sea un archivo exportado desde esta misma app.');
+    }
+  };
+  reader.readAsText(file);
+  evt.target.value = '';
+}
+
+/* ============================ ROUTER ============================ */
+function render(){
+  closeModal();
+  if(state.route==='settings') viewSettings();
+  else viewToday();
+}
+
+loadFromStorage();
+render();
+</script>
+</body>
+</html>
